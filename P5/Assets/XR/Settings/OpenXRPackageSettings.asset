@@ -840,12 +840,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f0ebc320a151d3408ea1e9fce54d40e, type: 3}
   m_Name: OpenXRPackageSettings
   m_EditorClassIdentifier: Unity.XR.OpenXR.Editor::UnityEditor.XR.OpenXR.OpenXRPackageSettings
-  Keys: 0100000004000000070000000e000000
+  Keys: 010000000400000007000000
   Values:
   - {fileID: 1566448799328354002}
   - {fileID: -507379114235279275}
   - {fileID: 4066899920479738643}
-  - {fileID: 3479472240918066850}
 --- !u!114 &39252591221094043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,7 +1176,7 @@ MonoBehaviour:
   m_symmetricProjection: 0
   m_optimizeMultiviewRenderRegions: 0
   m_multiviewRenderRegionsOptimizationMode: 0
-  m_hasMigratedMultiviewRenderRegionSetting: 0
+  m_hasMigratedMultiviewRenderRegionSetting: 1
   m_foveatedRenderingApi: 0
   m_useOpenXRPredictedTime: 0
 --- !u!114 &3610222031808491480
