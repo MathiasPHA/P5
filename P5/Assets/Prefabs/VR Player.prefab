@@ -557,7 +557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7490354663556253080}
   - component: {fileID: 2319983119583740019}
-  - component: {fileID: 5170424220107046}
+  - component: {fileID: 2141973036789441132}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -657,7 +657,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
     m_Priority: 0
---- !u!114 &5170424220107046
+--- !u!114 &2141973036789441132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -666,7 +666,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4637677732673236187}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4abc99d0652065849a0c7b219a3b96c4, type: 3}
+  m_Script: {fileID: 11500000, guid: af40fafe8bf750741b9ab7a6be0f0b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TeleportationActivator
   teleportInteractor: {fileID: 5001845204095758394}
@@ -676,7 +676,7 @@ MonoBehaviour:
       m_Name: Teleport Activator
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: c50e0952-8ee5-4dd4-90aa-d16955259acc
+      m_Id: 3855e119-2187-41cf-b866-4efde055bc38
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -1326,7 +1326,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4510781919349036174}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1530,7 +1530,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5686134208185362930, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6274079280199249584}
+      addedObject: {fileID: 2790907847430563520}
   m_SourcePrefab: {fileID: 100100000, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
 --- !u!95 &5854269375314414198 stripped
 Animator:
@@ -1542,7 +1542,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5686134208185362930, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
   m_PrefabInstance: {fileID: 2294511534175735858}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6274079280199249584
+--- !u!114 &2790907847430563520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1551,7 +1551,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5854269375321815488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8548ef31d628ff942b30413e0c12c6d4, type: 3}
+  m_Script: {fileID: 11500000, guid: a3f765e586b84f146b5cf535d0cd11ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimateHandOnInput
   triggerValue:
@@ -1560,7 +1560,7 @@ MonoBehaviour:
       m_Name: Trigger Value
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 8c5795e6-ffec-47b8-9948-7b361f764f42
+      m_Id: 97af95ee-e581-4175-a1ce-7092ba58a3a2
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -1573,7 +1573,7 @@ MonoBehaviour:
       m_Name: Grip Value
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 293c83b0-834e-424b-8de7-d317ad38a54d
+      m_Id: 6f854536-4553-435c-a83d-9871b6062e26
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -1644,7 +1644,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 404970485308156072}
+      addedObject: {fileID: 3283415428343501043}
   m_SourcePrefab: {fileID: 100100000, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
 --- !u!95 &5716076295682041943 stripped
 Animator:
@@ -1656,7 +1656,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
   m_PrefabInstance: {fileID: 5681114270259680252}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &404970485308156072
+--- !u!114 &3283415428343501043
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1665,7 +1665,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5716076295691557857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8548ef31d628ff942b30413e0c12c6d4, type: 3}
+  m_Script: {fileID: 11500000, guid: a3f765e586b84f146b5cf535d0cd11ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimateHandOnInput
   triggerValue:
@@ -1674,7 +1674,7 @@ MonoBehaviour:
       m_Name: Trigger Value
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 5071190d-b75e-46a9-9aa2-bd2439b8e45d
+      m_Id: 6cab4768-2350-4fe7-9111-d0be1f69e891
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -1687,7 +1687,7 @@ MonoBehaviour:
       m_Name: Grip Value
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: e7aa25c7-157f-4ee5-b76e-451d2c8e0af7
+      m_Id: 5c324de9-f2d7-43c4-97d9-2763e101b7b3
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
