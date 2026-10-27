@@ -902,6 +902,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Appartment Layout
       objectReference: {fileID: 0}
+    - target: {fileID: 282765612452554520, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4702850353068308276, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.08081
