@@ -464,6 +464,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &1571004846 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5955741389024447632, guid: 8ccacede4b5b84a41916950fc6bfd390, type: 3}
+  m_PrefabInstance: {fileID: 89393792}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2084625244
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dfdbcd4d13333d4aa1f96821aa804dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bootstrap
-  sharedStatePrefab: {fileID: 0}
+  sharedStatePrefab: {fileID: 1571004846}
   hostIp: 192.168.1.100
   port: 7777
   pcScene: Appartment
