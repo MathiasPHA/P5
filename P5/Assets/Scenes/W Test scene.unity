@@ -2403,7 +2403,7 @@ MonoBehaviour:
   rightButton: {fileID: 2040155565}
   enterButton: {fileID: 439039958}
   boardColor: {r: 0.02, g: 0.13, b: 0.04, a: 1}
-  traceColor: {r: 0.3, g: 0.95, b: 0.35, a: 1}
+  traceColor: {r: 0.3, g: 0.95, b: 0.35, a: 0}
   tileColor: {r: 0.3, g: 0.95, b: 0.35, a: 0.5}
   wallColor: {r: 0.55, g: 0.75, b: 1, a: 1}
   playerColor: {r: 0.35, g: 1, b: 1, a: 1}
