@@ -1,0 +1,536 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
+using TMPro;
+
+public class PhoneMaze : MonoBehaviour
+{
+    public enum ViewMode { VRPhone, PCMap }
+
+    [Header("Mode")]
+    [SerializeField] private ViewMode mode = ViewMode.VRPhone;
+    [SerializeField] private MazeLayout mazeLayout;
+    [SerializeField] private bool resetOnWallHit = true;
+    [SerializeField] private bool showPlayerOnPC = false;
+
+    [Header("References")]
+    [SerializeField] private RectTransform gridArea;
+    [SerializeField] private TMP_Text statusText;
+
+    [Header("Buttons (VR phone only) – wired and styled by this script, leave OnClick empty")]
+    [SerializeField] private Button upButton;
+    [SerializeField] private Button downButton;
+    [SerializeField] private Button leftButton;
+    [SerializeField] private Button rightButton;
+    [SerializeField] private Button enterButton;
+
+    [Header("Colours")]
+    [SerializeField] private Color boardColor = new Color(0.02f, 0.13f, 0.04f);
+    [SerializeField] private Color traceColor = new Color(0.3f, 0.95f, 0.35f);
+    [SerializeField] private Color tileColor = new Color(0.3f, 0.95f, 0.35f, 0.5f);
+    [SerializeField] private Color wallColor = new Color(0.55f, 0.75f, 1f);
+    [SerializeField] private Color playerColor = new Color(0.35f, 1f, 1f);
+    [SerializeField] private Color exitColor = new Color(1f, 0.6f, 0.15f);
+    [SerializeField] private Color hitColor = new Color(1f, 0.15f, 0.15f);
+
+    [Header("Feel")]
+    [SerializeField] private float moveSpeed = 8f;
+    [SerializeField, Range(0.05f, 0.3f)] private float wallThickness = 0.14f;
+    [SerializeField] private float hitDuration = 0.6f;
+
+    [Header("Events")]
+    public UnityEvent onSolved;
+    public UnityEvent onWallHit;
+
+    private int cols, rows;
+    private Vector2Int player;
+    private bool solved;
+    private float cell, hitTimer;
+
+    private RectTransform playerRt, shipRt, playerGlowRt, exitRingRt;
+    private Image shipImg, exitGlow;
+    private readonly List<Image> borderBars = new List<Image>();
+    private Vector2 visualPos, bump;
+
+    private Sprite boardSprite, tileSprite, blockSprite, barSprite, glowSprite, arrowSprite, ringSprite, enterSprite;
+
+    public Vector2Int PlayerCell => player;
+    private bool HasPlayer => playerRt != null;
+    private bool Ready => mazeLayout != null && exitRingRt != null;
+
+    // ───────────────────────── Lifecycle ─────────────────────────
+
+    void Awake()
+    {
+        if (mazeLayout == null)
+        {
+            Debug.LogError($"{name}: no Maze Layout assigned.", this);
+            enabled = false;
+            return;
+        }
+
+        mazeLayout.EnsureSize();
+        cols = mazeLayout.width;
+        rows = mazeLayout.height;
+
+        GenerateSprites();
+        BuildBoard();
+        if (mode == ViewMode.VRPhone) SetupButtons();
+        if (statusText != null) statusText.color = traceColor;
+    }
+
+    void OnEnable()
+    {
+        if (Ready) Restart();
+    }
+
+    void Update()
+    {
+        if (!Ready) return;
+
+        float t = Time.time;
+        float dt = Time.deltaTime;
+
+        exitRingRt.localRotation = Quaternion.Euler(0f, 0f, t * 90f);
+        SetAlpha(exitGlow, 0.45f + 0.25f * Mathf.Sin(t * 4f));
+
+        if (!HasPlayer) return;
+
+        visualPos = Vector2.MoveTowards(visualPos, CellPos(player), moveSpeed * cell * dt);
+        bump = Vector2.Lerp(bump, Vector2.zero, dt * 15f);
+        playerRt.anchoredPosition = visualPos + bump;
+
+        float pulse = solved ? 1.5f + 0.35f * Mathf.Sin(t * 10f) : 1f + 0.08f * Mathf.Sin(t * 5f);
+        playerGlowRt.localScale = Vector3.one * pulse;
+
+        if (hitTimer > 0f)
+        {
+            hitTimer -= dt;
+            bool on = Mathf.PingPong(hitTimer * 10f, 1f) > 0.5f;
+            shipImg.color = on ? hitColor : playerColor;
+            foreach (var bar in borderBars) bar.color = on ? hitColor : wallColor;
+
+            if (hitTimer <= 0f)
+            {
+                shipImg.color = playerColor;
+                foreach (var bar in borderBars) bar.color = wallColor;
+                if (resetOnWallHit) Restart();
+                else SetStatus("FIND THE EXIT");
+            }
+        }
+    }
+
+    // ───────────────────────── Controls ─────────────────────────
+
+    public void Up()    => Move(new Vector2Int(0, -1));
+    public void Down()  => Move(new Vector2Int(0, 1));
+    public void Left()  => Move(new Vector2Int(-1, 0));
+    public void Right() => Move(new Vector2Int(1, 0));
+
+    public void Enter()
+    {
+        if (!Ready || mode != ViewMode.VRPhone || hitTimer > 0f) return;
+        if (solved) { Restart(); return; }
+        if (player != mazeLayout.exit) { SetStatus("NOT AT EXIT"); return; }
+
+        solved = true;
+        SetStatus("ACCESS GRANTED");
+        onSolved.Invoke();
+    }
+
+    public void Restart()
+    {
+        if (!Ready) return;
+
+        solved = false;
+        hitTimer = 0f;
+        player = mazeLayout.start;
+        SetStatus(mode == ViewMode.PCMap ? "GUIDE THE AGENT" : "FIND THE EXIT");
+        foreach (var bar in borderBars) bar.color = wallColor;
+
+        if (!HasPlayer) return;
+        visualPos = CellPos(player);
+        bump = Vector2.zero;
+        playerRt.anchoredPosition = visualPos;
+        shipRt.localRotation = Quaternion.identity;
+        shipImg.color = playerColor;
+    }
+
+    // For mirroring the VR player's position onto the PC map later (networking)
+    public void SetPlayerCell(Vector2Int c) => player = c;
+
+    private void Move(Vector2Int dir)
+    {
+        if (!Ready || mode != ViewMode.VRPhone || solved || hitTimer > 0f || !HasPlayer) return;
+
+        Vector2 screenDir = new Vector2(dir.x, -dir.y);
+        shipRt.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(-screenDir.x, screenDir.y) * Mathf.Rad2Deg);
+
+        Vector2Int target = player + dir;
+
+        // Edge of the grid: just bump, no penalty
+        if (!mazeLayout.InBounds(target))
+        {
+            bump = screenDir * cell * 0.18f;
+            return;
+        }
+
+        // Invisible wall: flash red, then reset
+        if (mazeLayout.IsBlocked(player, dir))
+        {
+            bump = screenDir * cell * 0.35f;
+            hitTimer = hitDuration;
+            SetStatus(resetOnWallHit ? "CONNECTION LOST" : "BLOCKED");
+            onWallHit.Invoke();
+            return;
+        }
+
+        player = target;
+        SetStatus(player == mazeLayout.exit ? "PRESS ENTER" : "FIND THE EXIT");
+    }
+
+    // ───────────────────────── Building ─────────────────────────
+
+    private void BuildBoard()
+    {
+        var layoutGroup = gridArea.GetComponent<GridLayoutGroup>();
+        if (layoutGroup != null) { layoutGroup.enabled = false; Destroy(layoutGroup); }
+        foreach (Transform child in gridArea) Destroy(child.gameObject);
+
+        cell = Mathf.Min(gridArea.rect.width / cols, gridArea.rect.height / rows);
+        float th = cell * wallThickness;
+        Vector2 boardSize = new Vector2(cols * cell, rows * cell);
+
+        CreateImage("Board", gridArea, boardSprite, Color.white, boardSize, Vector2.zero);
+
+        // Grid tiles (both views)
+        Vector2 tileSize = Vector2.one * (cell - th * 1.2f);
+        for (int y = 0; y < rows; y++)
+        for (int x = 0; x < cols; x++)
+            CreateImage("Tile", gridArea, tileSprite, tileColor, tileSize, CellPos(new Vector2Int(x, y)));
+
+        var startColor = new Color(playerColor.r, playerColor.g, playerColor.b, 0.35f);
+        CreateImage("Start", gridArea, tileSprite, startColor, tileSize, CellPos(mazeLayout.start));
+
+        exitGlow = CreateImage("ExitGlow", gridArea, glowSprite, exitColor, Vector2.one * cell * 1.4f, CellPos(mazeLayout.exit));
+        exitRingRt = CreateImage("ExitRing", gridArea, ringSprite, exitColor, Vector2.one * cell * 0.75f, CellPos(mazeLayout.exit)).rectTransform;
+
+        // Inner walls (PC map only)
+        if (mode == ViewMode.PCMap)
+        {
+            for (int y = 0; y < rows; y++)
+            for (int x = 0; x < cols; x++)
+            {
+                Vector2 c = CellPos(new Vector2Int(x, y));
+                int i = y * cols + x;
+
+                if (x < cols - 1 && mazeLayout.wallRight[i])
+                    CreateBar(c + new Vector2(cell / 2f, 0f), new Vector2(th, cell + th), th);
+
+                if (y < rows - 1 && mazeLayout.wallBottom[i])
+                    CreateBar(c + new Vector2(0f, -cell / 2f), new Vector2(cell + th, th), th);
+            }
+        }
+
+        // Outer border (both views)
+        borderBars.Clear();
+        borderBars.Add(CreateBar(new Vector2(0f, boardSize.y / 2f), new Vector2(boardSize.x + th, th), th));
+        borderBars.Add(CreateBar(new Vector2(0f, -boardSize.y / 2f), new Vector2(boardSize.x + th, th), th));
+        borderBars.Add(CreateBar(new Vector2(-boardSize.x / 2f, 0f), new Vector2(th, boardSize.y + th), th));
+        borderBars.Add(CreateBar(new Vector2(boardSize.x / 2f, 0f), new Vector2(th, boardSize.y + th), th));
+
+        // Player
+        if (mode == ViewMode.PCMap && !showPlayerOnPC) return;
+
+        playerRt = new GameObject("Player", typeof(RectTransform)).GetComponent<RectTransform>();
+        playerRt.SetParent(gridArea, false);
+        playerRt.sizeDelta = Vector2.one * cell;
+
+        var glowColor = new Color(playerColor.r, playerColor.g, playerColor.b, 0.6f);
+        playerGlowRt = CreateImage("Glow", playerRt, glowSprite, glowColor, Vector2.one * cell * 1.3f, Vector2.zero).rectTransform;
+        shipImg = CreateImage("Ship", playerRt, arrowSprite, playerColor, Vector2.one * cell * 0.5f, Vector2.zero);
+        shipRt = shipImg.rectTransform;
+    }
+
+    private Image CreateBar(Vector2 pos, Vector2 size, float thickness)
+    {
+        var img = CreateImage("Wall", gridArea, barSprite, wallColor, size, pos);
+        img.type = Image.Type.Sliced;
+        img.pixelsPerUnitMultiplier = 24f / (thickness * 0.5f);
+        return img;
+    }
+
+    private void SetupButtons()
+    {
+        SetupButton(upButton, Up, arrowSprite, 0f);
+        SetupButton(downButton, Down, arrowSprite, 180f);
+        SetupButton(leftButton, Left, arrowSprite, 90f);
+        SetupButton(rightButton, Right, arrowSprite, -90f);
+        SetupButton(enterButton, Enter, enterSprite, 0f);
+    }
+
+    private void SetupButton(Button button, UnityAction action, Sprite icon, float angle)
+    {
+        if (button == null) return;
+        button.onClick.AddListener(action);
+
+        foreach (var label in button.GetComponentsInChildren<TMP_Text>(true)) label.gameObject.SetActive(false);
+        foreach (var label in button.GetComponentsInChildren<Text>(true)) label.gameObject.SetActive(false);
+
+        var bg = button.GetComponent<Image>();
+        if (bg != null)
+        {
+            bg.sprite = blockSprite;
+            bg.type = Image.Type.Simple;
+            bg.color = Color.white;
+            button.targetGraphic = bg;
+        }
+
+        var colors = button.colors;
+        colors.normalColor = wallColor;
+        colors.highlightedColor = Color.Lerp(wallColor, Color.white, 0.35f);
+        colors.selectedColor = wallColor;
+        colors.pressedColor = traceColor;
+        colors.colorMultiplier = 1f;
+        colors.fadeDuration = 0.05f;
+        button.colors = colors;
+        button.transition = Selectable.Transition.ColorTint;
+        button.navigation = new Navigation { mode = Navigation.Mode.None };
+
+        var rt = (RectTransform)button.transform;
+        float s = Mathf.Min(rt.rect.width, rt.rect.height) * 0.45f;
+        var iconImg = CreateImage("Icon", button.transform, icon, new Color(0.05f, 0.1f, 0.2f), Vector2.one * s, Vector2.zero);
+        iconImg.rectTransform.localRotation = Quaternion.Euler(0f, 0f, angle);
+    }
+
+    // ───────────────────────── Helpers ─────────────────────────
+
+    private Vector2 CellPos(Vector2Int p) =>
+        new Vector2((p.x + 0.5f - cols / 2f) * cell, (rows / 2f - p.y - 0.5f) * cell);
+
+    private void SetStatus(string msg)
+    {
+        if (statusText != null) statusText.text = msg;
+    }
+
+    private static void SetAlpha(Image img, float a)
+    {
+        var c = img.color;
+        c.a = a;
+        img.color = c;
+    }
+
+    private static Image CreateImage(string name, Transform parent, Sprite sprite, Color color, Vector2 size, Vector2 pos)
+    {
+        var go = new GameObject(name, typeof(RectTransform), typeof(Image));
+        var rt = (RectTransform)go.transform;
+        rt.SetParent(parent, false);
+        rt.anchorMin = rt.anchorMax = rt.pivot = new Vector2(0.5f, 0.5f);
+        rt.sizeDelta = size;
+        rt.anchoredPosition = pos;
+
+        var img = go.GetComponent<Image>();
+        img.sprite = sprite;
+        img.color = color;
+        img.raycastTarget = false;
+        return img;
+    }
+
+    // ───────────────────────── Generated graphics ─────────────────────────
+
+    private void GenerateSprites()
+    {
+        boardSprite = MakeBoard(512);
+
+        tileSprite = Procedural(64, p =>
+        {
+            float d = RoundRect(p, 32f, 30f, 6f);
+            if (d > 0.5f) return Color.clear;
+            float a = d > -3f ? Mathf.Clamp01(0.5f - d) : 0.15f;
+            return new Color(1f, 1f, 1f, a);
+        });
+
+        blockSprite = Procedural(128, p =>
+        {
+            float d = RoundRect(p, 64f, 60f, 14f);
+            if (d > 0.5f) return Color.clear;
+
+            float v;
+            if (d > -3f) v = 0.12f;
+            else if (d > -8f) v = 1f;
+            else
+            {
+                float d2 = RoundRect(p, 64f, 42f, 8f);
+                if (d2 > 0f) v = 0.72f;
+                else if (d2 > -3f) v = 0.95f;
+                else v = ((int)p.x % 14 < 4) ? 0.45f : 0.6f;
+            }
+            return new Color(v, v, v, Mathf.Clamp01(0.5f - d));
+        });
+
+        // 9-sliced wall bar: dark outline, bright rim, body
+        barSprite = Procedural(64, p =>
+        {
+            float d = RoundRect(p, 32f, 31f, 12f);
+            if (d > 0.5f) return Color.clear;
+            float v = d > -3f ? 0.12f : d > -8f ? 1f : 0.7f;
+            return new Color(v, v, v, Mathf.Clamp01(0.5f - d));
+        }, new Vector4(24f, 24f, 24f, 24f));
+
+        glowSprite = Procedural(64, p =>
+        {
+            float a = Mathf.Clamp01(1f - Vector2.Distance(p, new Vector2(32f, 32f)) / 32f);
+            return new Color(1f, 1f, 1f, a * a);
+        });
+
+        arrowSprite = Procedural(64, p =>
+        {
+            Vector2 a = new Vector2(32f, 56f), b = new Vector2(10f, 12f), c = new Vector2(54f, 12f);
+            float d = Mathf.Min(Edge(a, b, p), Mathf.Min(Edge(b, c, p), Edge(c, a, p)));
+            return new Color(1f, 1f, 1f, Mathf.Clamp01(d + 0.5f));
+        });
+
+        ringSprite = Procedural(64, p =>
+        {
+            Vector2 v = p - new Vector2(32f, 32f);
+            float ang = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+            if (Mathf.Repeat(ang + 10f, 90f) < 20f) return Color.clear;
+            float d = Mathf.Abs(v.magnitude - 22f) - 4f;
+            return new Color(1f, 1f, 1f, Mathf.Clamp01(0.5f - d));
+        });
+
+        enterSprite = Procedural(64, p =>
+        {
+            float r = Vector2.Distance(p, new Vector2(32f, 32f));
+            float a = Mathf.Max(Mathf.Clamp01(12.5f - r), Mathf.Clamp01(0.5f - (Mathf.Abs(r - 22f) - 3f)));
+            return new Color(1f, 1f, 1f, a);
+        });
+    }
+
+    private Sprite MakeBoard(int s)
+    {
+        var px = new Color[s * s];
+        Color fine = Color.Lerp(boardColor, traceColor, 0.12f);
+        Color major = Color.Lerp(boardColor, traceColor, 0.25f);
+        Color trace = Color.Lerp(boardColor, traceColor, 0.6f);
+        Color node = Color.Lerp(boardColor, traceColor, 0.85f);
+
+        for (int y = 0; y < s; y++)
+        for (int x = 0; x < s; x++)
+        {
+            Color c = boardColor;
+            if (x % 16 == 0 || y % 16 == 0) c = fine;
+            if (x % 64 == 0 || y % 64 == 0) c = major;
+            px[y * s + x] = c;
+        }
+
+        var rng = new System.Random(7);
+        for (int i = 0; i < 45; i++)
+        {
+            int x = rng.Next(1, s / 16) * 16;
+            int y = rng.Next(1, s / 16) * 16;
+            bool horiz = rng.Next(2) == 0;
+            int len = rng.Next(2, 8) * 16;
+
+            int x2 = horiz ? Mathf.Min(x + len, s - 16) : x;
+            int y2 = horiz ? y : Mathf.Min(y + len, s - 16);
+            Line(px, s, x, y, x2, y2, trace);
+
+            if (rng.Next(2) == 0)
+            {
+                int len2 = rng.Next(1, 5) * 16;
+                int x3 = horiz ? x2 : Mathf.Min(x2 + len2, s - 16);
+                int y3 = horiz ? Mathf.Min(y2 + len2, s - 16) : y2;
+                Line(px, s, x2, y2, x3, y3, trace);
+                x2 = x3; y2 = y3;
+            }
+
+            Ring(px, s, x, y, 5f, node);
+            Ring(px, s, x2, y2, 5f, node);
+        }
+
+        for (int i = 0; i < 10; i++)
+        {
+            int x = rng.Next(1, s / 32) * 32;
+            int y = rng.Next(1, s / 32) * 32;
+            Square(px, s, x, y, 10, trace);
+            Square(px, s, x, y, 5, node);
+        }
+
+        var tex = NewTexture(s);
+        tex.SetPixels(px);
+        tex.Apply();
+        return ToSprite(tex, Vector4.zero);
+    }
+
+    private static Sprite Procedural(int size, System.Func<Vector2, Color> f, Vector4 border = default)
+    {
+        var px = new Color[size * size];
+        for (int y = 0; y < size; y++)
+        for (int x = 0; x < size; x++)
+            px[y * size + x] = f(new Vector2(x + 0.5f, y + 0.5f));
+
+        var tex = NewTexture(size);
+        tex.SetPixels(px);
+        tex.Apply();
+        return ToSprite(tex, border);
+    }
+
+    private static Texture2D NewTexture(int size) =>
+        new Texture2D(size, size, TextureFormat.RGBA32, false)
+        {
+            wrapMode = TextureWrapMode.Clamp,
+            filterMode = FilterMode.Bilinear
+        };
+
+    private static Sprite ToSprite(Texture2D tex, Vector4 border) =>
+        Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f),
+                      100f, 0, SpriteMeshType.FullRect, border);
+
+    private static float RoundRect(Vector2 p, float center, float half, float radius)
+    {
+        Vector2 q = new Vector2(Mathf.Abs(p.x - center), Mathf.Abs(p.y - center)) - Vector2.one * (half - radius);
+        return new Vector2(Mathf.Max(q.x, 0f), Mathf.Max(q.y, 0f)).magnitude
+               + Mathf.Min(Mathf.Max(q.x, q.y), 0f) - radius;
+    }
+
+    private static float Edge(Vector2 a, Vector2 b, Vector2 p)
+    {
+        Vector2 e = b - a;
+        return (e.x * (p.y - a.y) - e.y * (p.x - a.x)) / e.magnitude;
+    }
+
+    private static void Fill(Color[] px, int s, int x0, int y0, int x1, int y1, Color c)
+    {
+        for (int y = Mathf.Max(0, y0); y <= Mathf.Min(s - 1, y1); y++)
+        for (int x = Mathf.Max(0, x0); x <= Mathf.Min(s - 1, x1); x++)
+            px[y * s + x] = c;
+    }
+
+    private static void Line(Color[] px, int s, int x0, int y0, int x1, int y1, Color c) =>
+        Fill(px, s, Mathf.Min(x0, x1) - 1, Mathf.Min(y0, y1) - 1, Mathf.Max(x0, x1) + 1, Mathf.Max(y0, y1) + 1, c);
+
+    private static void Ring(Color[] px, int s, int cx, int cy, float r, Color c)
+    {
+        int ri = Mathf.CeilToInt(r + 2f);
+        for (int y = -ri; y <= ri; y++)
+        for (int x = -ri; x <= ri; x++)
+        {
+            int ix = cx + x, iy = cy + y;
+            if (ix < 0 || iy < 0 || ix >= s || iy >= s) continue;
+            if (Mathf.Abs(Mathf.Sqrt(x * x + y * y) - r) <= 1.2f) px[iy * s + ix] = c;
+        }
+    }
+
+    private static void Square(Color[] px, int s, int cx, int cy, int half, Color c)
+    {
+        for (int y = -half; y <= half; y++)
+        for (int x = -half; x <= half; x++)
+        {
+            int ix = cx + x, iy = cy + y;
+            if (ix < 0 || iy < 0 || ix >= s || iy >= s) continue;
+            if (Mathf.Max(Mathf.Abs(x), Mathf.Abs(y)) >= half - 1) px[iy * s + ix] = c;
+        }
+    }
+}
