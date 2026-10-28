@@ -41,7 +41,7 @@ namespace UnityEditor.XR.Interaction.Toolkit.Samples
         static AddRequest s_InputSystemPackageAddRequest;
 #endif
 
-        [InitializeOnLoadMethod]
+       // [InitializeOnLoadMethod]
         static void RegisterProjectValidationRules()
         {
             // In the Player Settings UI we have to delay the call one frame to let the settings provider get initialized
