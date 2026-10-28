@@ -30,7 +30,7 @@ public class AddressBar : MonoBehaviour
 
     public void Retry(string message)
     {
-        GetComponent<DesktopWindow>().Open();   // in case the window was closed
+        GetComponentInParent<DesktopWindow>().Open();  // in case the window was closed
         if (feedbackText) feedbackText.text = message;
         input.text = "";
         input.ActivateInputField();             // cursor ready in the field
