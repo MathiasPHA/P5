@@ -3,17 +3,15 @@ using UnityEngine.InputSystem;
 
 public class VRHandsController : MonoBehaviour
 {
-    public InputActionProperty grabAction;
+    public InputActionProperty gribAction;
     public InputActionProperty triggerAction;
 
     public Animator animator;
 
-    [SerializeField] private GameObject pointInteractor;
-
     void Update()
     {
-        float grabValue = grabAction.action.ReadValue<float>();
-        animator.SetFloat("grab", grabValue);
+        float gribValue = gribAction.action.ReadValue<float>();
+        animator.SetFloat("grib", gribValue);
 
         float triggerValue = triggerAction.action.ReadValue<float>();
         animator.SetFloat("trigger", triggerValue);
