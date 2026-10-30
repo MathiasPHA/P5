@@ -1,6 +1,6 @@
 using System.Collections;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NumpadPCManager : MonoBehaviour
 {
@@ -9,44 +9,43 @@ public class NumpadPCManager : MonoBehaviour
      [SerializeField] private int correctNum3;
      [SerializeField] private int correctNum4;
 
-    [SerializeField] private int attemptedNum1;
-    [SerializeField] private int attemptedNum2;
-    [SerializeField] private int attemptedNum3;
-    [SerializeField] private int attemptedNum4;
+    [SerializeField] private Sprite[] symbolSprites = new Sprite[3];
+    [SerializeField] private SymbolList symbolList;
 
-    [SerializeField] private Image symbol1;
-    
-    [SerializeField] private Image symbol2;
-    
-    [SerializeField] private Image symbol3;
-    
-    [SerializeField] private Image symbol4;
+
+
     IEnumerator Start()
     {
-        //SharedState.Instance.Numpad1.OnValueChanged =+ OnNumpad1Changed;
-        //SharedState.Instance.Numpad2.OnValueChanged =+ OnNumpad2Changed;
-       //SharedState.Instance.Numpad3.OnValueChanged =+ OnNumpad3Changed;
-      //  SharedState.Instance.Numpad4.OnValueChanged =+ OnNumpad4Changed;
-        // SharedState is null for a moment after a scene loads
+        // Subscribe to the value changed events of the numpads
+        // This is done after the SharedState is initialized
         yield return new WaitUntil(() => SharedState.Instance != null);
+        SharedState.Instance.OnNumpadNumbersSet += OnNumpadNumbersSet;
     }
     
 
     void OnDestroy()
     {
         // Required: otherwise SharedState calls into destroyed objects after a scene switch
-       // if (SharedState.Instance != null);
+        if (SharedState.Instance != null)
+            SharedState.Instance.OnNumpadNumbersSet -= OnNumpadNumbersSet;
     }
 
-    
 
-    void OnNumpad1Changed()
+
+    void OnNumpadNumbersSet(int n1, int n2, int n3, int n4)
     {
-        attemptedNum1 = SharedState.Instance.Numpad1.Value;
+        symbolList.AddRow(
+            GetSymbol(n1, correctNum1),
+            GetSymbol(n2, correctNum2),
+            GetSymbol(n3, correctNum3),
+            GetSymbol(n4, correctNum4));
+    }
 
-        if (attemptedNum1 == correctNum1)
-        {
-            
-        } 
+    Sprite GetSymbol(int guess, int correctHere)
+    {
+        if (guess == correctHere) return symbolSprites[0];
+        if (guess == correctNum1 || guess == correctNum2 ||
+            guess == correctNum3 || guess == correctNum4) return symbolSprites[1];
+        return symbolSprites[2];
     }
 }
