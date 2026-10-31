@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: safe-symbols_0
+      name: safe-1A
       rect:
         serializedVersion: 2
         x: 0
@@ -135,10 +135,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_1
+      name: safe-1B
       rect:
         serializedVersion: 2
-        x: 300
+        x: 301
         y: 900
         width: 300
         height: 300
@@ -157,7 +157,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_2
+      name: safe-1C
       rect:
         serializedVersion: 2
         x: 600
@@ -179,7 +179,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_3
+      name: safe-1D
       rect:
         serializedVersion: 2
         x: 900
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_4
+      name: safe-1E
       rect:
         serializedVersion: 2
         x: 1200
@@ -223,7 +223,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_5
+      name: safe-1F
       rect:
         serializedVersion: 2
         x: 1500
@@ -245,7 +245,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_6
+      name: safe-2A
       rect:
         serializedVersion: 2
         x: 0
@@ -267,11 +267,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_7
+      name: safe-2B
       rect:
         serializedVersion: 2
         x: 300
-        y: 600
+        y: 601
         width: 300
         height: 300
       alignment: 0
@@ -289,7 +289,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_8
+      name: safe-2C
       rect:
         serializedVersion: 2
         x: 600
@@ -311,11 +311,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_9
+      name: safe-2D
       rect:
         serializedVersion: 2
         x: 900
-        y: 600
+        y: 601
         width: 300
         height: 300
       alignment: 0
@@ -333,7 +333,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_10
+      name: safe-2E
       rect:
         serializedVersion: 2
         x: 1200
@@ -355,11 +355,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_11
+      name: safe-2F
       rect:
         serializedVersion: 2
         x: 1500
-        y: 600
+        y: 601
         width: 300
         height: 300
       alignment: 0
@@ -377,7 +377,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_12
+      name: safe-3A
       rect:
         serializedVersion: 2
         x: 0
@@ -399,7 +399,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_13
+      name: safe-3B
       rect:
         serializedVersion: 2
         x: 300
@@ -421,7 +421,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_14
+      name: safe-3C
       rect:
         serializedVersion: 2
         x: 600
@@ -443,7 +443,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_15
+      name: safe-3D
       rect:
         serializedVersion: 2
         x: 900
@@ -465,7 +465,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_16
+      name: safe-3E
       rect:
         serializedVersion: 2
         x: 1200
@@ -487,7 +487,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_17
+      name: safe-3F
       rect:
         serializedVersion: 2
         x: 1500
@@ -509,7 +509,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_18
+      name: safe-4A
       rect:
         serializedVersion: 2
         x: 0
@@ -531,10 +531,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_19
+      name: safe-4B
       rect:
         serializedVersion: 2
-        x: 300
+        x: 301
         y: 0
         width: 300
         height: 300
@@ -553,7 +553,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_20
+      name: safe-4C
       rect:
         serializedVersion: 2
         x: 600
@@ -575,7 +575,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_21
+      name: safe-4D
       rect:
         serializedVersion: 2
         x: 900
@@ -597,7 +597,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_22
+      name: safe-4E
       rect:
         serializedVersion: 2
         x: 1200
@@ -619,7 +619,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: safe-symbols_23
+      name: safe-4F
       rect:
         serializedVersion: 2
         x: 1500
@@ -656,30 +656,30 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":300.0,"y":300.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      safe-symbols_0: -2194645053486636204
-      safe-symbols_1: -1107596850
-      safe-symbols_10: -179516228
-      safe-symbols_11: -219716893
-      safe-symbols_12: 2026517702
-      safe-symbols_13: 937124393
-      safe-symbols_14: 1731247436
-      safe-symbols_15: -818209858
-      safe-symbols_16: -2050863814
-      safe-symbols_17: 112762670
-      safe-symbols_18: 799204788
-      safe-symbols_19: 270078217
-      safe-symbols_2: 1539314018
-      safe-symbols_20: -1184991808
-      safe-symbols_21: 87003995
-      safe-symbols_22: -854289136
-      safe-symbols_23: 2024792515
-      safe-symbols_3: 1295827955
-      safe-symbols_4: 1917397502
-      safe-symbols_5: 637500496
-      safe-symbols_6: 2079619050
-      safe-symbols_7: 1811634168
-      safe-symbols_8: -859396961
-      safe-symbols_9: 732721172
+      safe-1A: -2194645053486636204
+      safe-1B: -1107596850
+      safe-1C: 1539314018
+      safe-1D: 1295827955
+      safe-1E: 1917397502
+      safe-1F: 637500496
+      safe-2A: 2079619050
+      safe-2B: 1811634168
+      safe-2C: -859396961
+      safe-2D: 732721172
+      safe-2E: -179516228
+      safe-2F: -219716893
+      safe-3A: 2026517702
+      safe-3B: 937124393
+      safe-3C: 1731247436
+      safe-3D: -818209858
+      safe-3E: -2050863814
+      safe-3F: 112762670
+      safe-4A: 799204788
+      safe-4B: 270078217
+      safe-4C: -1184991808
+      safe-4D: 87003995
+      safe-4E: -854289136
+      safe-4F: 2024792515
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
