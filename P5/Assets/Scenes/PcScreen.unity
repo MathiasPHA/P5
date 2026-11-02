@@ -2362,6 +2362,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigMilkPC
       objectReference: {fileID: 0}
+    - target: {fileID: 4627706575763478061, guid: e4aeee4c2042f41b3a89bdbe49868baf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6115266872446301468, guid: e4aeee4c2042f41b3a89bdbe49868baf, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2622,10 +2626,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monitor Room Prefab
       objectReference: {fileID: 0}
-    - target: {fileID: 1758046139117716589, guid: 4ac14c02fe079ca4b9c30314d5a1468e, type: 3}
-      propertyPath: field of view
-      value: 80
-      objectReference: {fileID: 0}
     - target: {fileID: 2907615313691939972, guid: 4ac14c02fe079ca4b9c30314d5a1468e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4997.6606
@@ -2665,22 +2665,6 @@ PrefabInstance:
     - target: {fileID: 2907615313691939972, guid: 4ac14c02fe079ca4b9c30314d5a1468e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7078591381119152410, guid: 4ac14c02fe079ca4b9c30314d5a1468e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7078591381119152410, guid: 4ac14c02fe079ca4b9c30314d5a1468e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.99539626
-      objectReference: {fileID: 0}
-    - target: {fileID: 7078591381119152410, guid: 4ac14c02fe079ca4b9c30314d5a1468e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.095845714
-      objectReference: {fileID: 0}
-    - target: {fileID: 7078591381119152410, guid: 4ac14c02fe079ca4b9c30314d5a1468e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
