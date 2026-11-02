@@ -1,20 +1,32 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine.XR.Interaction.Toolkit.Interactables; // XRI 3.x
+// using UnityEngine.XR.Interaction.Toolkit;            // use this instead on XRI 2.x
 
 public class NumpadVRManager : MonoBehaviour
 {
-    [SerializeField] private Button[] numpadButtons = new Button[10];
-    [SerializeField] private Button submitButton;
-    [SerializeField] private Button backButton;
+    // Order matters: numpadKeys[0] = the 0 key, [1] = the 1 key, ...
+    [SerializeField] private XRSimpleInteractable[] numpadKeys = new XRSimpleInteractable[10];
+    [SerializeField] private XRSimpleInteractable submitKey;
+    [SerializeField] private XRSimpleInteractable backKey;
 
-    [SerializeField] private TMP_Text[] inputedNumbers = new TMP_Text[4];
+    [SerializeField] private TMP_Text inputDisplay;
     [SerializeField] private int[] attemptedNumbers = new int[4];
     [SerializeField] private int[] correctNumbers = new int[4];
     [SerializeField] private int currentInputIndex = 0;
+
     IEnumerator Start()
     {
+        // Hook up the keys first, so they work even while waiting for SharedState
+        for (int i = 0; i < numpadKeys.Length; i++)
+        {
+            int n = i; // copy, otherwise every key would send 10
+            numpadKeys[i].selectEntered.AddListener(_ => OnNumpadButtonPressed(n));
+        }
+        submitKey.selectEntered.AddListener(_ => OnSubmitButtonPressed());
+        backKey.selectEntered.AddListener(_ => OnBackButtonPressed());
+
         // SharedState is null for a moment after a scene loads
         yield return new WaitUntil(() => SharedState.Instance != null);
         SharedState.Instance.OnNumpadNumbersSet += OnNumpadNumbersSet;
@@ -22,8 +34,8 @@ public class NumpadVRManager : MonoBehaviour
 
     void OnDestroy()
     {
+        // Required: otherwise SharedState calls into destroyed objects after a scene switch
         if (SharedState.Instance != null)
-            // Required: otherwise SharedState calls into destroyed objects after a scene switch
             SharedState.Instance.OnNumpadNumbersSet -= OnNumpadNumbersSet;
     }
 
@@ -32,8 +44,8 @@ public class NumpadVRManager : MonoBehaviour
         if (currentInputIndex < 4)
         {
             attemptedNumbers[currentInputIndex] = number;
-            inputedNumbers[currentInputIndex].text = number.ToString();
             currentInputIndex++;
+            UpdateDisplay();
         }
         else
         {
@@ -47,10 +59,7 @@ public class NumpadVRManager : MonoBehaviour
         {
             SharedState.Instance.SetNumpadNumbersRpc(attemptedNumbers[0], attemptedNumbers[1], attemptedNumbers[2], attemptedNumbers[3]);
             currentInputIndex = 0;
-            for (int i = 0; i < inputedNumbers.Length; i++)
-            {
-                inputedNumbers[i].text = "";
-            }
+            UpdateDisplay();
         }
         else
         {
@@ -64,7 +73,7 @@ public class NumpadVRManager : MonoBehaviour
         {
             currentInputIndex--;
             attemptedNumbers[currentInputIndex] = 0;
-            inputedNumbers[currentInputIndex].text = "";
+            UpdateDisplay();
         }
         else
         {
@@ -77,19 +86,28 @@ public class NumpadVRManager : MonoBehaviour
         if (n1 == correctNumbers[0] && n2 == correctNumbers[1] && n3 == correctNumbers[2] && n4 == correctNumbers[3])
         {
             Debug.Log("Correct combination entered!");
-            OpenDoor(); 
+            OpenDoor();
         }
         else
         {
             Debug.Log("Incorrect combination. Please try again.");
-            
+
             // Clear the input after an incorrect attempt
             currentInputIndex = 0;
-            for (int i = 0; i < inputedNumbers.Length; i++)
-            {
-                inputedNumbers[i].text = "";
-            }
+            UpdateDisplay();
         }
+    }
+
+    // Builds the text from the typed digits, e.g. "4 7 _ _"
+    void UpdateDisplay()
+    {
+        string text = "";
+        for (int i = 0; i < 4; i++)
+        {
+            text += i < currentInputIndex ? attemptedNumbers[i].ToString() : "_";
+            if (i < 3) text += " ";
+        }
+        inputDisplay.text = text;
     }
 
     void OpenDoor()
