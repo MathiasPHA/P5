@@ -1,8 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+#endif
 
 public class PhoneMaze : MonoBehaviour
 {
@@ -14,6 +18,10 @@ public class PhoneMaze : MonoBehaviour
     [SerializeField] private bool resetOnWallHit = true;
     [SerializeField] private bool showPlayerOnPC = false;
 
+    [Header("Testing")]
+    [Tooltip("Arrow keys / WASD to move, Enter / Space to confirm (VR Phone mode only)")]
+    [SerializeField] private bool keyboardInput = true;
+
     [Header("References")]
     [SerializeField] private RectTransform gridArea;
     [SerializeField] private TMP_Text statusText;
@@ -24,6 +32,9 @@ public class PhoneMaze : MonoBehaviour
     [SerializeField] private Button leftButton;
     [SerializeField] private Button rightButton;
     [SerializeField] private Button enterButton;
+
+    [Header("Board")]
+    [SerializeField] private bool showGridLines = true;
 
     [Header("Colours")]
     [SerializeField] private Color boardColor = new Color(0.02f, 0.13f, 0.04f);
@@ -88,6 +99,8 @@ public class PhoneMaze : MonoBehaviour
     void Update()
     {
         if (!Ready) return;
+
+        if (mode == ViewMode.VRPhone && keyboardInput) HandleKeyboard();
 
         float t = Time.time;
         float dt = Time.deltaTime;
@@ -159,6 +172,26 @@ public class PhoneMaze : MonoBehaviour
 
     // For mirroring the VR player's position onto the PC map later (networking)
     public void SetPlayerCell(Vector2Int c) => player = c;
+
+    private void HandleKeyboard()
+    {
+#if ENABLE_INPUT_SYSTEM
+        var k = Keyboard.current;
+        if (k == null) return;
+
+        if (k.upArrowKey.wasPressedThisFrame || k.wKey.wasPressedThisFrame) Up();
+        else if (k.downArrowKey.wasPressedThisFrame || k.sKey.wasPressedThisFrame) Down();
+        else if (k.leftArrowKey.wasPressedThisFrame || k.aKey.wasPressedThisFrame) Left();
+        else if (k.rightArrowKey.wasPressedThisFrame || k.dKey.wasPressedThisFrame) Right();
+        else if (k.enterKey.wasPressedThisFrame || k.numpadEnterKey.wasPressedThisFrame || k.spaceKey.wasPressedThisFrame) Enter();
+#else
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) Up();
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) Down();
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) Left();
+        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) Right();
+        else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Space)) Enter();
+#endif
+    }
 
     private void Move(Vector2Int dir)
     {
@@ -273,7 +306,13 @@ public class PhoneMaze : MonoBehaviour
     private void SetupButton(Button button, UnityAction action, Sprite icon, float angle)
     {
         if (button == null) return;
-        button.onClick.AddListener(action);
+
+        // Deselect after click so Enter/Space don't re-trigger the last clicked button
+        button.onClick.AddListener(() =>
+        {
+            action();
+            if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null);
+        });
 
         foreach (var label in button.GetComponentsInChildren<TMP_Text>(true)) label.gameObject.SetActive(false);
         foreach (var label in button.GetComponentsInChildren<Text>(true)) label.gameObject.SetActive(false);
@@ -408,54 +447,23 @@ public class PhoneMaze : MonoBehaviour
         });
     }
 
+    // Plain board with optional faint grid lines (no circuit traces)
     private Sprite MakeBoard(int s)
     {
         var px = new Color[s * s];
-        Color fine = Color.Lerp(boardColor, traceColor, 0.12f);
-        Color major = Color.Lerp(boardColor, traceColor, 0.25f);
-        Color trace = Color.Lerp(boardColor, traceColor, 0.6f);
-        Color node = Color.Lerp(boardColor, traceColor, 0.85f);
+        Color fine = Color.Lerp(boardColor, traceColor, 0.08f);
+        Color major = Color.Lerp(boardColor, traceColor, 0.16f);
 
         for (int y = 0; y < s; y++)
         for (int x = 0; x < s; x++)
         {
             Color c = boardColor;
-            if (x % 16 == 0 || y % 16 == 0) c = fine;
-            if (x % 64 == 0 || y % 64 == 0) c = major;
-            px[y * s + x] = c;
-        }
-
-        var rng = new System.Random(7);
-        for (int i = 0; i < 45; i++)
-        {
-            int x = rng.Next(1, s / 16) * 16;
-            int y = rng.Next(1, s / 16) * 16;
-            bool horiz = rng.Next(2) == 0;
-            int len = rng.Next(2, 8) * 16;
-
-            int x2 = horiz ? Mathf.Min(x + len, s - 16) : x;
-            int y2 = horiz ? y : Mathf.Min(y + len, s - 16);
-            Line(px, s, x, y, x2, y2, trace);
-
-            if (rng.Next(2) == 0)
+            if (showGridLines)
             {
-                int len2 = rng.Next(1, 5) * 16;
-                int x3 = horiz ? x2 : Mathf.Min(x2 + len2, s - 16);
-                int y3 = horiz ? Mathf.Min(y2 + len2, s - 16) : y2;
-                Line(px, s, x2, y2, x3, y3, trace);
-                x2 = x3; y2 = y3;
+                if (x % 16 == 0 || y % 16 == 0) c = fine;
+                if (x % 64 == 0 || y % 64 == 0) c = major;
             }
-
-            Ring(px, s, x, y, 5f, node);
-            Ring(px, s, x2, y2, 5f, node);
-        }
-
-        for (int i = 0; i < 10; i++)
-        {
-            int x = rng.Next(1, s / 32) * 32;
-            int y = rng.Next(1, s / 32) * 32;
-            Square(px, s, x, y, 10, trace);
-            Square(px, s, x, y, 5, node);
+            px[y * s + x] = c;
         }
 
         var tex = NewTexture(s);
@@ -499,38 +507,5 @@ public class PhoneMaze : MonoBehaviour
     {
         Vector2 e = b - a;
         return (e.x * (p.y - a.y) - e.y * (p.x - a.x)) / e.magnitude;
-    }
-
-    private static void Fill(Color[] px, int s, int x0, int y0, int x1, int y1, Color c)
-    {
-        for (int y = Mathf.Max(0, y0); y <= Mathf.Min(s - 1, y1); y++)
-        for (int x = Mathf.Max(0, x0); x <= Mathf.Min(s - 1, x1); x++)
-            px[y * s + x] = c;
-    }
-
-    private static void Line(Color[] px, int s, int x0, int y0, int x1, int y1, Color c) =>
-        Fill(px, s, Mathf.Min(x0, x1) - 1, Mathf.Min(y0, y1) - 1, Mathf.Max(x0, x1) + 1, Mathf.Max(y0, y1) + 1, c);
-
-    private static void Ring(Color[] px, int s, int cx, int cy, float r, Color c)
-    {
-        int ri = Mathf.CeilToInt(r + 2f);
-        for (int y = -ri; y <= ri; y++)
-        for (int x = -ri; x <= ri; x++)
-        {
-            int ix = cx + x, iy = cy + y;
-            if (ix < 0 || iy < 0 || ix >= s || iy >= s) continue;
-            if (Mathf.Abs(Mathf.Sqrt(x * x + y * y) - r) <= 1.2f) px[iy * s + ix] = c;
-        }
-    }
-
-    private static void Square(Color[] px, int s, int cx, int cy, int half, Color c)
-    {
-        for (int y = -half; y <= half; y++)
-        for (int x = -half; x <= half; x++)
-        {
-            int ix = cx + x, iy = cy + y;
-            if (ix < 0 || iy < 0 || ix >= s || iy >= s) continue;
-            if (Mathf.Max(Mathf.Abs(x), Mathf.Abs(y)) >= half - 1) px[iy * s + ix] = c;
-        }
     }
 }
