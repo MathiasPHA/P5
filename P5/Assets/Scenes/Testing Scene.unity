@@ -472,6 +472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Appartment Layout
       objectReference: {fileID: 0}
+    - target: {fileID: 3151230856789407927, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_Name
+      value: Door Handle
+      objectReference: {fileID: 0}
     - target: {fileID: 4702850353068308276, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.902134
@@ -513,7 +517,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1022551686069964775, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
