@@ -1,3 +1,4 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class SharedState : NetworkBehaviour
     public NetworkVariable<int> Numpad2;
     public NetworkVariable<int> Numpad3;
     public NetworkVariable<int> Numpad4;
+    public event Action<int, int, int, int> OnNumpadNumbersSet;
 
 
     public override void OnNetworkSpawn()
@@ -35,9 +37,13 @@ public class SharedState : NetworkBehaviour
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
     public void SetNumpadNumbersRpc(int num1, int num2, int num3, int num4)
     {
-        Numpad1.Value = num1;
-        Numpad2.Value = num2;
-        Numpad3.Value = num3;
-        Numpad4.Value = num4;
+        if (IsServer)
+        {
+            Numpad1.Value = num1;
+            Numpad2.Value = num2;
+            Numpad3.Value = num3;
+            Numpad4.Value = num4;
+        }
+        OnNumpadNumbersSet?.Invoke(num1, num2, num3, num4);
     }
 }
