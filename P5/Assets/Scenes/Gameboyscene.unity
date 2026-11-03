@@ -184,6 +184,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1216044589443404639, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 789290438}
+    - target: {fileID: 1216044589443404639, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216044589443404639, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PhoneMaze, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1771967188165027312, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.36
@@ -224,14 +236,57 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1958622948860913210, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 789290438}
+    - target: {fileID: 1958622948860913210, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Down
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958622948860913210, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PhoneMaze, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847667589752437446, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 789290438}
+    - target: {fileID: 3847667589752437446, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847667589752437446, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PhoneMaze, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541066350676220045, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 789290438}
+    - target: {fileID: 4541066350676220045, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541066350676220045, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+      propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PhoneMaze, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5633402365129970411, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
       propertyPath: m_Name
       value: MazeController
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2330333276760792731, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+    - {fileID: 5962841425660637226, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+    - {fileID: 2479632943487691152, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+    - {fileID: 8801492038150235901, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3300656215959893092, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 789290438}
   m_SourcePrefab: {fileID: 100100000, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
 --- !u!1001 &515634596
 PrefabInstance:
@@ -357,6 +412,63 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000001, y: 1, z: 1}
   m_Center: {x: -0.0000001937151, y: 0, z: -0.00000011920929}
+--- !u!114 &619814341 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4472403331503179703, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+  m_PrefabInstance: {fileID: 273250733}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &789290433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3300656215959893092, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+  m_PrefabInstance: {fileID: 273250733}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &789290438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789290433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29e87de4cd34709beaff733aedc5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhoneMaze
+  mode: 0
+  mazeLayout: {fileID: 11400000, guid: ce9d1e29dcc234cf59534c7b671f5446, type: 2}
+  resetOnWallHit: 1
+  showPlayerOnPC: 0
+  keyboardInput: 1
+  gridArea: {fileID: 1860636953}
+  statusText: {fileID: 619814341}
+  upButton: {fileID: 0}
+  downButton: {fileID: 0}
+  leftButton: {fileID: 0}
+  rightButton: {fileID: 0}
+  enterButton: {fileID: 0}
+  showGridLines: 1
+  boardColor: {r: 0.02, g: 0.13, b: 0.04, a: 1}
+  traceColor: {r: 0.3, g: 0.95, b: 0.35, a: 1}
+  tileColor: {r: 0.3, g: 0.95, b: 0.35, a: 0.5}
+  wallColor: {r: 0.55, g: 0.75, b: 1, a: 1}
+  playerColor: {r: 0.35, g: 1, b: 1, a: 1}
+  exitColor: {r: 1, g: 0.6, b: 0.15, a: 1}
+  hitColor: {r: 1, g: 0.15, b: 0.15, a: 1}
+  moveSpeed: 8
+  wallThickness: 0.14
+  hitDuration: 0.6
+  onSolved:
+    m_PersistentCalls:
+      m_Calls: []
+  onWallHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &946945146
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +596,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!224 &1860636953 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5557739627544662098, guid: c66f3c95343cb184b86600c84a8f99d4, type: 3}
+  m_PrefabInstance: {fileID: 273250733}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2044405913
 GameObject:
   m_ObjectHideFlags: 0
