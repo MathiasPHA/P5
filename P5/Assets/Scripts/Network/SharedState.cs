@@ -12,13 +12,11 @@ public class SharedState : NetworkBehaviour
     // Default permissions: everyone reads, only the server (host) writes.
     // Clients change values through the Rpc methods below.
     public NetworkVariable<int> Step = new(0);
-    public NetworkVariable<int> Numpad1;
-    public NetworkVariable<int> Numpad2;
-    public NetworkVariable<int> Numpad3;
-    public NetworkVariable<int> Numpad4;
-    public event Action<int, int, int, int> OnNumpadNumbersSet;
-
-    public NetworkVariable<int> CaptchaSet;
+    public NetworkVariable<int> Numpad1 = new(0);
+    public NetworkVariable<int> Numpad2 = new(0);
+    public NetworkVariable<int> Numpad3 = new(0);
+    public NetworkVariable<int> Numpad4 = new(0);
+    public NetworkVariable<int> CaptchaSet = new(0);
 
     public override void OnNetworkSpawn()
     {
