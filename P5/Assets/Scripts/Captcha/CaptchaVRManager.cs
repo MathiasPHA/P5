@@ -12,11 +12,10 @@ public class CaptchaVRManager : MonoBehaviour
     {
         // SharedState is null for a moment after a scene loads
         yield return new WaitUntil(() => SharedState.Instance != null);
+
         SharedState.Instance.CaptchaSet.OnValueChanged += OnCaptchaChanged;
         OnCaptchaChanged(0, SharedState.Instance.CaptchaSet.Value); // handle the current value
-        
     }
-    
 
     void OnDestroy()
     {
@@ -26,13 +25,8 @@ public class CaptchaVRManager : MonoBehaviour
     }
 
     void OnCaptchaChanged(int oldInt, int newInt)
-{
-    CaptchaSet = newInt;
-
-    if (CaptchaSet >= 0 && CaptchaSet < CaptchaSprite.Length)
     {
+        CaptchaSet = SharedState.Instance.CaptchaSet.Value;
         CaptchaImg.sprite = CaptchaSprite[CaptchaSet];
     }
-    
-}
 }
