@@ -11,6 +11,7 @@ public class CaptchaSet
 public class Captcha : MonoBehaviour
 {
     public CaptchaSet[] sets;        // your 3 sets
+
     [SerializeField] Image[] imageSlots;       // the 3 image buttons
     [SerializeField] AddressBar addressBar;    // on Window_Hack3rNet
 
@@ -29,6 +30,7 @@ public class Captcha : MonoBehaviour
     void ShowSet()
     {
         CaptchaSet set = sets[currentSet];
+
         for (int i = 0; i < imageSlots.Length; i++)
             imageSlots[i].sprite = set.images[i];
     }
@@ -40,17 +42,10 @@ public class Captcha : MonoBehaviour
             nextPC.SetActive(true);
             currentPC.SetActive(false);
         }
-
-        if (SharedState.Instance != null)
-        {
-            SharedState.Instance.SetCaptchaRpc(currentSet);
-        }
-        
         else
         {
             // next set, wraps from the last back to the first
             currentSet = (currentSet + 1) % sets.Length;
-
             SharedState.Instance.SetCaptchaRpc(currentSet);
 
             window.Close();
