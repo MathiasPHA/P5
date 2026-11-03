@@ -14,6 +14,7 @@ public class PhoneMaze : MonoBehaviour
 
     [Header("Mode")]
     [SerializeField] private ViewMode mode = ViewMode.VRPhone;
+    [Tooltip("Can be left empty if a DesktopSwitcher assigns it")]
     [SerializeField] private MazeLayout mazeLayout;
     [SerializeField] private bool resetOnWallHit = true;
     [SerializeField] private bool showPlayerOnPC = false;
@@ -67,6 +68,7 @@ public class PhoneMaze : MonoBehaviour
     private Sprite boardSprite, tileSprite, blockSprite, barSprite, glowSprite, arrowSprite, ringSprite, enterSprite;
 
     public Vector2Int PlayerCell => player;
+    public MazeLayout Layout => mazeLayout;
     private bool HasPlayer => playerRt != null;
     private bool Ready => mazeLayout != null && exitRingRt != null;
 
@@ -74,21 +76,10 @@ public class PhoneMaze : MonoBehaviour
 
     void Awake()
     {
-        if (mazeLayout == null)
-        {
-            Debug.LogError($"{name}: no Maze Layout assigned.", this);
-            enabled = false;
-            return;
-        }
-
-        mazeLayout.EnsureSize();
-        cols = mazeLayout.width;
-        rows = mazeLayout.height;
-
         GenerateSprites();
-        BuildBoard();
         if (mode == ViewMode.VRPhone) SetupButtons();
         if (statusText != null) statusText.color = traceColor;
+        if (mazeLayout != null) Rebuild();
     }
 
     void OnEnable()
@@ -134,7 +125,15 @@ public class PhoneMaze : MonoBehaviour
         }
     }
 
-    // ───────────────────────── Controls ─────────────────────────
+    // ───────────────────────── Public API ─────────────────────────
+
+    public void SetLayout(MazeLayout layout)
+    {
+        if (layout == null) return;
+        mazeLayout = layout;
+        Rebuild();
+        Restart();
+    }
 
     public void Up()    => Move(new Vector2Int(0, -1));
     public void Down()  => Move(new Vector2Int(0, 1));
@@ -173,6 +172,8 @@ public class PhoneMaze : MonoBehaviour
     // For mirroring the VR player's position onto the PC map later (networking)
     public void SetPlayerCell(Vector2Int c) => player = c;
 
+    // ───────────────────────── Input & movement ─────────────────────────
+
     private void HandleKeyboard()
     {
 #if ENABLE_INPUT_SYSTEM
@@ -202,14 +203,12 @@ public class PhoneMaze : MonoBehaviour
 
         Vector2Int target = player + dir;
 
-        // Edge of the grid: just bump, no penalty
         if (!mazeLayout.InBounds(target))
         {
             bump = screenDir * cell * 0.18f;
             return;
         }
 
-        // Invisible wall: flash red, then reset
         if (mazeLayout.IsBlocked(player, dir))
         {
             bump = screenDir * cell * 0.35f;
@@ -220,10 +219,27 @@ public class PhoneMaze : MonoBehaviour
         }
 
         player = target;
-        SetStatus(player == mazeLayout.exit ? "PRESS ENTER" : "FIND THE EXIT");
+        if (player == mazeLayout.exit)
+        {
+            solved = true;
+            SetStatus("ACCESS GRANTED");
+            onSolved.Invoke();
+        }
+        else
+        {
+            SetStatus("FIND THE EXIT");
+        }
     }
 
     // ───────────────────────── Building ─────────────────────────
+
+    private void Rebuild()
+    {
+        mazeLayout.EnsureSize();
+        cols = mazeLayout.width;
+        rows = mazeLayout.height;
+        BuildBoard();
+    }
 
     private void BuildBoard()
     {
@@ -231,13 +247,17 @@ public class PhoneMaze : MonoBehaviour
         if (layoutGroup != null) { layoutGroup.enabled = false; Destroy(layoutGroup); }
         foreach (Transform child in gridArea) Destroy(child.gameObject);
 
+        playerRt = shipRt = playerGlowRt = exitRingRt = null;
+        shipImg = exitGlow = null;
+        borderBars.Clear();
+
+        // Fit the maze inside GridArea, keeping cells square
         cell = Mathf.Min(gridArea.rect.width / cols, gridArea.rect.height / rows);
         float th = cell * wallThickness;
         Vector2 boardSize = new Vector2(cols * cell, rows * cell);
 
         CreateImage("Board", gridArea, boardSprite, Color.white, boardSize, Vector2.zero);
 
-        // Grid tiles (both views)
         Vector2 tileSize = Vector2.one * (cell - th * 1.2f);
         for (int y = 0; y < rows; y++)
         for (int x = 0; x < cols; x++)
@@ -249,7 +269,6 @@ public class PhoneMaze : MonoBehaviour
         exitGlow = CreateImage("ExitGlow", gridArea, glowSprite, exitColor, Vector2.one * cell * 1.4f, CellPos(mazeLayout.exit));
         exitRingRt = CreateImage("ExitRing", gridArea, ringSprite, exitColor, Vector2.one * cell * 0.75f, CellPos(mazeLayout.exit)).rectTransform;
 
-        // Inner walls (PC map only)
         if (mode == ViewMode.PCMap)
         {
             for (int y = 0; y < rows; y++)
@@ -266,14 +285,11 @@ public class PhoneMaze : MonoBehaviour
             }
         }
 
-        // Outer border (both views)
-        borderBars.Clear();
         borderBars.Add(CreateBar(new Vector2(0f, boardSize.y / 2f), new Vector2(boardSize.x + th, th), th));
         borderBars.Add(CreateBar(new Vector2(0f, -boardSize.y / 2f), new Vector2(boardSize.x + th, th), th));
         borderBars.Add(CreateBar(new Vector2(-boardSize.x / 2f, 0f), new Vector2(th, boardSize.y + th), th));
         borderBars.Add(CreateBar(new Vector2(boardSize.x / 2f, 0f), new Vector2(th, boardSize.y + th), th));
 
-        // Player
         if (mode == ViewMode.PCMap && !showPlayerOnPC) return;
 
         playerRt = new GameObject("Player", typeof(RectTransform)).GetComponent<RectTransform>();
@@ -307,7 +323,6 @@ public class PhoneMaze : MonoBehaviour
     {
         if (button == null) return;
 
-        // Deselect after click so Enter/Space don't re-trigger the last clicked button
         button.onClick.AddListener(() =>
         {
             action();
@@ -408,7 +423,6 @@ public class PhoneMaze : MonoBehaviour
             return new Color(v, v, v, Mathf.Clamp01(0.5f - d));
         });
 
-        // 9-sliced wall bar: dark outline, bright rim, body
         barSprite = Procedural(64, p =>
         {
             float d = RoundRect(p, 32f, 31f, 12f);
@@ -447,7 +461,6 @@ public class PhoneMaze : MonoBehaviour
         });
     }
 
-    // Plain board with optional faint grid lines (no circuit traces)
     private Sprite MakeBoard(int s)
     {
         var px = new Color[s * s];
