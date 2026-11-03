@@ -119,5 +119,6 @@ public class NumpadVRManager : MonoBehaviour
     {
         // Implement door opening logic here
         Debug.Log("Door is now open!");
+
     }
 }
