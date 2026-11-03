@@ -18,6 +18,8 @@ public class PhoneMaze : MonoBehaviour
     [SerializeField] private MazeLayout mazeLayout;
     [SerializeField] private bool resetOnWallHit = true;
     [SerializeField] private bool showPlayerOnPC = false;
+    [Tooltip("PC Map only: show the start tile and exit marker")]
+    [SerializeField] private bool showStartAndExitOnPC = true;
 
     [Header("Testing")]
     [Tooltip("Arrow keys / WASD to move, Enter / Space to confirm (VR Phone mode only)")]
@@ -45,7 +47,7 @@ public class PhoneMaze : MonoBehaviour
     [SerializeField] private Color boardColor = new Color(0.02f, 0.13f, 0.04f);
     [SerializeField] private Color traceColor = new Color(0.3f, 0.95f, 0.35f);
     [SerializeField] private Color tileColor = new Color(0.3f, 0.95f, 0.35f, 0.5f);
-    [SerializeField] private Color wallColor = new Color(0.55f, 0.75f, 1f);
+    [SerializeField] private Color wallColor = new Color(0.7f, 0.4f, 1f);
     [SerializeField] private Color playerColor = new Color(0.35f, 1f, 1f);
     [SerializeField] private Color exitColor = new Color(1f, 0.6f, 0.15f);
     [SerializeField] private Color hitColor = new Color(1f, 0.15f, 0.15f);
@@ -61,7 +63,7 @@ public class PhoneMaze : MonoBehaviour
 
     private int cols, rows;
     private Vector2Int player;
-    private bool solved;
+    private bool solved, built;
     private float cell, hitTimer;
 
     private RectTransform playerRt, shipRt, playerGlowRt, exitRingRt;
@@ -75,7 +77,8 @@ public class PhoneMaze : MonoBehaviour
     public Vector2Int PlayerCell => player;
     public MazeLayout Layout => mazeLayout;
     private bool HasPlayer => playerRt != null;
-    private bool Ready => mazeLayout != null && exitRingRt != null;
+    private bool Ready => mazeLayout != null && built;
+    private bool ShowMarkers => mode == ViewMode.VRPhone || showStartAndExitOnPC;
 
     // ───────────────────────── Lifecycle ─────────────────────────
 
@@ -101,8 +104,11 @@ public class PhoneMaze : MonoBehaviour
         float t = Time.time;
         float dt = Time.deltaTime;
 
-        exitRingRt.localRotation = Quaternion.Euler(0f, 0f, t * 90f);
-        SetAlpha(exitGlow, 0.45f + 0.25f * Mathf.Sin(t * 4f));
+        if (exitRingRt != null)
+        {
+            exitRingRt.localRotation = Quaternion.Euler(0f, 0f, t * 90f);
+            SetAlpha(exitGlow, 0.45f + 0.25f * Mathf.Sin(t * 4f));
+        }
 
         if (!HasPlayer) return;
 
@@ -227,16 +233,7 @@ public class PhoneMaze : MonoBehaviour
         }
 
         player = target;
-        if (player == mazeLayout.exit)
-        {
-            solved = true;
-            SetStatus("ACCESS GRANTED");
-            onSolved.Invoke();
-        }
-        else
-        {
-            SetStatus("FIND THE EXIT");
-        }
+        SetStatus(player == mazeLayout.exit ? "PRESS ENTER" : "FIND THE EXIT");
     }
 
     // ───────────────────────── Building ─────────────────────────
@@ -248,6 +245,7 @@ public class PhoneMaze : MonoBehaviour
         rows = mazeLayout.height;
         BuildBoard();
         BuildSymbols();
+        built = true;
     }
 
     private void BuildSymbols()
@@ -300,11 +298,14 @@ public class PhoneMaze : MonoBehaviour
         for (int x = 0; x < cols; x++)
             CreateImage("Tile", gridArea, tileSprite, tileColor, tileSize, CellPos(new Vector2Int(x, y)));
 
-        var startColor = new Color(playerColor.r, playerColor.g, playerColor.b, 0.35f);
-        CreateImage("Start", gridArea, tileSprite, startColor, tileSize, CellPos(mazeLayout.start));
+        if (ShowMarkers)
+        {
+            var startColor = new Color(playerColor.r, playerColor.g, playerColor.b, 0.35f);
+            CreateImage("Start", gridArea, tileSprite, startColor, tileSize, CellPos(mazeLayout.start));
 
-        exitGlow = CreateImage("ExitGlow", gridArea, glowSprite, exitColor, Vector2.one * cell * 1.4f, CellPos(mazeLayout.exit));
-        exitRingRt = CreateImage("ExitRing", gridArea, ringSprite, exitColor, Vector2.one * cell * 0.75f, CellPos(mazeLayout.exit)).rectTransform;
+            exitGlow = CreateImage("ExitGlow", gridArea, glowSprite, exitColor, Vector2.one * cell * 1.4f, CellPos(mazeLayout.exit));
+            exitRingRt = CreateImage("ExitRing", gridArea, ringSprite, exitColor, Vector2.one * cell * 0.75f, CellPos(mazeLayout.exit)).rectTransform;
+        }
 
         if (mode == ViewMode.PCMap)
         {
@@ -391,7 +392,7 @@ public class PhoneMaze : MonoBehaviour
 
         var rt = (RectTransform)button.transform;
         float s = Mathf.Min(rt.rect.width, rt.rect.height) * 0.45f;
-        var iconImg = CreateImage("Icon", button.transform, icon, new Color(0.05f, 0.1f, 0.2f), Vector2.one * s, Vector2.zero);
+        var iconImg = CreateImage("Icon", button.transform, icon, new Color(0.08f, 0.04f, 0.15f), Vector2.one * s, Vector2.zero);
         iconImg.rectTransform.localRotation = Quaternion.Euler(0f, 0f, angle);
     }
 
@@ -407,6 +408,7 @@ public class PhoneMaze : MonoBehaviour
 
     private static void SetAlpha(Image img, float a)
     {
+        if (img == null) return;
         var c = img.color;
         c.a = a;
         img.color = c;
