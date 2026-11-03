@@ -771,7 +771,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -908,6 +908,7 @@ MonoBehaviour:
   mazeLayout: {fileID: 11400000, guid: ce9d1e29dcc234cf59534c7b671f5446, type: 2}
   resetOnWallHit: 1
   showPlayerOnPC: 1
+  keyboardInput: 1
   gridArea: {fileID: 7682774152237606011}
   statusText: {fileID: 7864012588334770848}
   upButton: {fileID: 5678131637884080729}
@@ -915,6 +916,7 @@ MonoBehaviour:
   leftButton: {fileID: 7135192018695613074}
   rightButton: {fileID: 492620571857132214}
   enterButton: {fileID: 3839992430987560791}
+  showGridLines: 1
   boardColor: {r: 0.02, g: 0.13, b: 0.04, a: 1}
   traceColor: {r: 0.3, g: 0.95, b: 0.35, a: 1}
   tileColor: {r: 0.3, g: 0.95, b: 0.35, a: 0.5}
@@ -1832,6 +1834,7 @@ MonoBehaviour:
   mazeLayout: {fileID: 11400000, guid: ce9d1e29dcc234cf59534c7b671f5446, type: 2}
   resetOnWallHit: 1
   showPlayerOnPC: 0
+  keyboardInput: 1
   gridArea: {fileID: 79161104607601370}
   statusText: {fileID: 5587971124018212844}
   upButton: {fileID: 0}
@@ -1839,11 +1842,12 @@ MonoBehaviour:
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
   enterButton: {fileID: 0}
+  showGridLines: 1
   boardColor: {r: 0.02, g: 0.13, b: 0.04, a: 1}
   traceColor: {r: 0.3, g: 0.95, b: 0.35, a: 1}
   tileColor: {r: 0.3, g: 0.95, b: 0.35, a: 0.5}
   wallColor: {r: 0.55, g: 0.75, b: 1, a: 1}
-  playerColor: {r: 0.35, g: 1, b: 1, a: 1}
+  playerColor: {r: 0.35, g: 1, b: 1, a: 0}
   exitColor: {r: 1, g: 0.6, b: 0.15, a: 1}
   hitColor: {r: 1, g: 0.15, b: 0.15, a: 1}
   moveSpeed: 8

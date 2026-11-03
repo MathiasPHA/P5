@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 5590944232737975595}
   - component: {fileID: 6004270360234274083}
   m_Layer: 6
-  m_Name: RingCollider (1)
+  m_Name: RingCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandCollider
   position: {fileID: 1261765518304894208}
-  target: {fileID: 1668454718555856168}
+  target: {fileID: 2779599930135939835}
 --- !u!1 &911740483834348635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,7 +1620,7 @@ GameObject:
   - component: {fileID: 655460837649724536}
   - component: {fileID: 8318270491757695942}
   m_Layer: 6
-  m_Name: MiddleCollider (1)
+  m_Name: MiddleCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1676,7 +1676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandCollider
   position: {fileID: 5318843781291264514}
-  target: {fileID: 5134492175673567272}
+  target: {fileID: 3450999911628045893}
 --- !u!1 &2694800678119385299
 GameObject:
   m_ObjectHideFlags: 0
@@ -3687,7 +3687,7 @@ GameObject:
   - component: {fileID: 723653525160236643}
   - component: {fileID: 4865815997022589918}
   m_Layer: 6
-  m_Name: IndexCollider (1)
+  m_Name: IndexCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3743,7 +3743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandCollider
   position: {fileID: 3981175934490086058}
-  target: {fileID: 3111314126772059528}
+  target: {fileID: 2595145503248856479}
 --- !u!1 &6204763631557937510
 GameObject:
   m_ObjectHideFlags: 0
@@ -4140,7 +4140,7 @@ GameObject:
   - component: {fileID: 3569690283984455546}
   - component: {fileID: 23067032902378406}
   m_Layer: 6
-  m_Name: PinkyCollider (1)
+  m_Name: PinkyCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4196,7 +4196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandCollider
   position: {fileID: 1296151109815415872}
-  target: {fileID: 2998082293369230434}
+  target: {fileID: 8541357168599474849}
 --- !u!1 &7107470300695094943
 GameObject:
   m_ObjectHideFlags: 0
@@ -4687,7 +4687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandCollider
   position: {fileID: 2932894859608253144}
-  target: {fileID: 2326463625201793931}
+  target: {fileID: 2871346227371163887}
 --- !u!1 &8392701711431806521
 GameObject:
   m_ObjectHideFlags: 0
