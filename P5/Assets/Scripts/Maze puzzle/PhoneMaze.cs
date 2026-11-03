@@ -25,6 +25,10 @@ public class PhoneMaze : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private RectTransform gridArea;
+    [Tooltip("Row of symbols from the Maze Layout (replaces the status text)")]
+    [SerializeField] private RectTransform symbolArea;
+    [SerializeField] private float symbolSpacing = 30f;
+    [Tooltip("Optional – leave empty to show symbols only")]
     [SerializeField] private TMP_Text statusText;
 
     [Header("Buttons (VR phone only) – wired and styled by this script, leave OnClick empty")]
@@ -63,6 +67,7 @@ public class PhoneMaze : MonoBehaviour
     private RectTransform playerRt, shipRt, playerGlowRt, exitRingRt;
     private Image shipImg, exitGlow;
     private readonly List<Image> borderBars = new List<Image>();
+    private readonly List<Image> symbolImages = new List<Image>();
     private Vector2 visualPos, bump;
 
     private Sprite boardSprite, tileSprite, blockSprite, barSprite, glowSprite, arrowSprite, ringSprite, enterSprite;
@@ -114,11 +119,13 @@ public class PhoneMaze : MonoBehaviour
             bool on = Mathf.PingPong(hitTimer * 10f, 1f) > 0.5f;
             shipImg.color = on ? hitColor : playerColor;
             foreach (var bar in borderBars) bar.color = on ? hitColor : wallColor;
+            SetSymbolColor(on ? hitColor : traceColor);
 
             if (hitTimer <= 0f)
             {
                 shipImg.color = playerColor;
                 foreach (var bar in borderBars) bar.color = wallColor;
+                SetSymbolColor(traceColor);
                 if (resetOnWallHit) Restart();
                 else SetStatus("FIND THE EXIT");
             }
@@ -160,6 +167,7 @@ public class PhoneMaze : MonoBehaviour
         player = mazeLayout.start;
         SetStatus(mode == ViewMode.PCMap ? "GUIDE THE AGENT" : "FIND THE EXIT");
         foreach (var bar in borderBars) bar.color = wallColor;
+        SetSymbolColor(traceColor);
 
         if (!HasPlayer) return;
         visualPos = CellPos(player);
@@ -230,6 +238,36 @@ public class PhoneMaze : MonoBehaviour
         cols = mazeLayout.width;
         rows = mazeLayout.height;
         BuildBoard();
+        BuildSymbols();
+    }
+
+    private void BuildSymbols()
+    {
+        symbolImages.Clear();
+        if (symbolArea == null) return;
+
+        foreach (Transform child in symbolArea) Destroy(child.gameObject);
+        if (mazeLayout.symbols == null || mazeLayout.symbols.Length == 0) return;
+
+        int n = mazeLayout.symbols.Length;
+        float h = symbolArea.rect.height;
+        float size = Mathf.Min(h, (symbolArea.rect.width - symbolSpacing * (n - 1)) / n);
+        float totalW = n * size + (n - 1) * symbolSpacing;
+
+        for (int i = 0; i < n; i++)
+        {
+            float x = -totalW / 2f + size / 2f + i * (size + symbolSpacing);
+            var img = CreateImage($"Symbol_{i + 1}", symbolArea, mazeLayout.symbols[i], traceColor,
+                                  Vector2.one * size, new Vector2(x, 0f));
+            img.preserveAspect = true;
+            img.enabled = mazeLayout.symbols[i] != null;
+            symbolImages.Add(img);
+        }
+    }
+
+    private void SetSymbolColor(Color c)
+    {
+        foreach (var img in symbolImages) img.color = c;
     }
 
     private void BuildBoard()
@@ -242,7 +280,6 @@ public class PhoneMaze : MonoBehaviour
         shipImg = exitGlow = null;
         borderBars.Clear();
 
-        // Fit the maze inside GridArea, keeping cells square
         cell = Mathf.Min(gridArea.rect.width / cols, gridArea.rect.height / rows);
         float th = cell * wallThickness;
         Vector2 boardSize = new Vector2(cols * cell, rows * cell);
