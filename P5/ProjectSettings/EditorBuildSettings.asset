@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Boot.unity
     guid: eabb382898c03e844b10497d646a2b96
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Appartment.unity
     guid: c503dc747cb0b6c47bf9632b2c8e1662
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PcScreen.unity
     guid: c1e7e2ba3acfa9845856d072bbf4dd7e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Network Testing/PC_NetworkTest.unity
     guid: 6d1235bf7c9e1a24c8b9da0f1de40f8f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Network Testing/VR_NetworkTest.unity
     guid: 51d5ab15f73ca71439df493ae69b0ad5
   - enabled: 1
