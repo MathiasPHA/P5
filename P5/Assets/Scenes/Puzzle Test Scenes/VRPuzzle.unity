@@ -300,7 +300,7 @@ MonoBehaviour:
   backKey: {fileID: 1067397734}
   inputDisplay: {fileID: 521350019}
   attemptedNumbers: 00000000000000000000000000000000
-  correctNumbers: 04000000020000000600000009000000
+  correctNumbers: 06000000090000000400000002000000
   currentInputIndex: 0
 --- !u!114 &521350019 stripped
 MonoBehaviour:
@@ -900,12 +900,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04c6f48c5fa95d419dbf41d3f4d62fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CaptchaVRManager
-  CaptchaSet: 0
   CaptchaSprite:
   - {fileID: 4508892017910812857, guid: 6fa6673c15e05410da95cebffbeba0a5, type: 3}
   - {fileID: -4957684761152538773, guid: 6fa6673c15e05410da95cebffbeba0a5, type: 3}
   - {fileID: 1833643228818761725, guid: 6fa6673c15e05410da95cebffbeba0a5, type: 3}
   CaptchaImg: {fileID: 1193654316}
+  solvedObject: {fileID: 0}
 --- !u!1 &1793191806
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,9 +935,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04c6f48c5fa95d419dbf41d3f4d62fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  CaptchaSet: 0
-  CaptchaSprite: []
-  CaptchaImg: {fileID: 0}
+  CaptchaSprite:
+  - {fileID: 2542242749728653255, guid: 8314d698082927d428488e421e143cf4, type: 3}
+  - {fileID: 8957324059118975939, guid: f76e338bfc20d0b4bbf059c31dab7c4f, type: 3}
+  - {fileID: 3992300423190634824, guid: 1d76cd0af6f884730b89724a68c43fcf, type: 3}
+  CaptchaImg: {fileID: 1193654316}
+  solvedObject: {fileID: 0}
 --- !u!4 &1793191808
 Transform:
   m_ObjectHideFlags: 0
@@ -963,7 +966,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2529768037620566962, guid: 40edecfb30b6fd046988f95dc68eb7bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.89
+      value: 4.52
       objectReference: {fileID: 0}
     - target: {fileID: 2529768037620566962, guid: 40edecfb30b6fd046988f95dc68eb7bc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -971,7 +974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2529768037620566962, guid: 40edecfb30b6fd046988f95dc68eb7bc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.19
+      value: 7.14
       objectReference: {fileID: 0}
     - target: {fileID: 2529768037620566962, guid: 40edecfb30b6fd046988f95dc68eb7bc, type: 3}
       propertyPath: m_LocalRotation.w

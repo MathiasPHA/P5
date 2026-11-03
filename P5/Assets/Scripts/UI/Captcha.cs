@@ -10,7 +10,9 @@ public class CaptchaSet
 
 public class Captcha : MonoBehaviour
 {
-    public CaptchaSet[] sets;        // your 3 sets
+    // Order must match CaptchaVRManager.CaptchaSprite:
+    // CaptchaSprite[i] is the picture the VR player describes for sets[i]
+    public CaptchaSet[] sets;
 
     [SerializeField] Image[] imageSlots;       // the 3 image buttons
     [SerializeField] AddressBar addressBar;    // on Window_Hack3rNet
@@ -24,7 +26,7 @@ public class Captcha : MonoBehaviour
 
     void Awake() => window = GetComponent<DesktopWindow>();
 
-    // Runs every time the captcha window is opened
+    // Runs every time the captcha window is opened (if Close() disables the GameObject)
     void OnEnable() => ShowSet();
 
     void ShowSet()
@@ -37,16 +39,26 @@ public class Captcha : MonoBehaviour
 
     public void SelectImage(int index)
     {
+        Debug.Log($"[Captcha] Picked {index}, set {currentSet}, correct is {sets[currentSet].correctIndex}");
+
         if (index == sets[currentSet].correctIndex)
         {
+            if (SharedState.Instance != null)
+                SharedState.Instance.SetCaptchaSolvedRpc(true);
+
             nextPC.SetActive(true);
             currentPC.SetActive(false);
         }
         else
         {
-            // next set, wraps from the last back to the first
+            // Next set, wraps from the last back to the first
             currentSet = (currentSet + 1) % sets.Length;
-            SharedState.Instance.SetCaptchaRpc(currentSet);
+            ShowSet(); // redraw now, don't rely on OnEnable
+
+            if (SharedState.Instance != null)
+                SharedState.Instance.SetCaptchaRpc(currentSet);
+            else
+                Debug.LogWarning("[Captcha] SharedState missing, VR won't get the new set");
 
             window.Close();
             addressBar.Retry("Wrong image. Enter the address again.");
