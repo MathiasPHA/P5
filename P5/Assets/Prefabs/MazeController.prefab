@@ -831,18 +831,14 @@ PrefabInstance:
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8801492038150235901}
-    - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
-      propertyPath: onButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8801492038150235901}
+      objectReference: {fileID: 6161704200312752765}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ButtonDown
+      value: Down
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -850,7 +846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: VRButtonTest, Assembly-CSharp
+      value: PhoneMaze, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -919,28 +915,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 607948199075081967, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8801492038150235901}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
---- !u!1 &1886799371694081255 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 607948199075081967, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
-  m_PrefabInstance: {fileID: 1315226610801371656}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8801492038150235901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1886799371694081255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 923881530affa8c4d8a46a32145ba2d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VRButtonTest
 --- !u!4 &2256908725142476180 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 942018842575257500, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
@@ -973,18 +949,14 @@ PrefabInstance:
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2479632943487691152}
-    - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
-      propertyPath: onButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2479632943487691152}
+      objectReference: {fileID: 6161704200312752765}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ButtonLeft
+      value: Left
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -992,7 +964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: VRButtonTest, Assembly-CSharp
+      value: PhoneMaze, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1061,28 +1033,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 607948199075081967, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2479632943487691152}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
---- !u!1 &1288430976422556034 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 607948199075081967, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
-  m_PrefabInstance: {fileID: 1841603429977546605}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2479632943487691152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1288430976422556034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 923881530affa8c4d8a46a32145ba2d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VRButtonTest
 --- !u!4 &1485072605149913329 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 942018842575257500, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
@@ -1115,18 +1067,14 @@ PrefabInstance:
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2330333276760792731}
-    - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
-      propertyPath: onButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2330333276760792731}
+      objectReference: {fileID: 6161704200312752765}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ButtonUp
+      value: Up
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -1134,7 +1082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: VRButtonTest, Assembly-CSharp
+      value: PhoneMaze, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1203,33 +1151,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 607948199075081967, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2330333276760792731}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
 --- !u!4 &4285545029811415843 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 942018842575257500, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
   m_PrefabInstance: {fileID: 3921484476562379967}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4468754938842905168 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 607948199075081967, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
-  m_PrefabInstance: {fileID: 3921484476562379967}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2330333276760792731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4468754938842905168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 923881530affa8c4d8a46a32145ba2d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VRButtonTest
 --- !u!1001 &4326652862920046324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1257,18 +1185,14 @@ PrefabInstance:
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5962841425660637226}
-    - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
-      propertyPath: onButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 5962841425660637226}
+      objectReference: {fileID: 6161704200312752765}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ButtonRight
+      value: Right
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -1276,7 +1200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: VRButtonTest, Assembly-CSharp
+      value: PhoneMaze, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: onButtonReleased.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1345,33 +1269,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 607948199075081967, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5962841425660637226}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
 --- !u!4 &3538108569329764712 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 942018842575257500, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
   m_PrefabInstance: {fileID: 4326652862920046324}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3775290205644511259 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 607948199075081967, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
-  m_PrefabInstance: {fileID: 4326652862920046324}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5962841425660637226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3775290205644511259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 923881530affa8c4d8a46a32145ba2d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VRButtonTest
 --- !u!1001 &7260591502974135828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1511,8 +1415,57 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6836175744169475530, guid: de3ca9c3f63e15e46b5e716409b61ee1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7505791029903444923}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5263728126865136240, guid: de3ca9c3f63e15e46b5e716409b61ee1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6161704200312752765}
   m_SourcePrefab: {fileID: 100100000, guid: de3ca9c3f63e15e46b5e716409b61ee1, type: 3}
+--- !u!1 &3300656215959893092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5263728126865136240, guid: de3ca9c3f63e15e46b5e716409b61ee1, type: 3}
+  m_PrefabInstance: {fileID: 7260591502974135828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6161704200312752765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3300656215959893092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29e87de4cd34709beaff733aedc5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhoneMaze
+  mode: 0
+  mazeLayout: {fileID: 11400000, guid: ce9d1e29dcc234cf59534c7b671f5446, type: 2}
+  resetOnWallHit: 1
+  showPlayerOnPC: 0
+  keyboardInput: 1
+  gridArea: {fileID: 5557739627544662098}
+  statusText: {fileID: 4472403331503179703}
+  upButton: {fileID: 0}
+  downButton: {fileID: 0}
+  leftButton: {fileID: 0}
+  rightButton: {fileID: 0}
+  enterButton: {fileID: 0}
+  showGridLines: 1
+  boardColor: {r: 0.02, g: 0.13, b: 0.04, a: 1}
+  traceColor: {r: 0.3, g: 0.95, b: 0.35, a: 1}
+  tileColor: {r: 0.3, g: 0.95, b: 0.35, a: 0.5}
+  wallColor: {r: 0.55, g: 0.75, b: 1, a: 0}
+  playerColor: {r: 0.35, g: 1, b: 1, a: 1}
+  exitColor: {r: 1, g: 0.6, b: 0.15, a: 1}
+  hitColor: {r: 1, g: 0.15, b: 0.15, a: 1}
+  moveSpeed: 8
+  wallThickness: 0.14
+  hitDuration: 0.6
+  onSolved:
+    m_PersistentCalls:
+      m_Calls: []
+  onWallHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!224 &4187279058421339102 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6836175744169475530, guid: de3ca9c3f63e15e46b5e716409b61ee1, type: 3}

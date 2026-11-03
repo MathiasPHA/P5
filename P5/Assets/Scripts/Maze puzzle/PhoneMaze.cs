@@ -227,7 +227,16 @@ public class PhoneMaze : MonoBehaviour
         }
 
         player = target;
-        SetStatus(player == mazeLayout.exit ? "PRESS ENTER" : "FIND THE EXIT");
+        if (player == mazeLayout.exit)
+        {
+            solved = true;
+            SetStatus("ACCESS GRANTED");
+            onSolved.Invoke();
+        }
+        else
+        {
+            SetStatus("FIND THE EXIT");
+        }
     }
 
     // ───────────────────────── Building ─────────────────────────
