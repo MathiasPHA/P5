@@ -177,8 +177,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 2, z: 0.8}
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Size: {x: 0.8, y: 5, z: 0.8}
+  m_Center: {x: 0.00000004656613, y: -1.4506366, z: -0.00000009313226}
 --- !u!54 &6020681689710924196
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8caf532c68b567439367938f91dc780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VRButtonV2Controller
+  buttonDelayTime: 0.05
   button: {fileID: 367112459834555020}
   onButtonPressed:
     m_PersistentCalls:
