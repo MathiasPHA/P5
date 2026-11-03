@@ -13,7 +13,7 @@ public class NumpadVRManager : MonoBehaviour
 
     [SerializeField] private TMP_Text inputDisplay;
     [SerializeField] private int[] attemptedNumbers = new int[4];
-    [SerializeField] private int[] correctNumbers = new int[4];
+    [SerializeField] private int[] correctNumbers = new int[4]; // must match NumpadPCManager
     [SerializeField] private int currentInputIndex = 0;
 
     IEnumerator Start()
@@ -26,6 +26,8 @@ public class NumpadVRManager : MonoBehaviour
         }
         submitKey.selectEntered.AddListener(_ => OnSubmitButtonPressed());
         backKey.selectEntered.AddListener(_ => OnBackButtonPressed());
+
+        UpdateDisplay();
 
         // SharedState is null for a moment after a scene loads
         yield return new WaitUntil(() => SharedState.Instance != null);
@@ -55,9 +57,12 @@ public class NumpadVRManager : MonoBehaviour
 
     public void OnSubmitButtonPressed()
     {
+        if (SharedState.Instance == null) return; // network not ready yet
+
         if (currentInputIndex == 4)
         {
-            SharedState.Instance.SetNumpadNumbersRpc(attemptedNumbers[0], attemptedNumbers[1], attemptedNumbers[2], attemptedNumbers[3]);
+            SharedState.Instance.SetNumpadNumbersRpc(
+                attemptedNumbers[0], attemptedNumbers[1], attemptedNumbers[2], attemptedNumbers[3]);
             currentInputIndex = 0;
             UpdateDisplay();
         }
@@ -81,20 +86,20 @@ public class NumpadVRManager : MonoBehaviour
         }
     }
 
+    // Runs on both PC and VR after every submitted guess
     void OnNumpadNumbersSet(int n1, int n2, int n3, int n4)
     {
-        if (n1 == correctNumbers[0] && n2 == correctNumbers[1] && n3 == correctNumbers[2] && n4 == correctNumbers[3])
+        if (n1 == correctNumbers[0] && n2 == correctNumbers[1] &&
+            n3 == correctNumbers[2] && n4 == correctNumbers[3])
         {
             Debug.Log("Correct combination entered!");
             OpenDoor();
         }
         else
         {
+            // Input was already cleared on submit, so don't clear again here,
+            // or a guess the player has started typing gets wiped
             Debug.Log("Incorrect combination. Please try again.");
-
-            // Clear the input after an incorrect attempt
-            currentInputIndex = 0;
-            UpdateDisplay();
         }
     }
 
