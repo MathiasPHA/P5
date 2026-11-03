@@ -1,0 +1,51 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class NumpadPCManager : MonoBehaviour
+{
+     [SerializeField] private int correctNum1;
+     [SerializeField] private int correctNum2;
+     [SerializeField] private int correctNum3;
+     [SerializeField] private int correctNum4;
+
+    [SerializeField] private Sprite[] symbolSprites = new Sprite[3];
+    [SerializeField] private SymbolList symbolList;
+
+
+
+    IEnumerator Start()
+    {
+        // Subscribe to the value changed events of the numpads
+        // This is done after the SharedState is initialized
+        yield return new WaitUntil(() => SharedState.Instance != null);
+        SharedState.Instance.OnNumpadNumbersSet += OnNumpadNumbersSet;
+    }
+    
+
+    void OnDestroy()
+    {
+        // Required: otherwise SharedState calls into destroyed objects after a scene switch
+        if (SharedState.Instance != null)
+            SharedState.Instance.OnNumpadNumbersSet -= OnNumpadNumbersSet;
+    }
+
+
+
+    void OnNumpadNumbersSet(int n1, int n2, int n3, int n4)
+    {
+        symbolList.AddRow(
+            GetSymbol(n1, correctNum1),
+            GetSymbol(n2, correctNum2),
+            GetSymbol(n3, correctNum3),
+            GetSymbol(n4, correctNum4));
+    }
+
+    Sprite GetSymbol(int guess, int correctHere)
+    {
+        if (guess == correctHere) return symbolSprites[0];
+        if (guess == correctNum1 || guess == correctNum2 ||
+            guess == correctNum3 || guess == correctNum4) return symbolSprites[1];
+        return symbolSprites[2];
+    }
+}
