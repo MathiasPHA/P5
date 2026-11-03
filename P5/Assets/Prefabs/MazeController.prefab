@@ -1453,7 +1453,7 @@ MonoBehaviour:
   boardColor: {r: 0.02, g: 0.13, b: 0.04, a: 1}
   traceColor: {r: 0.3, g: 0.95, b: 0.35, a: 1}
   tileColor: {r: 0.3, g: 0.95, b: 0.35, a: 0.5}
-  wallColor: {r: 0.55, g: 0.75, b: 1, a: 1}
+  wallColor: {r: 0.55, g: 0.75, b: 1, a: 0}
   playerColor: {r: 0.35, g: 1, b: 1, a: 1}
   exitColor: {r: 1, g: 0.6, b: 0.15, a: 1}
   hitColor: {r: 1, g: 0.15, b: 0.15, a: 1}
