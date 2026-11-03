@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -31,6 +32,12 @@ public class MazeLayoutEditor : Editor
             labelStyle.normal.textColor = Color.black;
         }
 
+        serializedObject.Update();
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("symbols"), true);
+        serializedObject.ApplyModifiedProperties();
+        DrawSymbolPreview(maze);
+
+        EditorGUILayout.Space();
         EditorGUI.BeginChangeCheck();
         int w = EditorGUILayout.IntSlider("Width", maze.width, 2, 12);
         int h = EditorGUILayout.IntSlider("Height", maze.height, 2, 12);
@@ -65,6 +72,27 @@ public class MazeLayoutEditor : Editor
             EditorUtility.SetDirty(maze);
         }
         GUILayout.EndHorizontal();
+    }
+
+    private void DrawSymbolPreview(MazeLayout maze)
+    {
+        if (maze.symbols == null || maze.symbols.Length == 0) return;
+
+        const float size = 48f;
+        Rect row = GUILayoutUtility.GetRect(maze.symbols.Length * (size + 6f), size + 8f);
+        float x = row.x + (row.width - maze.symbols.Length * (size + 6f)) / 2f;
+
+        foreach (var s in maze.symbols)
+        {
+            Rect r = new Rect(x, row.y + 4f, size, size);
+            EditorGUI.DrawRect(r, BgColor);
+            if (s != null)
+            {
+                var tex = AssetPreview.GetAssetPreview(s) ?? s.texture;
+                if (tex != null) GUI.DrawTexture(r, tex, ScaleMode.ScaleToFit);
+            }
+            x += size + 6f;
+        }
     }
 
     private void DrawGrid(MazeLayout maze)
@@ -126,3 +154,4 @@ public class MazeLayoutEditor : Editor
         }
     }
 }
+#endif
