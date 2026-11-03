@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Network Testing/VR_NetworkTest.unity
     guid: 51d5ab15f73ca71439df493ae69b0ad5
+  - enabled: 1
+    path: Assets/Scenes/Pretty PC.unity
+    guid: 77344e3964c80224880b7e33530849ee
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Test Scenes/VRPuzzle.unity
+    guid: ba30ce91b18c9a943a922015bc26403f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 424f9ea697af1b54fada3faea0d30d52, type: 2}

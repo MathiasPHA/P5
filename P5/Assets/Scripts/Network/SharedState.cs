@@ -18,6 +18,7 @@ public class SharedState : NetworkBehaviour
     public NetworkVariable<int> Numpad4;
     public event Action<int, int, int, int> OnNumpadNumbersSet;
 
+    public NetworkVariable<int> CaptchaSet;
 
     public override void OnNetworkSpawn()
     {
@@ -46,4 +47,7 @@ public class SharedState : NetworkBehaviour
         }
         OnNumpadNumbersSet?.Invoke(num1, num2, num3, num4);
     }
+
+    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+    public void SetCaptchaRpc(int value) => CaptchaSet.Value = value;
 }
