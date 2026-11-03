@@ -8,9 +8,12 @@ public class MazeLayout : ScriptableObject
     public Vector2Int start = new Vector2Int(2, 1);
     public Vector2Int exit = new Vector2Int(1, 4);
 
+    [Tooltip("Symbols shown above this maze (the code that identifies it)")]
+    public Sprite[] symbols = new Sprite[4];
+
     // Index = y * width + x   (x = column from left, y = row from top, both from 0)
-    public bool[] wallRight;   // wall between a cell and the cell to its right
-    public bool[] wallBottom;  // wall between a cell and the cell below it
+    public bool[] wallRight;
+    public bool[] wallBottom;
 
     void Reset() => LoadWhiteboardMaze();
     void OnValidate() => EnsureSize();
@@ -73,10 +76,9 @@ public class MazeLayout : ScriptableObject
         width = 6;
         height = 6;
         ClearWalls();
-        start = new Vector2Int(2, 1);  // dot  (column 3, row 2)
-        exit = new Vector2Int(1, 4);   // key  (column 2, row 5)
+        start = new Vector2Int(2, 1);
+        exit = new Vector2Int(1, 4);
 
-        // (x, y) of cells with a wall on their RIGHT side
         int[,] right =
         {
             {3,0},
@@ -87,7 +89,6 @@ public class MazeLayout : ScriptableObject
             {2,5}, {3,5}
         };
 
-        // (x, y) of cells with a wall on their BOTTOM side
         int[,] bottom =
         {
             {0,0}, {2,0},

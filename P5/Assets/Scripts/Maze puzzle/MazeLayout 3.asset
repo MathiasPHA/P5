@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eb85badd2583402490acb97a6684660, type: 3}
+  m_Name: MazeLayout 3
+  m_EditorClassIdentifier: Assembly-CSharp::MazeLayout
+  width: 6
+  height: 6
+  start: {x: 5, y: 0}
+  exit: {x: 4, y: 5}
+  symbols:
+  - {fileID: -829521388, guid: 9923fc2466d3e81488b8d5212a65325b, type: 3}
+  - {fileID: 663481804, guid: 9923fc2466d3e81488b8d5212a65325b, type: 3}
+  - {fileID: 1395858515, guid: 9923fc2466d3e81488b8d5212a65325b, type: 3}
+  - {fileID: -394345946, guid: 9923fc2466d3e81488b8d5212a65325b, type: 3}
+  wallRight: 000000010000000100000000000000000000010001000000000100000100000001010000
+  wallBottom: 010001000100000100010101010001010101010001000101000100000100000000000000
