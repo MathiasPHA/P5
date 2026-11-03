@@ -786,6 +786,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Keypad
       objectReference: {fileID: 0}
+    - target: {fileID: 1421995175376418496, guid: 7281c859591c6334e8a1f217ffcf4f6a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0068961
+      objectReference: {fileID: 0}
     - target: {fileID: 2589099099970921524, guid: 7281c859591c6334e8a1f217ffcf4f6a, type: 3}
       propertyPath: m_text
       value: _ _ _ _
