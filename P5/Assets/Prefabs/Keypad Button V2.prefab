@@ -195,6 +195,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Keypad Button V2
       objectReference: {fileID: 0}
+    - target: {fileID: 679747309306416178, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
+      propertyPath: neutralPosition.y
+      value: 0.1151
+      objectReference: {fileID: 0}
     - target: {fileID: 942018842575257500, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.749
@@ -247,6 +251,26 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 3789254379699603492, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789254379699603492, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
+      propertyPath: m_Size.y
+      value: 14.140569
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789254379699603492, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
+      propertyPath: m_Center.x
+      value: -0.00000007298236
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789254379699603492, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
+      propertyPath: m_Center.y
+      value: 3.1196475
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789254379699603492, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
+      propertyPath: m_Center.z
+      value: -0.00000009538117
+      objectReference: {fileID: 0}
     - target: {fileID: 5318111353063341155, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.21028179
