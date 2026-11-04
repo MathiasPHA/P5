@@ -121,5 +121,5 @@ public class NumpadVRManager : MonoBehaviour
         doorHandle.enabled = true;   // the handle can now be grabbed
 
     Debug.Log("Door is now open!");
-}
+}   
 }
