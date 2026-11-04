@@ -199,8 +199,17 @@ public class PhoneMaze : MonoBehaviour
             return;
         }
 
-        player += dir;
-        SetStatus(player == mazeLayout.exit ? "PRESS ENTER" : "FIND THE EXIT");
+        player = target;
+        if (player == mazeLayout.exit)
+        {
+            solved = true;
+            SetStatus("ACCESS GRANTED");
+            onSolved.Invoke();
+        }
+        else
+        {
+            SetStatus("FIND THE EXIT");
+        }
     }
 
     // ───────────────────────── Animation ─────────────────────────
