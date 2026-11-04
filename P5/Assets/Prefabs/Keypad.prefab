@@ -127,18 +127,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NumpadVRManager
   numpadKeys:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  submitKey: {fileID: 0}
-  backKey: {fileID: 0}
+  - {fileID: 8072381909245900135}
+  - {fileID: 7644509988383525563}
+  - {fileID: 204383595339451242}
+  - {fileID: 4560432627997559294}
+  - {fileID: 7869686678534480936}
+  - {fileID: 781455008630411823}
+  - {fileID: 3477233048217152655}
+  - {fileID: 4999837421798361807}
+  - {fileID: 7343872709655667572}
+  - {fileID: 8785313438356650373}
+  submitKey: {fileID: 9076298969146779909}
+  backKey: {fileID: 6200116165156602907}
   inputDisplay: {fileID: 2589099099970921524}
   attemptedNumbers: 00000000000000000000000000000000
   correctNumbers: 06000000090000000400000002000000
@@ -602,6 +602,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8466427330889320946}
     m_Modifications:
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_text
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.749
@@ -651,6 +655,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+--- !u!114 &3477233048217152655 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2759295711774756570, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+  m_PrefabInstance: {fileID: 1588470892620194389}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8caf532c68b567439367938f91dc780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonV2Controller
 --- !u!4 &3764400976147767073 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
@@ -664,6 +679,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8466427330889320946}
     m_Modifications:
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_text
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.749
@@ -718,6 +737,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
   m_PrefabInstance: {fileID: 1802307934830626596}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4560432627997559294 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2759295711774756570, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+  m_PrefabInstance: {fileID: 1802307934830626596}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8caf532c68b567439367938f91dc780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonV2Controller
 --- !u!1001 &2638230977422804400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -726,6 +756,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8466427330889320946}
     m_Modifications:
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_text
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.749
@@ -775,6 +809,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+--- !u!114 &204383595339451242 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2759295711774756570, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+  m_PrefabInstance: {fileID: 2638230977422804400}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8caf532c68b567439367938f91dc780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonV2Controller
 --- !u!4 &480291396305074372 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
@@ -788,6 +833,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8466427330889320946}
     m_Modifications:
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_text
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.749
@@ -837,6 +886,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+--- !u!114 &781455008630411823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2759295711774756570, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+  m_PrefabInstance: {fileID: 3211829476195982581}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8caf532c68b567439367938f91dc780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonV2Controller
 --- !u!4 &1054970988771221889 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
@@ -850,6 +910,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8466427330889320946}
     m_Modifications:
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_text
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.749
@@ -904,6 +968,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
   m_PrefabInstance: {fileID: 4872984430569975214}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7343872709655667572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2759295711774756570, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+  m_PrefabInstance: {fileID: 4872984430569975214}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8caf532c68b567439367938f91dc780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonV2Controller
 --- !u!1001 &5439295576828816114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -912,6 +987,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8466427330889320946}
     m_Modifications:
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_text
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.749
@@ -966,6 +1045,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
   m_PrefabInstance: {fileID: 5439295576828816114}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7869686678534480936 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2759295711774756570, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+  m_PrefabInstance: {fileID: 5439295576828816114}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8caf532c68b567439367938f91dc780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonV2Controller
 --- !u!1001 &5502340471568024673
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1023,6 +1113,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+--- !u!114 &7644509988383525563 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2759295711774756570, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+  m_PrefabInstance: {fileID: 5502340471568024673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8caf532c68b567439367938f91dc780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonV2Controller
 --- !u!4 &7956324403507509525 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
@@ -1036,6 +1137,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8466427330889320946}
     m_Modifications:
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.7484078
@@ -1085,6 +1190,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+--- !u!114 &8072381909245900135 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2759295711774756570, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+  m_PrefabInstance: {fileID: 6218380675434937277}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8caf532c68b567439367938f91dc780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonV2Controller
 --- !u!4 &8393187041813497545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
@@ -1098,6 +1214,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8466427330889320946}
     m_Modifications:
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_text
+      value: OK
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_fontSize
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.54
+      objectReference: {fileID: 0}
     - target: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.749
@@ -1138,6 +1266,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 2697814077490201399, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.779
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697814077490201399, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.31
+      objectReference: {fileID: 0}
     - target: {fileID: 2831589807356783623, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
       propertyPath: m_Name
       value: Enter
@@ -1156,6 +1292,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
   m_PrefabInstance: {fileID: 6611144642411571167}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9076298969146779909 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2759295711774756570, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+  m_PrefabInstance: {fileID: 6611144642411571167}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8caf532c68b567439367938f91dc780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonV2Controller
 --- !u!1001 &6890868972021970783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1164,6 +1311,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8466427330889320946}
     m_Modifications:
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_text
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.749
@@ -1213,6 +1364,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+--- !u!114 &8785313438356650373 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2759295711774756570, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+  m_PrefabInstance: {fileID: 6890868972021970783}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8caf532c68b567439367938f91dc780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonV2Controller
 --- !u!4 &9049983109531306539 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
@@ -1226,6 +1388,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8466427330889320946}
     m_Modifications:
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_text
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.749
@@ -1280,6 +1446,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
   m_PrefabInstance: {fileID: 7144962396055454741}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4999837421798361807 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2759295711774756570, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+  m_PrefabInstance: {fileID: 7144962396055454741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8caf532c68b567439367938f91dc780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonV2Controller
 --- !u!1001 &8088957623313287873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1288,6 +1465,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8466427330889320946}
     m_Modifications:
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_text
+      value: "\u2190"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_fontSize
+      value: 1.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279247151452973133, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 1.06
+      objectReference: {fileID: 0}
     - target: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.7484078
@@ -1328,6 +1517,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 2697814077490201399, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697814077490201399, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697814077490201399, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.56
+      objectReference: {fileID: 0}
     - target: {fileID: 2831589807356783623, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
       propertyPath: m_Name
       value: Back
@@ -1346,3 +1547,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2465359479274175860, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
   m_PrefabInstance: {fileID: 8088957623313287873}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6200116165156602907 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2759295711774756570, guid: 23bf7de828957394b8603e5cb0c512ee, type: 3}
+  m_PrefabInstance: {fileID: 8088957623313287873}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8caf532c68b567439367938f91dc780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonV2Controller

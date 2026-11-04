@@ -7,9 +7,9 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables; // XRI 3.x
 public class NumpadVRManager : MonoBehaviour
 {
     // Order matters: numpadKeys[0] = the 0 key, [1] = the 1 key, ...
-    [SerializeField] private XRSimpleInteractable[] numpadKeys = new XRSimpleInteractable[10];
-    [SerializeField] private XRSimpleInteractable submitKey;
-    [SerializeField] private XRSimpleInteractable backKey;
+    [SerializeField] private VRButtonV2Controller[] numpadKeys = new VRButtonV2Controller[10];
+    [SerializeField] private VRButtonV2Controller submitKey;
+    [SerializeField] private VRButtonV2Controller backKey;
 
     [SerializeField] private TMP_Text inputDisplay;
     [SerializeField] private int[] attemptedNumbers = new int[4];
@@ -21,11 +21,11 @@ public class NumpadVRManager : MonoBehaviour
         // Hook up the keys first, so they work even while waiting for SharedState
         for (int i = 0; i < numpadKeys.Length; i++)
         {
-            int n = i; // copy, otherwise every key would send 10
-            numpadKeys[i].selectEntered.AddListener(_ => OnNumpadButtonPressed(n));
+            int n = i;
+            numpadKeys[i].onButtonPressed.AddListener(() => OnNumpadButtonPressed(n));
         }
-        submitKey.selectEntered.AddListener(_ => OnSubmitButtonPressed());
-        backKey.selectEntered.AddListener(_ => OnBackButtonPressed());
+        submitKey.onButtonPressed.AddListener(OnSubmitButtonPressed);
+        backKey.onButtonPressed.AddListener(OnBackButtonPressed);
 
         UpdateDisplay();
 
