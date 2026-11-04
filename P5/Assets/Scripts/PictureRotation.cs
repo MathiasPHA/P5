@@ -11,6 +11,12 @@ public class PictureRotation : MonoBehaviour
 
     private float currentAngle;
 
+    public void rotate()
+    {
+        rotatePicture = true;
+    }
+    
+
     // Update is called once per frame
     void Update()
     {
