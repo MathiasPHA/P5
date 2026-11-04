@@ -1674,11 +1674,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 728557972306064008, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1403853379409369176, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1936531082400410172, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_Name

@@ -1441,6 +1441,7 @@ MonoBehaviour:
   mazeLayout: {fileID: 11400000, guid: ce9d1e29dcc234cf59534c7b671f5446, type: 2}
   resetOnWallHit: 1
   showPlayerOnPC: 0
+  showStartAndExitOnPC: 1
   keyboardInput: 1
   gridArea: {fileID: 5557739627544662098}
   symbolArea: {fileID: 7505791029903444923}

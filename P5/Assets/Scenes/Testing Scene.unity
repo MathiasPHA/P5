@@ -1340,7 +1340,7 @@ PrefabInstance:
       objectReference: {fileID: 1299189587}
     - target: {fileID: 782777040653654450, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_VersionIndex
-      value: 530
+      value: 533
       objectReference: {fileID: 0}
     - target: {fileID: 1162959678322140120, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Size.x
@@ -1426,13 +1426,17 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.0000022512509
       objectReference: {fileID: 0}
+    - target: {fileID: 2793265078473524917, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.849
+      objectReference: {fileID: 0}
     - target: {fileID: 3168063509254255062, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 403228155}
     - target: {fileID: 3168063509254255062, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_VersionIndex
-      value: 530
+      value: 533
       objectReference: {fileID: 0}
     - target: {fileID: 4492780108622370759, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Mesh
@@ -1484,7 +1488,7 @@ PrefabInstance:
       objectReference: {fileID: 551388236}
     - target: {fileID: 4723818033001226967, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_VersionIndex
-      value: 530
+      value: 533
       objectReference: {fileID: 0}
     - target: {fileID: 5109781589229991567, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Mesh
@@ -1524,7 +1528,7 @@ PrefabInstance:
       objectReference: {fileID: 768333992}
     - target: {fileID: 6000800238023528606, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_VersionIndex
-      value: 530
+      value: 533
       objectReference: {fileID: 0}
     - target: {fileID: 6062100411194918086, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Mesh
