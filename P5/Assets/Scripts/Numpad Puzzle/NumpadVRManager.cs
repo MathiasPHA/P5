@@ -15,7 +15,7 @@ public class NumpadVRManager : MonoBehaviour
     [SerializeField] private int[] attemptedNumbers = new int[4];
     [SerializeField] private int[] correctNumbers = new int[4]; // must match NumpadPCManager
     [SerializeField] private int currentInputIndex = 0;
-
+    [SerializeField] private XRSimpleInteractable doorHandle; // Disables the interactable/locks the door
     IEnumerator Start()
     {
         // Hook up the keys first, so they work even while waiting for SharedState
@@ -116,9 +116,10 @@ public class NumpadVRManager : MonoBehaviour
     }
 
     void OpenDoor()
-    {
-        // Implement door opening logic here
-        Debug.Log("Door is now open!");
+{
+    if (doorHandle != null)
+        doorHandle.enabled = true;   // the handle can now be grabbed
 
-    }
+    Debug.Log("Door is now open!");
+}   
 }
