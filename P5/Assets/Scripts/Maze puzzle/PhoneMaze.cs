@@ -176,32 +176,43 @@ public class PhoneMaze : MonoBehaviour
     }
 
     private void Move(Vector2Int dir)
+{
+    if (!CanMove) return;
+
+    Vector2 screenDir = new Vector2(dir.x, -dir.y);
+    shipRt.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(-screenDir.x, screenDir.y) * Mathf.Rad2Deg);
+
+    Vector2Int target = player + dir;   // <- this was missing
+
+    // Edge of the grid: just bump, no penalty
+    if (!mazeLayout.InBounds(target))
     {
-        if (!CanMove) return;
-
-        Vector2 screenDir = new Vector2(dir.x, -dir.y);
-        shipRt.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(-screenDir.x, screenDir.y) * Mathf.Rad2Deg);
-
-        // Edge of the grid: just bump, no penalty
-        if (!mazeLayout.InBounds(player + dir))
-        {
-            bump = screenDir * cell * 0.18f;
-            return;
-        }
-
-        // Hidden wall: flash red, then reset
-        if (mazeLayout.IsBlocked(player, dir))
-        {
-            bump = screenDir * cell * 0.35f;
-            hitTimer = hitDuration;
-            SetStatus(resetOnWallHit ? "CONNECTION LOST" : "BLOCKED");
-            onWallHit.Invoke();
-            return;
-        }
-
-        player += dir;
-        SetStatus(player == mazeLayout.exit ? "PRESS ENTER" : "FIND THE EXIT");
+        bump = screenDir * cell * 0.18f;
+        return;
     }
+
+    // Hidden wall: flash red, then reset
+    if (mazeLayout.IsBlocked(player, dir))
+    {
+        bump = screenDir * cell * 0.35f;
+        hitTimer = hitDuration;
+        SetStatus(resetOnWallHit ? "CONNECTION LOST" : "BLOCKED");
+        onWallHit.Invoke();
+        return;
+    }
+
+    player = target;
+    if (player == mazeLayout.exit)
+    {
+        solved = true;
+        SetStatus("ACCESS GRANTED");
+        onSolved.Invoke();
+    }
+    else
+    {
+        SetStatus("FIND THE EXIT");
+    }
+}
 
     // ───────────────────────── Animation ─────────────────────────
 
