@@ -1,36 +1,28 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class NumpadPCManager : MonoBehaviour
 {
-     [SerializeField] private int correctNum1;
-     [SerializeField] private int correctNum2;
-     [SerializeField] private int correctNum3;
-     [SerializeField] private int correctNum4;
+    [SerializeField] private int correctNum1;
+    [SerializeField] private int correctNum2;
+    [SerializeField] private int correctNum3;
+    [SerializeField] private int correctNum4;
 
+    // 0 = correct, 1 = right number wrong place, 2 = not in code
     [SerializeField] private Sprite[] symbolSprites = new Sprite[3];
     [SerializeField] private SymbolList symbolList;
 
-
-
     IEnumerator Start()
     {
-        // Subscribe to the value changed events of the numpads
-        // This is done after the SharedState is initialized
         yield return new WaitUntil(() => SharedState.Instance != null);
         SharedState.Instance.OnNumpadNumbersSet += OnNumpadNumbersSet;
     }
-    
 
     void OnDestroy()
     {
-        // Required: otherwise SharedState calls into destroyed objects after a scene switch
         if (SharedState.Instance != null)
             SharedState.Instance.OnNumpadNumbersSet -= OnNumpadNumbersSet;
     }
-
-
 
     void OnNumpadNumbersSet(int n1, int n2, int n3, int n4)
     {
