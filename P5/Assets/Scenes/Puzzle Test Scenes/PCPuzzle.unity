@@ -194,7 +194,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 800.1, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &555559588
 MonoBehaviour:
@@ -462,14 +462,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30ddd1f85a49084685ef1f4d99c6e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NumpadPCManager
-  correctNum1: 0
-  correctNum2: 0
-  correctNum3: 0
-  correctNum4: 0
+  correctNum1: 6
+  correctNum2: 9
+  correctNum3: 4
+  correctNum4: 2
   symbolSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -995091085, guid: c620d22213f18e54a9b8717acea8a2a8, type: 3}
+  - {fileID: 1774848315, guid: c620d22213f18e54a9b8717acea8a2a8, type: 3}
+  - {fileID: 3914626342779536248, guid: c620d22213f18e54a9b8717acea8a2a8, type: 3}
   symbolList: {fileID: 555559591}
 --- !u!4 &1152669232
 Transform:
