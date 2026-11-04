@@ -2324,7 +2324,7 @@ Transform:
   m_GameObject: {fileID: 7887535669705362839}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.75555575, y: 0.0066667134, z: 0.0111111095}
+  m_LocalPosition: {x: 0.75555575, y: 0.023, z: 0.0111111095}
   m_LocalScale: {x: 0.62475556, y: 0.5124155, z: 0.10165393}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2363,7 +2363,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: a802c5f49383a8846a095cdc352f19cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2416,7 +2416,7 @@ Transform:
   m_LocalScale: {x: 1.1111108, y: 1.1111112, z: 11.111108}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5914466604116214193}
+  - {fileID: 6882577261913944728}
   - {fileID: 3889619197154222489}
   - {fileID: 1500111434979133949}
   - {fileID: 5569454040693604561}
@@ -2494,6 +2494,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SafeLight 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5527079655874773681, guid: 5dea9518ddcaa4147aa6947644ef1546, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8920311f2ece8084992c7a936de5966d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7674550534383949991, guid: 5dea9518ddcaa4147aa6947644ef1546, type: 3}
@@ -2703,6 +2707,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SafeLight 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5527079655874773681, guid: 5dea9518ddcaa4147aa6947644ef1546, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8920311f2ece8084992c7a936de5966d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7674550534383949991, guid: 5dea9518ddcaa4147aa6947644ef1546, type: 3}
@@ -3085,7 +3093,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 942018842575257500, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
   m_PrefabInstance: {fileID: 4316267377554264718}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4941946983722466137
+--- !u!1001 &5261023632772728944
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -3107,7 +3115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1621641745237621480, guid: 5dea9518ddcaa4147aa6947644ef1546, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.2457
+      value: -0.2467
       objectReference: {fileID: 0}
     - target: {fileID: 1621641745237621480, guid: 5dea9518ddcaa4147aa6947644ef1546, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3115,7 +3123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1621641745237621480, guid: 5dea9518ddcaa4147aa6947644ef1546, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.023799896
+      value: 0.0238
       objectReference: {fileID: 0}
     - target: {fileID: 1621641745237621480, guid: 5dea9518ddcaa4147aa6947644ef1546, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3157,16 +3165,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: SafeLight 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5527079655874773681, guid: 5dea9518ddcaa4147aa6947644ef1546, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8920311f2ece8084992c7a936de5966d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7674550534383949991, guid: 5dea9518ddcaa4147aa6947644ef1546, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dea9518ddcaa4147aa6947644ef1546, type: 3}
---- !u!4 &5914466604116214193 stripped
+--- !u!4 &6882577261913944728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1621641745237621480, guid: 5dea9518ddcaa4147aa6947644ef1546, type: 3}
-  m_PrefabInstance: {fileID: 4941946983722466137}
+  m_PrefabInstance: {fileID: 5261023632772728944}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5636609150388629131
 PrefabInstance:
@@ -3476,6 +3488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SafeLight 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5527079655874773681, guid: 5dea9518ddcaa4147aa6947644ef1546, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8920311f2ece8084992c7a936de5966d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7674550534383949991, guid: 5dea9518ddcaa4147aa6947644ef1546, type: 3}
