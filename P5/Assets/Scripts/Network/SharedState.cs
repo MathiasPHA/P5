@@ -14,6 +14,7 @@ public class SharedState : NetworkBehaviour
     // Every NetworkVariable MUST be initialized here, or spawning fails.
     public NetworkVariable<int> Step = new(0);
     public NetworkVariable<int> CaptchaSet = new(0);
+    public NetworkVariable<bool> CaptchaSolved = new(false);
 
     // Fires on BOTH host and client every time a numpad guess is submitted
     public event Action<int, int, int, int> OnNumpadNumbersSet;
@@ -36,14 +37,12 @@ public class SharedState : NetworkBehaviour
 
     // ---------- Numpad ----------
 
-    // Called by the VR player, runs on the host
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
     public void SetNumpadNumbersRpc(int num1, int num2, int num3, int num4)
     {
         NumpadNumbersSetRpc(num1, num2, num3, num4);
     }
 
-    // Host forwards the guess to host + all clients, so PC and VR both react
     [Rpc(SendTo.ClientsAndHost)]
     void NumpadNumbersSetRpc(int num1, int num2, int num3, int num4)
     {
@@ -54,4 +53,7 @@ public class SharedState : NetworkBehaviour
 
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
     public void SetCaptchaRpc(int value) => CaptchaSet.Value = value;
+
+    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+    public void SetCaptchaSolvedRpc(bool value) => CaptchaSolved.Value = value;
 }
