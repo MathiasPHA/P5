@@ -33,6 +33,7 @@ public class NumpadVRManager : MonoBehaviour
     [Header("On completion")]
     [SerializeField] private XRSimpleInteractable doorHandle; // the handle can only be grabbed after the puzzle is solved
     [SerializeField] private LockIndicator lockIndicator;
+    [SerializeField] private GameObject[] bordersToDisable; //Walls that gets disabled on completion
     private Color normalColor;
     private bool inputLocked;
     private bool solved;
@@ -193,6 +194,9 @@ public class NumpadVRManager : MonoBehaviour
 
         if (lockIndicator !=null)
             lockIndicator.Unlock(); //swap the lock symbol on completion
+
+        foreach (GameObject border in bordersToDisable)
+            if (border !=null) border.SetActive(false); 
         Debug.Log("Door is now open!");
     }
 }
