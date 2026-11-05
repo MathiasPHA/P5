@@ -19,7 +19,7 @@ public class PhoneMaze : MonoBehaviour
 
     [Header("Mode")]
     [SerializeField] private ViewMode mode = ViewMode.VRPhone;
-    [Tooltip("Can be left empty if a DesktopSwitcher assigns it")]
+    [Tooltip("Can be left empty if a DesktopSwitcher or the maze pool assigns it")]
     [SerializeField] private MazeLayout mazeLayout;
     [SerializeField] private bool resetOnWallHit = true;
     [Tooltip("PC Map only: show the agent's position")]
@@ -29,10 +29,19 @@ public class PhoneMaze : MonoBehaviour
     [Tooltip("VR Phone only: arrow keys / WASD to move, Enter / Space to confirm")]
     [SerializeField] private bool keyboardInput = true;
 
+    [Header("New Maze On Fail (VR phone only)")]
+    [Tooltip("Load a different random maze from the pool when a wall is hit")]
+    [SerializeField] private bool newMazeOnFail = true;
+    [Tooltip("Start with a random maze from the pool instead of Maze Layout")]
+    [SerializeField] private bool randomFirstMaze = true;
+    [SerializeField] private MazeLayout[] mazePool;
+
     [Header("References")]
     [SerializeField] private RectTransform gridArea;
-    [Tooltip("Row of symbols from the Maze Layout")]
+    [Tooltip("Area for the symbols from the Maze Layout")]
     [SerializeField] private RectTransform symbolArea;
+    [Tooltip("Symbols per row. 0 = all in one row, 1 = one column, 2 = 2x2 grid")]
+    [SerializeField, Min(0)] private int symbolColumns = 0;
     [SerializeField] private float symbolSpacing = 30f;
     [Tooltip("Optional status messages")]
     [SerializeField] private TMP_Text statusText;
@@ -64,12 +73,15 @@ public class PhoneMaze : MonoBehaviour
     [Header("Events")]
     public UnityEvent onSolved;
     public UnityEvent onWallHit;
+    [Tooltip("Fires when a new maze is loaded after a fail")]
+    public UnityEvent<MazeLayout> onMazeChanged;
 
     private int cols, rows;
     private float cell, hitTimer;
     private bool built, solved;
     private Vector2Int player;
     private Vector2 visualPos, bump;
+    private Vector2 builtGridSize, builtSymbolSize;
 
     private Sprite boardSprite;
     private RectTransform playerRt, shipRt, playerGlowRt, exitRingRt;
@@ -78,9 +90,11 @@ public class PhoneMaze : MonoBehaviour
     private readonly List<Image> symbolImages = new List<Image>();
 
     public Vector2Int PlayerCell => player;
+    public MazeLayout Layout => mazeLayout;
     private bool Ready => built && mazeLayout != null;
     private bool IsPhone => mode == ViewMode.VRPhone;
     private bool HasPlayer => playerRt != null;
+    private bool HasPool => mazePool != null && mazePool.Length > 0;
     private bool CanMove => Ready && IsPhone && HasPlayer && !solved && hitTimer <= 0f;
 
     // ───────────────────────── Lifecycle ─────────────────────────
@@ -90,6 +104,8 @@ public class PhoneMaze : MonoBehaviour
         boardSprite = MazeGraphics.Board(512, boardColor, traceColor, showGridLines);
         if (IsPhone) SetupButtons();
         if (statusText != null) statusText.color = traceColor;
+
+        if (IsPhone && randomFirstMaze && HasPool) mazeLayout = PickRandomMaze();
         if (mazeLayout != null) Rebuild();
     }
 
@@ -98,6 +114,7 @@ public class PhoneMaze : MonoBehaviour
     void Update()
     {
         if (!Ready) return;
+        if (AreaSizeChanged()) RebuildKeepState();
         if (IsPhone && keyboardInput) HandleKeyboard();
 
         AnimateExit();
@@ -115,6 +132,15 @@ public class PhoneMaze : MonoBehaviour
         mazeLayout = layout;
         Rebuild();
         Restart();
+    }
+
+    // Loads a random maze from the pool (never the current one if there are others)
+    public void LoadNewMaze()
+    {
+        if (!HasPool) { Restart(); return; }
+
+        SetLayout(PickRandomMaze());
+        onMazeChanged.Invoke(mazeLayout);
     }
 
     public void Up()    => Move(DirUp);
@@ -176,43 +202,42 @@ public class PhoneMaze : MonoBehaviour
     }
 
     private void Move(Vector2Int dir)
-{
-    if (!CanMove) return;
-
-    Vector2 screenDir = new Vector2(dir.x, -dir.y);
-    shipRt.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(-screenDir.x, screenDir.y) * Mathf.Rad2Deg);
-
-    Vector2Int target = player + dir;   // <- this was missing
-
-    // Edge of the grid: just bump, no penalty
-    if (!mazeLayout.InBounds(target))
     {
-        bump = screenDir * cell * 0.18f;
-        return;
+        if (!CanMove) return;
+
+        Vector2 screenDir = new Vector2(dir.x, -dir.y);
+        shipRt.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(-screenDir.x, screenDir.y) * Mathf.Rad2Deg);
+
+        // Edge of the grid: just bump, no penalty
+        if (!mazeLayout.InBounds(player + dir))
+        {
+            bump = screenDir * cell * 0.18f;
+            return;
+        }
+
+        // Hidden wall: flash red, then reset or load a new maze
+        if (mazeLayout.IsBlocked(player, dir))
+        {
+            bump = screenDir * cell * 0.35f;
+            hitTimer = hitDuration;
+            SetStatus(newMazeOnFail && HasPool ? "CONNECTION LOST – REROUTING" : resetOnWallHit ? "CONNECTION LOST" : "BLOCKED");
+            onWallHit.Invoke();
+            return;
+        }
+
+        player += dir;
+        SetStatus(player == mazeLayout.exit ? "PRESS ENTER" : "FIND THE EXIT");
     }
 
-    // Hidden wall: flash red, then reset
-    if (mazeLayout.IsBlocked(player, dir))
+    private MazeLayout PickRandomMaze()
     {
-        bump = screenDir * cell * 0.35f;
-        hitTimer = hitDuration;
-        SetStatus(resetOnWallHit ? "CONNECTION LOST" : "BLOCKED");
-        onWallHit.Invoke();
-        return;
-    }
+        var options = new List<MazeLayout>();
+        foreach (var m in mazePool)
+            if (m != null && m != mazeLayout) options.Add(m);
 
-    player = target;
-    if (player == mazeLayout.exit)
-    {
-        solved = true;
-        SetStatus("ACCESS GRANTED");
-        onSolved.Invoke();
+        if (options.Count == 0) return mazeLayout;
+        return options[Random.Range(0, options.Count)];
     }
-    else
-    {
-        SetStatus("FIND THE EXIT");
-    }
-}
 
     // ───────────────────────── Animation ─────────────────────────
 
@@ -247,7 +272,8 @@ public class PhoneMaze : MonoBehaviour
         if (hitTimer > 0f) return;
 
         SetAlert(false);
-        if (resetOnWallHit) Restart();
+        if (newMazeOnFail && HasPool) LoadNewMaze();
+        else if (resetOnWallHit) Restart();
         else SetStatus("FIND THE EXIT");
     }
 
@@ -260,8 +286,29 @@ public class PhoneMaze : MonoBehaviour
 
     // ───────────────────────── Building ─────────────────────────
 
+    // True when the canvas layout has changed size since the last build
+    private bool AreaSizeChanged()
+    {
+        bool gridChanged = (gridArea.rect.size - builtGridSize).sqrMagnitude > 1f;
+        bool symbolChanged = symbolArea != null && (symbolArea.rect.size - builtSymbolSize).sqrMagnitude > 1f;
+        return gridChanged || symbolChanged;
+    }
+
+    // Rebuild at the new size without resetting the player's progress
+    private void RebuildKeepState()
+    {
+        Rebuild();
+        SetAlert(false);
+
+        if (!HasPlayer) return;
+        visualPos = CellPos(player);
+        playerRt.anchoredPosition = visualPos;
+    }
+
     private void Rebuild()
     {
+        Canvas.ForceUpdateCanvases();
+
         mazeLayout.EnsureSize();
         cols = mazeLayout.width;
         rows = mazeLayout.height;
@@ -280,6 +327,8 @@ public class PhoneMaze : MonoBehaviour
         if (IsPhone || showPlayerOnPC) BuildPlayer();
         BuildSymbols();
 
+        builtGridSize = gridArea.rect.size;
+        builtSymbolSize = symbolArea != null ? symbolArea.rect.size : Vector2.zero;
         built = true;
     }
 
@@ -340,6 +389,7 @@ public class PhoneMaze : MonoBehaviour
         shipRt = shipImg.rectTransform;
     }
 
+    // Lays the symbols out in rows of 'symbolColumns', scaled to fit Symbol Area
     private void BuildSymbols()
     {
         symbolImages.Clear();
@@ -350,13 +400,24 @@ public class PhoneMaze : MonoBehaviour
         if (symbols == null || symbols.Length == 0) return;
 
         int n = symbols.Length;
-        float size = Mathf.Min(symbolArea.rect.height, (symbolArea.rect.width - symbolSpacing * (n - 1)) / n);
-        float firstX = -(n * size + (n - 1) * symbolSpacing) / 2f + size / 2f;
+        int perRow = symbolColumns <= 0 ? n : Mathf.Min(symbolColumns, n);
+        int lines = Mathf.CeilToInt(n / (float)perRow);
+
+        float size = Mathf.Min(
+            (symbolArea.rect.width  - symbolSpacing * (perRow - 1)) / perRow,
+            (symbolArea.rect.height - symbolSpacing * (lines - 1)) / lines);
+
+        float totalW = perRow * size + (perRow - 1) * symbolSpacing;
+        float totalH = lines * size + (lines - 1) * symbolSpacing;
 
         for (int i = 0; i < n; i++)
         {
-            var img = CreateImage($"Symbol_{i + 1}", symbolArea, symbols[i], traceColor,
-                                  Vector2.one * size, new Vector2(firstX + i * (size + symbolSpacing), 0f));
+            int col = i % perRow, line = i / perRow;
+            Vector2 pos = new Vector2(
+                -totalW / 2f + size / 2f + col * (size + symbolSpacing),
+                 totalH / 2f - size / 2f - line * (size + symbolSpacing));
+
+            var img = CreateImage($"Symbol_{i + 1}", symbolArea, symbols[i], traceColor, Vector2.one * size, pos);
             img.preserveAspect = true;
             img.enabled = symbols[i] != null;
             symbolImages.Add(img);

@@ -17,7 +17,7 @@ MonoBehaviour:
   start: {x: 5, y: 0}
   exit: {x: 4, y: 5}
   symbols:
-  - {fileID: -829521388, guid: 9923fc2466d3e81488b8d5212a65325b, type: 3}
+  - {fileID: -101659734, guid: 9923fc2466d3e81488b8d5212a65325b, type: 3}
   - {fileID: 663481804, guid: 9923fc2466d3e81488b8d5212a65325b, type: 3}
   - {fileID: 1395858515, guid: 9923fc2466d3e81488b8d5212a65325b, type: 3}
   - {fileID: -394345946, guid: 9923fc2466d3e81488b8d5212a65325b, type: 3}
