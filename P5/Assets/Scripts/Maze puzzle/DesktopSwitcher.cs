@@ -63,6 +63,13 @@ public class DesktopSwitcher : MonoBehaviour
     public void Next() => Show(Current + 1);
     public void Previous() => Show(Current - 1);
 
+    // Jump to the desktop that shows this maze (e.g. from PhoneMaze.onMazeChanged)
+    public void ShowLayout(MazeLayout layout)
+    {
+        int index = System.Array.IndexOf(desktops, layout);
+        if (index >= 0) Show(index);
+    }
+
     public void Show(int index)
     {
         if (desktops == null || desktops.Length == 0) return;
