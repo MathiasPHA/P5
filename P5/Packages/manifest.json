@@ -10,6 +10,7 @@
     "com.unity.inputsystem": "1.20.0",
     "com.unity.microsoft.gdk": "1.7.0",
     "com.unity.microsoft.gdk.tools": "1.7.0",
+    "com.unity.mobile.android-logcat": "1.4.7",
     "com.unity.multiplayer.center": "1.0.1",
     "com.unity.multiplayer.playmode": "2.0.2",
     "com.unity.netcode.gameobjects": "2.13.3",
