@@ -435,8 +435,8 @@ MonoBehaviour:
   sharedStatePrefab: {fileID: 5955741389024447632, guid: 8ccacede4b5b84a41916950fc6bfd390, type: 3}
   hostIp: 10.104.204.59
   port: 7777
-  pcScene: PCPuzzle
-  vrScene: VRPuzzle
+  pcScene: TruePcScreen
+  vrScene: TrueAppartment
 --- !u!4 &2084625246
 Transform:
   m_ObjectHideFlags: 0

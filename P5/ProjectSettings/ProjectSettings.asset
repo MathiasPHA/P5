@@ -83,7 +83,7 @@ PlayerSettings:
   androidFullscreenMode: 1
   androidAutoRotationBehavior: 1
   androidPredictiveBackSupport: 1
-  androidApplicationEntry: 1
+  androidApplicationEntry: 2
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
   runInBackground: 1
@@ -150,6 +150,8 @@ PlayerSettings:
   bundleVersion: 0.1.0
   preloadedAssets:
   - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  - {fileID: 4066899920479738643, guid: 86d125c9ef5f7434eb814225ede67984, type: 2}
+  - {fileID: -7075111521001807581, guid: 424f9ea697af1b54fada3faea0d30d52, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -861,8 +863,8 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: P5
-  metroPackageVersion: 
+  metroPackageName: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -870,7 +872,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: P5
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: P5
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
