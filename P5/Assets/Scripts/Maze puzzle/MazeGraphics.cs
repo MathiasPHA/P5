@@ -4,57 +4,22 @@ using UnityEngine;
 public static class MazeGraphics
 {
     private static readonly Vector2 Center = new Vector2(32f, 32f);
-    private static Sprite tile, block, bar, glow, arrow, ring, enterIcon;
+    private static Sprite tile, bar, glow, arrow, ring;
 
-    public static Sprite Tile      => Get(ref tile,      () => Make(64, TileShape));
-    public static Sprite Block     => Get(ref block,     () => Make(128, BlockShape));
-    public static Sprite Bar       => Get(ref bar,       () => Make(64, BarShape, new Vector4(24f, 24f, 24f, 24f)));
-    public static Sprite Glow      => Get(ref glow,      () => Make(64, GlowShape));
-    public static Sprite Arrow     => Get(ref arrow,     () => Make(64, ArrowShape));
-    public static Sprite Ring      => Get(ref ring,      () => Make(64, RingShape));
-    public static Sprite EnterIcon => Get(ref enterIcon, () => Make(64, EnterShape));
-
-    public static Sprite Board(int size, Color board, Color line, bool gridLines)
-    {
-        Color fine = Color.Lerp(board, line, 0.08f);
-        Color major = Color.Lerp(board, line, 0.16f);
-
-        return Make(size, p =>
-        {
-            if (!gridLines) return board;
-            int x = (int)p.x, y = (int)p.y;
-            if (x % 64 == 0 || y % 64 == 0) return major;
-            if (x % 16 == 0 || y % 16 == 0) return fine;
-            return board;
-        });
-    }
+    public static Sprite Tile  => Get(ref tile,  () => Make(64, TileShape));
+    public static Sprite Bar   => Get(ref bar,   () => Make(64, BarShape, new Vector4(24f, 24f, 24f, 24f)));
+    public static Sprite Glow  => Get(ref glow,  () => Make(64, GlowShape));
+    public static Sprite Arrow => Get(ref arrow, () => Make(64, ArrowShape));
+    public static Sprite Ring  => Get(ref ring,  () => Make(64, RingShape));
 
     // ───────────────────────── Shapes ─────────────────────────
 
+    // Rounded tile with a bright outline and faint fill
     private static Color TileShape(Vector2 p)
     {
         float d = RoundRect(p, 32f, 30f, 6f);
         if (d > 0.5f) return Color.clear;
         return White(d > -3f ? Mathf.Clamp01(0.5f - d) : 0.15f);
-    }
-
-    // Beveled block: dark outline, bright rim, body, inner panel with grooves
-    private static Color BlockShape(Vector2 p)
-    {
-        float d = RoundRect(p, 64f, 60f, 14f);
-        if (d > 0.5f) return Color.clear;
-
-        float v;
-        if (d > -3f) v = 0.12f;
-        else if (d > -8f) v = 1f;
-        else
-        {
-            float d2 = RoundRect(p, 64f, 42f, 8f);
-            if (d2 > 0f) v = 0.72f;
-            else if (d2 > -3f) v = 0.95f;
-            else v = ((int)p.x % 14 < 4) ? 0.45f : 0.6f;
-        }
-        return new Color(v, v, v, Mathf.Clamp01(0.5f - d));
     }
 
     // 9-sliced wall bar: dark outline, bright rim, body
@@ -66,12 +31,14 @@ public static class MazeGraphics
         return new Color(v, v, v, Mathf.Clamp01(0.5f - d));
     }
 
+    // Soft round glow
     private static Color GlowShape(Vector2 p)
     {
         float a = Mathf.Clamp01(1f - Vector2.Distance(p, Center) / 32f);
         return White(a * a);
     }
 
+    // Triangle pointing up
     private static Color ArrowShape(Vector2 p)
     {
         Vector2 a = new Vector2(32f, 56f), b = new Vector2(10f, 12f), c = new Vector2(54f, 12f);
@@ -79,18 +46,13 @@ public static class MazeGraphics
         return White(Mathf.Clamp01(d + 0.5f));
     }
 
+    // Ring with four gaps (exit marker)
     private static Color RingShape(Vector2 p)
     {
         Vector2 v = p - Center;
         float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
         if (Mathf.Repeat(angle + 10f, 90f) < 20f) return Color.clear;
         return White(Mathf.Clamp01(0.5f - (Mathf.Abs(v.magnitude - 22f) - 4f)));
-    }
-
-    private static Color EnterShape(Vector2 p)
-    {
-        float r = Vector2.Distance(p, Center);
-        return White(Mathf.Max(Mathf.Clamp01(12.5f - r), Mathf.Clamp01(0.5f - (Mathf.Abs(r - 22f) - 3f))));
     }
 
     // ───────────────────────── Helpers ─────────────────────────
