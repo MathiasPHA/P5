@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wrong
+      name: wrong
       rect:
         serializedVersion: 2
-        x: 0
+        x: 5
         y: 0
-        width: 300
-        height: 300
+        width: 1000
+        height: 1000
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,13 +135,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Almost
+      name: almost
       rect:
         serializedVersion: 2
-        x: 300
+        x: 1000
         y: 0
-        width: 300
-        height: 300
+        width: 1000
+        height: 1000
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bda4d10ca4f3bb0479ec9cd35346b9b9
-      internalID: 1774848315
+      spriteID: 2363823fbe0d229489d4f9c49dfc1286
+      internalID: 775773224
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Correct
+      name: correct
       rect:
         serializedVersion: 2
-        x: 600
+        x: 2000
         y: 0
-        width: 300
-        height: 300
+        width: 1000
+        height: 1000
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,8 +172,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3812c9e0cc20b0a4faa944733b0c6034
-      internalID: -995091085
+      spriteID: 3b385fa46f1f0d342832a1ac7d9cbc10
+      internalID: -1006446732
       vertices: []
       indices: 
       edges: []
@@ -182,7 +182,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3beceed87398cce4da3f87243db2ac77
+    spriteID: 3c7c696acb1fd7f43a44593f5cc48772
     internalID: 0
     vertices: []
     indices: 
@@ -192,11 +192,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":300.0,"y":300.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":1000.0,"y":1000.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Almost: 1774848315
-      Correct: -995091085
-      Wrong: 3914626342779536248
+      almost: 775773224
+      correct: -1006446732
+      wrong: 3914626342779536248
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
