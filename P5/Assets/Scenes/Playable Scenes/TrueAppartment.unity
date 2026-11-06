@@ -1341,12 +1341,16 @@ PrefabInstance:
       objectReference: {fileID: 1299189587}
     - target: {fileID: 782777040653654450, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_VersionIndex
-      value: 545
+      value: 548
       objectReference: {fileID: 0}
     - target: {fileID: 1180848556296190449, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 2fa746d17008c0a419d46c71993e291d, type: 3}
+    - target: {fileID: 1569350413832694891, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1736332980343846035, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1401,7 +1405,7 @@ PrefabInstance:
       objectReference: {fileID: 403228155}
     - target: {fileID: 3168063509254255062, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_VersionIndex
-      value: 545
+      value: 548
       objectReference: {fileID: 0}
     - target: {fileID: 3342444454306397146, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: 'CaptchaSprite.Array.data[0]'
@@ -1481,7 +1485,7 @@ PrefabInstance:
       objectReference: {fileID: 551388236}
     - target: {fileID: 4723818033001226967, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_VersionIndex
-      value: 545
+      value: 548
       objectReference: {fileID: 0}
     - target: {fileID: 5025546610478335845, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -1509,12 +1513,24 @@ PrefabInstance:
       objectReference: {fileID: 768333992}
     - target: {fileID: 6000800238023528606, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_VersionIndex
-      value: 545
+      value: 548
+      objectReference: {fileID: 0}
+    - target: {fileID: 6010888551234486204, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: 'correctCode.Array.data[0]'
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6010888551234486204, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: 'correctCode.Array.data[1]'
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6062100411194918086, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 551388236}
+    - target: {fileID: 7125657924048936297, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7437812013130673021, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_IsActive
       value: 1
