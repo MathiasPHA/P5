@@ -1230,6 +1230,38 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 768333992}
+    - target: {fileID: 5842471491539254368, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: mazeLayout
+      value: 
+      objectReference: {fileID: 11400000, guid: 027f1c2f4413f4b0f818103c550ae5ba, type: 2}
+    - target: {fileID: 5842471491539254368, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: mazePool.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5842471491539254368, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: 'mazePool.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 027f1c2f4413f4b0f818103c550ae5ba, type: 2}
+    - target: {fileID: 5842471491539254368, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: 'mazePool.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2acf6e3080e9444c3b1bf0577693064f, type: 2}
+    - target: {fileID: 5842471491539254368, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: 'mazePool.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b4d8c93f02a0847f4ad8141632500b45, type: 2}
+    - target: {fileID: 5842471491539254368, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: 'mazePool.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 81fafa768315d484baf65a46f404a191, type: 2}
+    - target: {fileID: 5842471491539254368, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: 'mazePool.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b6ec149fd692a462c99765521c1846a6, type: 2}
+    - target: {fileID: 5842471491539254368, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: 'mazePool.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ce9d1e29dcc234cf59534c7b671f5446, type: 2}
     - target: {fileID: 6000800238023528606, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Mesh
       value: 

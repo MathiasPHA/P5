@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &222671550 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5122268881618778383, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+  m_PrefabInstance: {fileID: 4441246324339481684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &695066023
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +267,28 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &863049790 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2535640234604570398, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+  m_PrefabInstance: {fileID: 4441246324339481684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1064644702 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5124263957981849289, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+  m_PrefabInstance: {fileID: 4441246324339481684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0413acecc40c2478d026eead210758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DesktopWindow
 --- !u!1 &1133848276
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +368,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1187364891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 809972508751065389, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+  m_PrefabInstance: {fileID: 4441246324339481684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &1434162889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -383,6 +427,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6964184947155437707, guid: 73f5599408835467bb796844a15056b8, type: 3}
+      propertyPath: nextButton
+      value: 
+      objectReference: {fileID: 1187364891}
+    - target: {fileID: 6964184947155437707, guid: 73f5599408835467bb796844a15056b8, type: 3}
+      propertyPath: desktopLabel
+      value: 
+      objectReference: {fileID: 222671550}
+    - target: {fileID: 6964184947155437707, guid: 73f5599408835467bb796844a15056b8, type: 3}
+      propertyPath: previousButton
+      value: 
+      objectReference: {fileID: 863049790}
+    - target: {fileID: 7046396223283597464, guid: 73f5599408835467bb796844a15056b8, type: 3}
+      propertyPath: mazeLayout
+      value: 
+      objectReference: {fileID: 11400000, guid: 027f1c2f4413f4b0f818103c550ae5ba, type: 2}
     - target: {fileID: 9215569546261977012, guid: 73f5599408835467bb796844a15056b8, type: 3}
       propertyPath: m_Name
       value: Monitor Room
@@ -405,6 +465,38 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 337328984288826346, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 501544134902670966, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 501544134902670966, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 501544134902670966, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1064644702}
+    - target: {fileID: 501544134902670966, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 501544134902670966, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 501544134902670966, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DesktopWindow, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 501544134902670966, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1403853379409369176, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -524,7 +616,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3796254715189524146, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

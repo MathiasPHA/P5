@@ -486,7 +486,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &4774496683529282356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,8 +850,6 @@ MonoBehaviour:
   showPlayerOnPC: 0
   showStartAndExitOnPC: 0
   keyboardInput: 1
-  newMazeOnFail: 1
-  randomFirstMaze: 1
   mazePool:
   - {fileID: 11400000, guid: 027f1c2f4413f4b0f818103c550ae5ba, type: 2}
   - {fileID: 11400000, guid: 2acf6e3080e9444c3b1bf0577693064f, type: 2}
@@ -859,17 +857,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 81fafa768315d484baf65a46f404a191, type: 2}
   - {fileID: 11400000, guid: b6ec149fd692a462c99765521c1846a6, type: 2}
   - {fileID: 11400000, guid: ce9d1e29dcc234cf59534c7b671f5446, type: 2}
+  startMaze: 1
+  newMazeOnFail: 1
   gridArea: {fileID: 79161104607601370}
   symbolArea: {fileID: 8926034392697234011}
   symbolColumns: 2
   symbolSpacing: 30
   statusText: {fileID: 0}
-  upButton: {fileID: 0}
-  downButton: {fileID: 0}
-  leftButton: {fileID: 0}
-  rightButton: {fileID: 0}
-  enterButton: {fileID: 0}
-  showGridLines: 0
   boardColor: {r: 0.02, g: 0.13, b: 0.04, a: 1}
   traceColor: {r: 0.3, g: 0.95, b: 0.35, a: 1}
   tileColor: {r: 0.3, g: 0.95, b: 0.35, a: 0.5}
