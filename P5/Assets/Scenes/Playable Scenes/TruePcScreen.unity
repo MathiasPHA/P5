@@ -1727,6 +1727,22 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4199858945271930182, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: correctNum1
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199858945271930182, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: correctNum2
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199858945271930182, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: correctNum3
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199858945271930182, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: correctNum4
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4793942902027111735, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_Enabled
       value: 1

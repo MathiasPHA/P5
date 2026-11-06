@@ -133,6 +133,11 @@ public class Bootstrap : MonoBehaviour
 
     void StartAsHost()
     {
+        // Cap the PC build's frame rate. Without this, a simple scene renders at
+        // hundreds or thousands of FPS and runs the GPU at 100 %.
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+
         HostInfo = $"{LanDiscovery.LocalIPv4s()} (port {port})";
         Debug.Log($"[Bootstrap] PC: hosting on {HostInfo}");
 
@@ -141,7 +146,11 @@ public class Bootstrap : MonoBehaviour
         Instantiate(sharedStatePrefab).GetComponent<NetworkObject>().Spawn();
         discovery.StartServer(port);
         nm.gameObject.AddComponent<HostInfoOverlay>(); // IP on screen until VR connects
-        SceneManager.LoadScene(pcScene);
+
+        if (!Application.CanStreamedLevelBeLoaded(pcScene))
+            Debug.LogError($"[Bootstrap] Scene '{pcScene}' can't be loaded: not in the build or misspelled.");
+        else
+            SceneManager.LoadScene(pcScene);
     }
 
     // ---------- VR ----------
@@ -183,6 +192,16 @@ public class Bootstrap : MonoBehaviour
         PlayerPrefs.SetString(LastIpKey, lastTriedIp); // prefill the keypad next time
         PlayerPrefs.Save();
 
+        // Catch a wrong name or a scene missing from the build list, instead of silently staying in Boot
+        if (!Application.CanStreamedLevelBeLoaded(vrScene))
+        {
+            SetStatus($"Connected, but scene '{vrScene}' is not in the build.\nCheck the name and the Build Profile scene list.");
+            Debug.LogError($"[Bootstrap] Scene '{vrScene}' can't be loaded: not in the build or misspelled.");
+            return;
+        }
+
+        SetStatus($"Connected! Loading {vrScene}...");
+        Debug.Log($"[Bootstrap] Loading VR scene '{vrScene}'");
         SceneManager.LoadScene(vrScene);
     }
 
