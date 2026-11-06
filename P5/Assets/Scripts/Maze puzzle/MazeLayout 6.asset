@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0eb85badd2583402490acb97a6684660, type: 3}
-  m_Name: MazeLayout Correct
+  m_Name: MazeLayout 6
   m_EditorClassIdentifier: Assembly-CSharp::MazeLayout
   width: 6
   height: 6

@@ -183,6 +183,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1452375236}
     - target: {fileID: 6964184947155437707, guid: 73f5599408835467bb796844a15056b8, type: 3}
+      propertyPath: startIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6964184947155437707, guid: 73f5599408835467bb796844a15056b8, type: 3}
       propertyPath: desktopLabel
       value: 
       objectReference: {fileID: 1669924}
@@ -191,8 +195,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1841395916}
     - target: {fileID: 7046396223283597464, guid: 73f5599408835467bb796844a15056b8, type: 3}
+      propertyPath: mazeLayout
+      value: 
+      objectReference: {fileID: 11400000, guid: 027f1c2f4413f4b0f818103c550ae5ba, type: 2}
+    - target: {fileID: 7046396223283597464, guid: 73f5599408835467bb796844a15056b8, type: 3}
       propertyPath: randomFirstMaze
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7046396223283597464, guid: 73f5599408835467bb796844a15056b8, type: 3}
+      propertyPath: onSolved.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7046396223283597464, guid: 73f5599408835467bb796844a15056b8, type: 3}
+      propertyPath: onSolved.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9215569546261977012, guid: 73f5599408835467bb796844a15056b8, type: 3}
       propertyPath: m_Name
