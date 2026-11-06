@@ -22,6 +22,8 @@ public class PhoneMaze : MonoBehaviour
     [Tooltip("Used when the Maze Pool is empty. Can also be set by a DesktopSwitcher")]
     [SerializeField] private MazeLayout mazeLayout;
     [SerializeField] private bool resetOnWallHit = true;
+    [Tooltip("Solve the maze as soon as the player steps onto the exit (no Enter needed)")]
+    [SerializeField] private bool solveOnReachExit = true;
     [Tooltip("PC Map only: show the agent's position")]
     [SerializeField] private bool showPlayerOnPC = false;
     [Tooltip("PC Map only: show the start tile and exit marker")]
@@ -93,6 +95,7 @@ public class PhoneMaze : MonoBehaviour
     public Vector2Int PlayerCell => player;
     public MazeLayout Layout => mazeLayout;
     public int MazeNumber => poolIndex + 1;
+    public bool IsSolved => solved;
     private bool Ready => built && mazeLayout != null;
     private bool IsPhone => mode == ViewMode.VRPhone;
     private bool HasPlayer => playerRt != null;
@@ -172,15 +175,14 @@ public class PhoneMaze : MonoBehaviour
     public void Left()  => Move(DirLeft);
     public void Right() => Move(DirRight);
 
+    // Optional confirm button (only needed when Solve On Reach Exit is off)
     public void Enter()
     {
         if (!Ready || !IsPhone || hitTimer > 0f) return;
         if (solved) { Restart(); return; }
         if (player != mazeLayout.exit) { SetStatus("NOT AT EXIT"); return; }
 
-        solved = true;
-        SetStatus("ACCESS GRANTED");
-        onSolved.Invoke();
+        Solve();
     }
 
     public void Restart()
@@ -250,7 +252,17 @@ public class PhoneMaze : MonoBehaviour
         }
 
         player += dir;
-        SetStatus(player == mazeLayout.exit ? "PRESS ENTER" : "FIND THE EXIT");
+
+        if (player != mazeLayout.exit) SetStatus("FIND THE EXIT");
+        else if (solveOnReachExit) Solve();
+        else SetStatus("PRESS ENTER");
+    }
+
+    private void Solve()
+    {
+        solved = true;
+        SetStatus("ACCESS GRANTED");
+        onSolved.Invoke();
     }
 
     // ───────────────────────── Animation ─────────────────────────

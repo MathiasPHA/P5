@@ -1996,7 +1996,7 @@ PrefabInstance:
       objectReference: {fileID: 1299189587}
     - target: {fileID: 782777040653654450, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_VersionIndex
-      value: 539
+      value: 542
       objectReference: {fileID: 0}
     - target: {fileID: 2017946111051748333, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_LocalScale.x
@@ -2028,7 +2028,7 @@ PrefabInstance:
       objectReference: {fileID: 403228155}
     - target: {fileID: 3168063509254255062, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_VersionIndex
-      value: 539
+      value: 542
       objectReference: {fileID: 0}
     - target: {fileID: 3342444454306397146, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: 'CaptchaSprite.Array.data[0]'
@@ -2092,7 +2092,7 @@ PrefabInstance:
       objectReference: {fileID: 551388236}
     - target: {fileID: 4723818033001226967, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_VersionIndex
-      value: 539
+      value: 542
       objectReference: {fileID: 0}
     - target: {fileID: 5109781589229991567, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Mesh
@@ -2140,7 +2140,7 @@ PrefabInstance:
       objectReference: {fileID: 768333992}
     - target: {fileID: 6000800238023528606, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_VersionIndex
-      value: 539
+      value: 542
       objectReference: {fileID: 0}
     - target: {fileID: 6010888551234486204, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: onUnlocked.m_PersistentCalls.m_Calls.Array.size
