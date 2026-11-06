@@ -999,11 +999,11 @@ PrefabInstance:
     - target: {fileID: 23620214981651654, guid: e68a619303cb1e44ea3dde236af3366e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: f818c08ed46703243a0a315751c73ac0, type: 2}
+      objectReference: {fileID: 2100000, guid: c34551279d4d6d447b2c29b3853e41d8, type: 2}
     - target: {fileID: 23620214981651654, guid: e68a619303cb1e44ea3dde236af3366e, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: e07f0129f4919cd4e80728f8911e3e11, type: 2}
+      objectReference: {fileID: 2100000, guid: f818c08ed46703243a0a315751c73ac0, type: 2}
     m_RemovedComponents:
     - {fileID: 54262758084679014, guid: e68a619303cb1e44ea3dde236af3366e, type: 3}
     - {fileID: 65871560455699058, guid: e68a619303cb1e44ea3dde236af3366e, type: 3}

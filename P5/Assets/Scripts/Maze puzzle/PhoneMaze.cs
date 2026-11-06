@@ -19,7 +19,7 @@ public class PhoneMaze : MonoBehaviour
 
     [Header("Mode")]
     [SerializeField] private ViewMode mode = ViewMode.VRPhone;
-    [Tooltip("Can be left empty if a DesktopSwitcher or the maze pool assigns it")]
+    [Tooltip("Used when the Maze Pool is empty. Can also be set by a DesktopSwitcher")]
     [SerializeField] private MazeLayout mazeLayout;
     [SerializeField] private bool resetOnWallHit = true;
     [Tooltip("PC Map only: show the agent's position")]
@@ -29,12 +29,13 @@ public class PhoneMaze : MonoBehaviour
     [Tooltip("VR Phone only: arrow keys / WASD to move, Enter / Space to confirm")]
     [SerializeField] private bool keyboardInput = true;
 
-    [Header("New Maze On Fail (VR phone only)")]
-    [Tooltip("Load a different random maze from the pool when a wall is hit")]
-    [SerializeField] private bool newMazeOnFail = true;
-    [Tooltip("Start with a random maze from the pool instead of Maze Layout")]
-    [SerializeField] private bool randomFirstMaze = true;
+    [Header("Maze Order (VR phone only)")]
+    [Tooltip("Mazes in play order. On fail the next one loads, wrapping back to the first")]
     [SerializeField] private MazeLayout[] mazePool;
+    [Tooltip("Which maze in the pool to start with (1 = first)")]
+    [SerializeField, Min(1)] private int startMaze = 1;
+    [Tooltip("Load the next maze in the pool when a wall is hit")]
+    [SerializeField] private bool newMazeOnFail = true;
 
     [Header("References")]
     [SerializeField] private RectTransform gridArea;
@@ -73,10 +74,10 @@ public class PhoneMaze : MonoBehaviour
     [Header("Events")]
     public UnityEvent onSolved;
     public UnityEvent onWallHit;
-    [Tooltip("Fires when a new maze is loaded after a fail")]
+    [Tooltip("Fires when the next maze is loaded after a fail")]
     public UnityEvent<MazeLayout> onMazeChanged;
 
-    private int cols, rows;
+    private int cols, rows, poolIndex;
     private float cell, hitTimer;
     private bool built, solved;
     private Vector2Int player;
@@ -91,6 +92,7 @@ public class PhoneMaze : MonoBehaviour
 
     public Vector2Int PlayerCell => player;
     public MazeLayout Layout => mazeLayout;
+    public int MazeNumber => poolIndex + 1;
     private bool Ready => built && mazeLayout != null;
     private bool IsPhone => mode == ViewMode.VRPhone;
     private bool HasPlayer => playerRt != null;
@@ -105,7 +107,11 @@ public class PhoneMaze : MonoBehaviour
         if (IsPhone) SetupButtons();
         if (statusText != null) statusText.color = traceColor;
 
-        if (IsPhone && randomFirstMaze && HasPool) mazeLayout = PickRandomMaze();
+        if (IsPhone && HasPool)
+        {
+            poolIndex = Mathf.Clamp(startMaze - 1, 0, mazePool.Length - 1);
+            mazeLayout = mazePool[poolIndex];
+        }
         if (mazeLayout != null) Rebuild();
     }
 
@@ -129,17 +135,35 @@ public class PhoneMaze : MonoBehaviour
     public void SetLayout(MazeLayout layout)
     {
         if (layout == null) return;
+
         mazeLayout = layout;
+        if (HasPool)
+        {
+            int i = System.Array.IndexOf(mazePool, layout);
+            if (i >= 0) poolIndex = i;   // keep the order in sync
+        }
+
         Rebuild();
         Restart();
     }
 
-    // Loads a random maze from the pool (never the current one if there are others)
-    public void LoadNewMaze()
+    // Loads the next maze in the pool, wrapping back to the first
+    public void LoadNextMaze()
     {
         if (!HasPool) { Restart(); return; }
 
-        SetLayout(PickRandomMaze());
+        poolIndex = (poolIndex + 1) % mazePool.Length;
+        SetLayout(mazePool[poolIndex]);
+        onMazeChanged.Invoke(mazeLayout);
+    }
+
+    // Jump to a specific maze in the pool (1 = first)
+    public void LoadMaze(int number)
+    {
+        if (!HasPool) return;
+
+        poolIndex = Mathf.Clamp(number - 1, 0, mazePool.Length - 1);
+        SetLayout(mazePool[poolIndex]);
         onMazeChanged.Invoke(mazeLayout);
     }
 
@@ -215,7 +239,7 @@ public class PhoneMaze : MonoBehaviour
             return;
         }
 
-        // Hidden wall: flash red, then reset or load a new maze
+        // Hidden wall: flash red, then reset or load the next maze
         if (mazeLayout.IsBlocked(player, dir))
         {
             bump = screenDir * cell * 0.35f;
@@ -227,16 +251,6 @@ public class PhoneMaze : MonoBehaviour
 
         player += dir;
         SetStatus(player == mazeLayout.exit ? "PRESS ENTER" : "FIND THE EXIT");
-    }
-
-    private MazeLayout PickRandomMaze()
-    {
-        var options = new List<MazeLayout>();
-        foreach (var m in mazePool)
-            if (m != null && m != mazeLayout) options.Add(m);
-
-        if (options.Count == 0) return mazeLayout;
-        return options[Random.Range(0, options.Count)];
     }
 
     // ───────────────────────── Animation ─────────────────────────
@@ -272,7 +286,7 @@ public class PhoneMaze : MonoBehaviour
         if (hitTimer > 0f) return;
 
         SetAlert(false);
-        if (newMazeOnFail && HasPool) LoadNewMaze();
+        if (newMazeOnFail && HasPool) LoadNextMaze();
         else if (resetOnWallHit) Restart();
         else SetStatus("FIND THE EXIT");
     }
