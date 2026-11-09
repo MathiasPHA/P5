@@ -1225,9 +1225,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 157730848753052115, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 282765612452554520, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Name
       value: Appartment Layout
+      objectReference: {fileID: 0}
+    - target: {fileID: 744006499411413203, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 782777040653654450, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Mesh
@@ -1236,11 +1244,19 @@ PrefabInstance:
     - target: {fileID: 782777040653654450, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_VersionIndex
       value: 1214
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248680579730627607, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2265958086217088931, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1299189587}
+    - target: {fileID: 2618366645044916755, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3168063509254255062, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1249,10 +1265,18 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 1214
       objectReference: {fileID: 0}
+    - target: {fileID: 4063783723160097185, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4492780108622370759, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 403228155}
+    - target: {fileID: 4605013961094058497, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4702850353068308276, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.902134
@@ -1305,6 +1329,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 768333992}
+    - target: {fileID: 5623904267624280600, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6000800238023528606, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1317,6 +1345,30 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 551388236}
+    - target: {fileID: 6106192018908532107, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987038413436634782, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7613854654680259479, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: rotatePicture
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967976520349873449, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8108098556729932344, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262602736529982610, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

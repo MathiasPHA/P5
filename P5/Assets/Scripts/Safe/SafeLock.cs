@@ -62,7 +62,6 @@ public class SafeLock : MonoBehaviour
         foreach (TMP_Text display in digitDisplays)
             display.color = color;
     }
-    // Update is called once per frame
     void UpdateDisplay(int index)
     {
         digitDisplays[index].text = currentCode[index].ToString();
