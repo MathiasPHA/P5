@@ -21,6 +21,10 @@ public class DesktopSwitcher : MonoBehaviour
     [SerializeField] private Button previousButton;
     [SerializeField] private Button nextButton;
 
+    [Header("Transition (optional)")]
+    [Tooltip("Plays a glitch when switching; the maze swaps halfway through")]
+    [SerializeField] private GlitchTransition glitch;
+
     [Header("Input")]
     [Tooltip("Q / E = previous / next,  1–9 = jump to desktop")]
     [SerializeField] private bool keyboardInput = true;
@@ -31,7 +35,7 @@ public class DesktopSwitcher : MonoBehaviour
     {
         if (previousButton != null) previousButton.onClick.AddListener(Previous);
         if (nextButton != null) nextButton.onClick.AddListener(Next);
-        Show(startIndex);
+        Show(startIndex, instant: true);
     }
 
     void Update()
@@ -70,16 +74,25 @@ public class DesktopSwitcher : MonoBehaviour
         if (index >= 0) Show(index);
     }
 
-    public void Show(int index)
+    public void Show(int index) => Show(index, false);
+
+    private void Show(int index, bool instant)
     {
         if (desktops == null || desktops.Length == 0) return;
 
         int n = desktops.Length;
         Current = ((index % n) + n) % n;
 
+        if (instant || glitch == null) Apply();
+        else glitch.Play(Apply);
+    }
+
+    // Swaps the actual content; called halfway through the glitch
+    private void Apply()
+    {
+        int n = desktops.Length;
         if (pcMap != null) pcMap.SetLayout(desktops[Current]);
         if (phone != null) phone.SetLayout(desktops[Current]);
-
         if (desktopLabel != null) desktopLabel.text = $"DESKTOP {Current + 1} / {n}";
     }
 }
