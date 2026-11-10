@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 #if ENABLE_INPUT_SYSTEM
@@ -21,13 +20,14 @@ public class PhoneMaze : MonoBehaviour
     [SerializeField] private ViewMode mode = ViewMode.VRPhone;
     [Tooltip("Used when the Maze Pool is empty. Can also be set by a DesktopSwitcher")]
     [SerializeField] private MazeLayout mazeLayout;
+    [Tooltip("Send the player back to the start on a wall hit (when New Maze On Fail is off)")]
     [SerializeField] private bool resetOnWallHit = true;
     [Tooltip("PC Map only: show the agent's position")]
     [SerializeField] private bool showPlayerOnPC = false;
     [Tooltip("PC Map only: show the start tile and exit marker")]
     [SerializeField] private bool showStartAndExitOnPC = true;
-    [Tooltip("VR Phone only: arrow keys / WASD to move, Enter / Space to confirm")]
-    [SerializeField] private bool keyboardInput = true;
+    [Tooltip("VR Phone only: arrow keys / WASD to move, for testing without VR")]
+    [SerializeField] private bool keyboardInput = false;
 
     [Header("Maze Order (VR phone only)")]
     [Tooltip("Mazes in play order. On fail the next one loads, wrapping back to the first")]
@@ -41,21 +41,11 @@ public class PhoneMaze : MonoBehaviour
     [SerializeField] private RectTransform gridArea;
     [Tooltip("Area for the symbols from the Maze Layout")]
     [SerializeField] private RectTransform symbolArea;
-    [Tooltip("Symbols per row. 0 = all in one row, 1 = one column, 2 = 2x2 grid")]
+    [Tooltip("Symbols per row. 0 = all in one row, 2 = 2x2 grid")]
     [SerializeField, Min(0)] private int symbolColumns = 0;
     [SerializeField] private float symbolSpacing = 30f;
     [Tooltip("Optional status messages")]
     [SerializeField] private TMP_Text statusText;
-
-    [Header("Buttons (VR phone only) – wired and styled by this script, leave OnClick empty")]
-    [SerializeField] private Button upButton;
-    [SerializeField] private Button downButton;
-    [SerializeField] private Button leftButton;
-    [SerializeField] private Button rightButton;
-    [SerializeField] private Button enterButton;
-
-    [Header("Board")]
-    [SerializeField] private bool showGridLines = true;
 
     [Header("Colours")]
     [SerializeField] private Color boardColor = new Color(0.02f, 0.13f, 0.04f);
@@ -72,6 +62,7 @@ public class PhoneMaze : MonoBehaviour
     [SerializeField] private float hitDuration = 0.6f;
 
     [Header("Events")]
+    [Tooltip("Fires when the player reaches the exit")]
     public UnityEvent onSolved;
     public UnityEvent onWallHit;
     [Tooltip("Fires when the next maze is loaded after a fail")]
@@ -84,15 +75,14 @@ public class PhoneMaze : MonoBehaviour
     private Vector2 visualPos, bump;
     private Vector2 builtGridSize, builtSymbolSize;
 
-    private Sprite boardSprite;
     private RectTransform playerRt, shipRt, playerGlowRt, exitRingRt;
     private Image shipImg, exitGlow;
     private readonly List<Image> borderBars = new List<Image>();
     private readonly List<Image> symbolImages = new List<Image>();
 
-    public Vector2Int PlayerCell => player;
     public MazeLayout Layout => mazeLayout;
     public int MazeNumber => poolIndex + 1;
+    public bool IsSolved => solved;
     private bool Ready => built && mazeLayout != null;
     private bool IsPhone => mode == ViewMode.VRPhone;
     private bool HasPlayer => playerRt != null;
@@ -103,8 +93,6 @@ public class PhoneMaze : MonoBehaviour
 
     void Awake()
     {
-        boardSprite = MazeGraphics.Board(512, boardColor, traceColor, showGridLines);
-        if (IsPhone) SetupButtons();
         if (statusText != null) statusText.color = traceColor;
 
         if (IsPhone && HasPool)
@@ -131,6 +119,12 @@ public class PhoneMaze : MonoBehaviour
     }
 
     // ───────────────────────── Public API ─────────────────────────
+
+    // Called by the VR buttons
+    public void Up()    => Move(DirUp);
+    public void Down()  => Move(DirDown);
+    public void Left()  => Move(DirLeft);
+    public void Right() => Move(DirRight);
 
     public void SetLayout(MazeLayout layout)
     {
@@ -167,22 +161,6 @@ public class PhoneMaze : MonoBehaviour
         onMazeChanged.Invoke(mazeLayout);
     }
 
-    public void Up()    => Move(DirUp);
-    public void Down()  => Move(DirDown);
-    public void Left()  => Move(DirLeft);
-    public void Right() => Move(DirRight);
-
-    public void Enter()
-    {
-        if (!Ready || !IsPhone || hitTimer > 0f) return;
-        if (solved) { Restart(); return; }
-        if (player != mazeLayout.exit) { SetStatus("NOT AT EXIT"); return; }
-
-        solved = true;
-        SetStatus("ACCESS GRANTED");
-        onSolved.Invoke();
-    }
-
     public void Restart()
     {
         if (!Ready) return;
@@ -200,9 +178,6 @@ public class PhoneMaze : MonoBehaviour
         shipRt.localRotation = Quaternion.identity;
     }
 
-    // For mirroring the VR player's position onto the PC map later (networking)
-    public void SetPlayerCell(Vector2Int c) => player = c;
-
     // ───────────────────────── Input & movement ─────────────────────────
 
     private void HandleKeyboard()
@@ -215,13 +190,11 @@ public class PhoneMaze : MonoBehaviour
         else if (k.downArrowKey.wasPressedThisFrame || k.sKey.wasPressedThisFrame) Down();
         else if (k.leftArrowKey.wasPressedThisFrame || k.aKey.wasPressedThisFrame) Left();
         else if (k.rightArrowKey.wasPressedThisFrame || k.dKey.wasPressedThisFrame) Right();
-        else if (k.enterKey.wasPressedThisFrame || k.numpadEnterKey.wasPressedThisFrame || k.spaceKey.wasPressedThisFrame) Enter();
 #else
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) Up();
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) Down();
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) Left();
         else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) Right();
-        else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Space)) Enter();
 #endif
     }
 
@@ -250,7 +223,16 @@ public class PhoneMaze : MonoBehaviour
         }
 
         player += dir;
-        SetStatus(player == mazeLayout.exit ? "PRESS ENTER" : "FIND THE EXIT");
+
+        if (player == mazeLayout.exit) Solve();
+        else SetStatus("FIND THE EXIT");
+    }
+
+    private void Solve()
+    {
+        solved = true;
+        SetStatus("ACCESS GRANTED");
+        onSolved.Invoke();
     }
 
     // ───────────────────────── Animation ─────────────────────────
@@ -348,7 +330,7 @@ public class PhoneMaze : MonoBehaviour
 
     private void BuildTiles(float th)
     {
-        CreateImage("Board", gridArea, boardSprite, Color.white, new Vector2(cols, rows) * cell, Vector2.zero);
+        CreateImage("Board", gridArea, null, boardColor, new Vector2(cols, rows) * cell, Vector2.zero);
 
         Vector2 size = Vector2.one * (cell - th * 1.2f);
         for (int y = 0; y < rows; y++)
@@ -444,56 +426,6 @@ public class PhoneMaze : MonoBehaviour
         img.type = Image.Type.Sliced;
         img.pixelsPerUnitMultiplier = 24f / (thickness * 0.5f);
         return img;
-    }
-
-    // ───────────────────────── Buttons ─────────────────────────
-
-    private void SetupButtons()
-    {
-        SetupButton(upButton,    Up,    MazeGraphics.Arrow, 0f);
-        SetupButton(downButton,  Down,  MazeGraphics.Arrow, 180f);
-        SetupButton(leftButton,  Left,  MazeGraphics.Arrow, 90f);
-        SetupButton(rightButton, Right, MazeGraphics.Arrow, -90f);
-        SetupButton(enterButton, Enter, MazeGraphics.EnterIcon, 0f);
-    }
-
-    private void SetupButton(Button button, UnityAction action, Sprite icon, float angle)
-    {
-        if (button == null) return;
-
-        // Deselect after click so Enter/Space don't re-trigger the last clicked button
-        button.onClick.AddListener(() =>
-        {
-            action();
-            if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null);
-        });
-
-        foreach (var label in button.GetComponentsInChildren<TMP_Text>(true)) label.gameObject.SetActive(false);
-        foreach (var label in button.GetComponentsInChildren<Text>(true)) label.gameObject.SetActive(false);
-
-        if (button.TryGetComponent(out Image bg))
-        {
-            bg.sprite = MazeGraphics.Block;
-            bg.type = Image.Type.Simple;
-            bg.color = Color.white;
-            button.targetGraphic = bg;
-        }
-
-        var colors = button.colors;
-        colors.normalColor = wallColor;
-        colors.highlightedColor = Color.Lerp(wallColor, Color.white, 0.35f);
-        colors.selectedColor = wallColor;
-        colors.pressedColor = traceColor;
-        colors.colorMultiplier = 1f;
-        colors.fadeDuration = 0.05f;
-        button.colors = colors;
-        button.transition = Selectable.Transition.ColorTint;
-        button.navigation = new Navigation { mode = Navigation.Mode.None };
-
-        var rt = (RectTransform)button.transform;
-        float s = Mathf.Min(rt.rect.width, rt.rect.height) * 0.45f;
-        var iconImg = CreateImage("Icon", button.transform, icon, new Color(0.08f, 0.04f, 0.15f), Vector2.one * s, Vector2.zero);
-        iconImg.rectTransform.localRotation = Quaternion.Euler(0f, 0f, angle);
     }
 
     // ───────────────────────── Helpers ─────────────────────────

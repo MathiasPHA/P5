@@ -58,20 +58,12 @@ public class MazeLayoutEditor : Editor
         DrawGrid(maze);
         EditorGUILayout.Space();
 
-        GUILayout.BeginHorizontal();
         if (GUILayout.Button("Clear Walls"))
         {
             Undo.RecordObject(maze, "Clear Walls");
             maze.ClearWalls();
             EditorUtility.SetDirty(maze);
         }
-        if (GUILayout.Button("Load Whiteboard Maze"))
-        {
-            Undo.RecordObject(maze, "Load Whiteboard Maze");
-            maze.LoadWhiteboardMaze();
-            EditorUtility.SetDirty(maze);
-        }
-        GUILayout.EndHorizontal();
     }
 
     private void DrawSymbolPreview(MazeLayout maze)

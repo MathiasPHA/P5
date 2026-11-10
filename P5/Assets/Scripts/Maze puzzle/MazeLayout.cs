@@ -5,8 +5,8 @@ public class MazeLayout : ScriptableObject
 {
     public int width = 6;
     public int height = 6;
-    public Vector2Int start = new Vector2Int(2, 1);
-    public Vector2Int exit = new Vector2Int(1, 4);
+    public Vector2Int start = new Vector2Int(0, 0);
+    public Vector2Int exit = new Vector2Int(5, 5);
 
     [Tooltip("Symbols shown above this maze (the code that identifies it)")]
     public Sprite[] symbols = new Sprite[4];
@@ -15,7 +15,7 @@ public class MazeLayout : ScriptableObject
     public bool[] wallRight;
     public bool[] wallBottom;
 
-    void Reset() => LoadWhiteboardMaze();
+    void Reset() => ClearWalls();
     void OnValidate() => EnsureSize();
 
     public bool InBounds(Vector2Int c) => c.x >= 0 && c.y >= 0 && c.x < width && c.y < height;
@@ -69,37 +69,6 @@ public class MazeLayout : ScriptableObject
     {
         wallRight = new bool[width * height];
         wallBottom = new bool[width * height];
-    }
-
-    public void LoadWhiteboardMaze()
-    {
-        width = 6;
-        height = 6;
-        ClearWalls();
-        start = new Vector2Int(2, 1);
-        exit = new Vector2Int(1, 4);
-
-        int[,] right =
-        {
-            {3,0},
-            {2,1}, {4,1},
-            {1,2}, {4,2},
-            {0,3}, {2,3}, {3,3},
-            {1,4},
-            {2,5}, {3,5}
-        };
-
-        int[,] bottom =
-        {
-            {0,0}, {2,0},
-            {1,1}, {2,1}, {3,1}, {4,1},
-            {0,2}, {3,2}, {5,2},
-            {0,3}, {1,3}, {2,3}, {4,3},
-            {1,4}, {4,4}
-        };
-
-        for (int i = 0; i < right.GetLength(0); i++) wallRight[right[i, 1] * width + right[i, 0]] = true;
-        for (int i = 0; i < bottom.GetLength(0); i++) wallBottom[bottom[i, 1] * width + bottom[i, 0]] = true;
     }
 
     private Vector2Int Clamp(Vector2Int c) =>
