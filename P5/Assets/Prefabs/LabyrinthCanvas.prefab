@@ -765,6 +765,7 @@ GameObject:
   - component: {fileID: 120837426236385958}
   - component: {fileID: 7161931535750943612}
   - component: {fileID: 7064001081574017903}
+  - component: {fileID: 9028323508336934293}
   m_Layer: 5
   m_Name: PCMapPanel
   m_TagString: Untagged
@@ -908,7 +909,30 @@ MonoBehaviour:
   desktopLabel: {fileID: 0}
   previousButton: {fileID: 0}
   nextButton: {fileID: 0}
+  glitch: {fileID: 9028323508336934293}
   keyboardInput: 1
+--- !u!114 &9028323508336934293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6790179913818471292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cae8885c7f6d41c5b3427f6bafd3799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchTransition
+  target: {fileID: 0}
+  duration: 0.35
+  stepTime: 0.03
+  jitter: 40
+  sliceCount: 14
+  sliceColors:
+  - {r: 0.3, g: 0.95, b: 0.35, a: 1}
+  - {r: 0.9, g: 1, b: 0.9, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  glitchSound: {fileID: 0}
 --- !u!1 &6920748654623931389
 GameObject:
   m_ObjectHideFlags: 0
