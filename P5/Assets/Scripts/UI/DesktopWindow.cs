@@ -7,9 +7,9 @@ public class DesktopWindow : MonoBehaviour, IPointerDownHandler
     [SerializeField] RectTransform window;
 
     [Header("Open/Close Animation")]
-    [SerializeField] float openDuration = 0.5f;
-    [SerializeField] float closeDuration = 0.2f;
-    [SerializeField, Range(0.5f, 1f)] float hiddenScale = 0.5f;
+    [SerializeField] float openDuration = 0.2f;
+    [SerializeField] float closeDuration = 0.12f;
+    [SerializeField, Range(0.5f, 1f)] float hiddenScale = 0.92f;
 
     Canvas canvas;
     CanvasGroup group;
