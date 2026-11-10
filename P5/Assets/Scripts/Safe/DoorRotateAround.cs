@@ -1,24 +1,22 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-
+// SCRIPTET ER LAVET HURTIGT MED HJÆLP FRA CLAUDE. GENEVALUER / GENSKRIV DET
 public class DoorRotateAround : MonoBehaviour
 {
     [SerializeField] private Transform hingePoint;
     [SerializeField] private float openAngle = 110f;  // max opening. Use a negative value to flip direction
 
     private bool unlocked;
-    private Transform hand;        // the hand currently holding the handle
-    private Vector3 startDir;      // hand direction from hinge when grabbed
-    private float angleAtGrab;     // door angle when grabbed
+    private Transform hand; // the hand currently holding the handle
+    private Vector3 startDir; // hand direction from hinge when grabbed
+    private float angleAtGrab; // door angle when grabbed
     private float currentAngle;
 
-    // Hook to SafeLock -> On Unlocked ()
     public void Unlock()
     {
         unlocked = true;
     }
 
-    // Hook to the handle's Select Entered
     public void BeginGrab(SelectEnterEventArgs args)
     {
         if (!unlocked) return;
@@ -27,7 +25,6 @@ public class DoorRotateAround : MonoBehaviour
         angleAtGrab = currentAngle;
     }
 
-    // Hook to the handle's Select Exited
     public void EndGrab(SelectExitEventArgs args)
     {
         hand = null;
@@ -37,7 +34,6 @@ public class DoorRotateAround : MonoBehaviour
     {
         if (hand == null) return;
 
-        // How far the hand has swung around the hinge since the grab
         float delta = Vector3.SignedAngle(startDir, FlatDirFromHinge(hand.position), Vector3.up);
 
         float min = Mathf.Min(0f, openAngle);
