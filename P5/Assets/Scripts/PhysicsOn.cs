@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.Interactables; // XRI 3.x – delete this line on XRI 2.x
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 [RequireComponent(typeof(XRGrabInteractable))]
 public class PhysicsOn : MonoBehaviour
@@ -21,7 +21,7 @@ public class PhysicsOn : MonoBehaviour
 
     void OnReleased(SelectExitEventArgs args)
     {
-        if (activated) return;          // only the first time
+        if (activated) return; // only the first time
         activated = true;
         grab.selectExited.RemoveListener(OnReleased);
         StartPhysics();
