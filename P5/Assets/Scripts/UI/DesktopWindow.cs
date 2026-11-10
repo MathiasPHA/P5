@@ -34,7 +34,9 @@ public class DesktopWindow : MonoBehaviour, IPointerDownHandler
         gameObject.SetActive(true); // triggers Awake the first time if it started disabled
         Focus();
 
-        if (IsOpen && animRoutine == null) return; // already fully open
+        // Awake (on first activation) sets IsOpen = true because the object is active by then,
+        // so only skip if the window was ALREADY visible and not mid-animation.
+        if (!wasHidden && IsOpen && animRoutine == null) return;
         IsOpen = true;
 
         // Start from the hidden pose if it was fully closed (not mid-close)
