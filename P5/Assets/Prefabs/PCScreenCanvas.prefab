@@ -1539,7 +1539,6 @@ GameObject:
   - component: {fileID: 4192808629579476764}
   - component: {fileID: 1557182596626462923}
   - component: {fileID: 501544134902670966}
-  - component: {fileID: 3796254715189524146}
   m_Layer: 5
   m_Name: Hack3rNet
   m_TagString: Untagged
@@ -1619,20 +1618,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &3796254715189524146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4002141581298710453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 623fdfbb9e4e3f24ba5ee9e2a077f0fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesktopIcon
-  target: {fileID: 5124263957981849289}
+      m_Calls:
+      - m_Target: {fileID: 5124263957981849289}
+        m_TargetAssemblyTypeName: DesktopWindow, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4114242885674242514
 GameObject:
   m_ObjectHideFlags: 0
