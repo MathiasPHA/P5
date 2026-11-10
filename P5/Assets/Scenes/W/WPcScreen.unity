@@ -459,6 +459,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9216214924069994097, guid: 73f5599408835467bb796844a15056b8, type: 3}
+      propertyPath: jitter
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216214924069994097, guid: 73f5599408835467bb796844a15056b8, type: 3}
+      propertyPath: sliceCount
+      value: 17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

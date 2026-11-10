@@ -17,7 +17,7 @@ public class SafeLock : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent onUnlocked;
-    public UnityEvent onWrongCode;
+    // public UnityEvent onWrongCode; //Bruges aldrig
 
     private int[] currentCode = new int[4];
     private bool unlocked = false;
@@ -30,8 +30,12 @@ public class SafeLock : MonoBehaviour
     public void Increase(int index)
     {
         if (unlocked) return;
-        if (currentCode[index] >= 9) return; //stops display at 9
+        
+        if (currentCode[index] >= 9) 
+            currentCode[index] = 0; //Wraps from 9 to 0
+        else        
         currentCode[index]++;
+        
         UpdateDisplay(index);
         CheckCode();
     }
@@ -39,8 +43,12 @@ public class SafeLock : MonoBehaviour
     public void Decrease(int index)
     {
         if (unlocked) return;
-        if (currentCode[index] <= 0) return; // stops display at 0
+
+        if (currentCode[index] <= 0) 
+            currentCode[index] = 9; //wraps from 0 to 9
+        else
         currentCode[index]--;
+
         UpdateDisplay(index);
         CheckCode();
     }
@@ -62,7 +70,6 @@ public class SafeLock : MonoBehaviour
         foreach (TMP_Text display in digitDisplays)
             display.color = color;
     }
-    // Update is called once per frame
     void UpdateDisplay(int index)
     {
         digitDisplays[index].text = currentCode[index].ToString();
