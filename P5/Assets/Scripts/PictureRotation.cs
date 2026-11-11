@@ -7,6 +7,10 @@ public class PictureRotation : MonoBehaviour
     [SerializeField] private float openAngle = -100f;
     [SerializeField] private float openingSpeed = 60f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pictureRotationSound;
+
     public bool rotatePicture;
 
     private float currentAngle;
@@ -14,6 +18,7 @@ public class PictureRotation : MonoBehaviour
     public void rotate()
     {
         rotatePicture = true;
+        audioSource.PlayOneShot(pictureRotationSound);
     }
     
 
