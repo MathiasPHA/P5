@@ -68,6 +68,12 @@ public class PhoneMaze : MonoBehaviour
     [Tooltip("Fires when the next maze is loaded after a fail")]
     public UnityEvent<MazeLayout> onMazeChanged;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip movementAudioClip;
+    [SerializeField] private float minimumPitchShift = 0.95f;
+    [SerializeField] private float maximumPitchShift = 1.05f;
+
     private int cols, rows, poolIndex;
     private float cell, hitTimer;
     private bool built, solved;
@@ -101,6 +107,14 @@ public class PhoneMaze : MonoBehaviour
             mazeLayout = mazePool[poolIndex];
         }
         if (mazeLayout != null) Rebuild();
+    }
+
+    private void PlayMoveSound()
+    {
+        if (audioSource == null ||movementAudioClip == null) return;
+        
+        audioSource.pitch = Random.Range(minimumPitchShift, maximumPitchShift);
+        audioSource.PlayOneShot(movementAudioClip);
     }
 
     void OnEnable() => Restart();
@@ -201,6 +215,8 @@ public class PhoneMaze : MonoBehaviour
     private void Move(Vector2Int dir)
     {
         if (!CanMove) return;
+
+        PlayMoveSound();
 
         Vector2 screenDir = new Vector2(dir.x, -dir.y);
         shipRt.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(-screenDir.x, screenDir.y) * Mathf.Rad2Deg);
