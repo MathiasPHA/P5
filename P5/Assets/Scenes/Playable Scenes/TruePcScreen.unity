@@ -406,17 +406,9 @@ PrefabInstance:
       propertyPath: previousButton
       value: 
       objectReference: {fileID: 960802317}
-    - target: {fileID: 7046396223283597464, guid: 73f5599408835467bb796844a15056b8, type: 3}
-      propertyPath: mazeLayout
-      value: 
-      objectReference: {fileID: 11400000, guid: 027f1c2f4413f4b0f818103c550ae5ba, type: 2}
     - target: {fileID: 9215569546261977012, guid: 73f5599408835467bb796844a15056b8, type: 3}
       propertyPath: m_Name
       value: Monitor Room
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215569546261977012, guid: 73f5599408835467bb796844a15056b8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

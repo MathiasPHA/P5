@@ -8042,7 +8042,7 @@ MonoBehaviour:
   cameraName: CAM 03
   timeFormat: dd/MM/yyyy  HH:mm:ss
   fontSize: 28
-  padding: {x: 24, y: 20}
+  padding: {x: 24, y: 70}
   textColor: {r: 1, g: 1, b: 1, a: 0.9}
   recColor: {r: 1, g: 0.2, b: 0.2, a: 1}
   blinkInterval: 0.6
