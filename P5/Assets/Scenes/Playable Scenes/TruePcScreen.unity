@@ -457,46 +457,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PCScreenCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 2323720880734854270, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2323720880734854270, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 9119564467144425903, guid: adda64117862d8f449dbf2c2cdf5e309, type: 3}
-    - target: {fileID: 2323720880734854270, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2323720880734854270, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2323720880734854270, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125984258940590188, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125984258940590188, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 9119564467144425903, guid: adda64117862d8f449dbf2c2cdf5e309, type: 3}
-    - target: {fileID: 5125984258940590188, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125984258940590188, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125984258940590188, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6626347623766130182, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_Camera
       value: 
@@ -580,26 +540,6 @@ PrefabInstance:
     - target: {fileID: 8117361854021974757, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8766835710569809298, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8766835710569809298, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 9119564467144425903, guid: adda64117862d8f449dbf2c2cdf5e309, type: 3}
-    - target: {fileID: 8766835710569809298, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8766835710569809298, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8766835710569809298, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
