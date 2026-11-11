@@ -38,6 +38,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Puzzle Test Scenes/PCPuzzle.unity
     guid: 02d18e3575ddab9469ec1cbec015de39
+  - enabled: 1
+    path: Assets/Scenes/City.unity
+    guid: 4d39e6d76f5579d4f8eaba77d059611a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 424f9ea697af1b54fada3faea0d30d52, type: 2}
