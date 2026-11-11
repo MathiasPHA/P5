@@ -1469,6 +1469,59 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!1 &3380482967833775906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8364623827311231998}
+  - component: {fileID: 4842864765269134339}
+  m_Layer: 0
+  m_Name: Rain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8364623827311231998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3380482967833775906}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -56.319824, y: -70.63617, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7958178647924866784}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4842864765269134339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3380482967833775906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434a23b9139ca4f9693af60b13a53b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RainAmbience
+  rainClip: {fileID: 8300000, guid: 6bf7543f5f8af46b1b6da286c31db12d, type: 3}
+  volume: 0.183
+  fadeInTime: 2
+  crossfadeTime: 0
+  playOnStart: 1
+  indoorVolume: 0.176
+  muffleIndoors: 1
+  indoorCutoff: 1200
+  transitionTime: 0.8
 --- !u!1 &3507835418065169869
 GameObject:
   m_ObjectHideFlags: 0
@@ -5730,6 +5783,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4409788168561930389, guid: e4aeee4c2042f41b3a89bdbe49868baf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6873948218106230763}
+    - targetCorrespondingSourceObject: {fileID: 4409788168561930389, guid: e4aeee4c2042f41b3a89bdbe49868baf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8364623827311231998}
     - targetCorrespondingSourceObject: {fileID: 1831553050700125639, guid: e4aeee4c2042f41b3a89bdbe49868baf, type: 3}
       insertIndex: 0
       addedObject: {fileID: 7134411111533989889}
