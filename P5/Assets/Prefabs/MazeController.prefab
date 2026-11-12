@@ -327,8 +327,6 @@ Transform:
   - {fileID: 3023053415877383294}
   - {fileID: 4301480400815085688}
   - {fileID: 3445833006736764187}
-  - {fileID: 7352574932094841378}
-  - {fileID: 2281146426185411288}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6113838667406629402
@@ -694,239 +692,6 @@ Transform:
   - {fileID: 2256908725142476180}
   m_Father: {fileID: 1771967188165027312}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7590860706353724423
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2281146426185411288}
-  - component: {fileID: 369994505433196461}
-  - component: {fileID: 346903543710642311}
-  - component: {fileID: 5217021490523459465}
-  - component: {fileID: 2268285252457823307}
-  m_Layer: 0
-  m_Name: Audio Affordance
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2281146426185411288
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7590860706353724423}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1771967188165027312}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &369994505433196461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7590860706353724423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49e0a5b5ff5540f5b14dd29d46faec22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.AffordanceSystem.State.XRInteractableAffordanceStateProvider
-  m_TransitionDuration: 0.125
-  m_InteractableSource: {fileID: 0}
-  m_IgnoreHoverEvents: 0
-  m_IgnoreHoverPriorityEvents: 1
-  m_IgnoreFocusEvents: 1
-  m_IgnoreSelectEvents: 0
-  m_IgnoreActivateEvents: 0
-  m_SelectClickAnimationMode: 1
-  m_ActivateClickAnimationMode: 0
-  m_ClickAnimationDuration: 0.25
-  m_ClickAnimationCurve:
-    m_UseConstant: 1
-    m_ConstantValue:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_Variable: {fileID: 0}
---- !u!82 &346903543710642311
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7590860706353724423}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 5
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &5217021490523459465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7590860706353724423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 186056f485a2493b80cc81571ac8cd9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.AffordanceSystem.Receiver.Audio.AudioAffordanceReceiver
-  m_AffordanceStateProvider: {fileID: 369994505433196461}
-  m_AffordanceThemeDatum:
-    m_UseConstant: 0
-    m_ConstantValue:
-      m_List:
-      - stateName: disabled
-        stateEntered: {fileID: 0}
-        stateExited: {fileID: 0}
-      - stateName: idle
-        stateEntered: {fileID: 0}
-        stateExited: {fileID: 0}
-      - stateName: hovered
-        stateEntered: {fileID: 0}
-        stateExited: {fileID: 0}
-      - stateName: hoveredPriority
-        stateEntered: {fileID: 0}
-        stateExited: {fileID: 0}
-      - stateName: selected
-        stateEntered: {fileID: 0}
-        stateExited: {fileID: 0}
-      - stateName: activated
-        stateEntered: {fileID: 0}
-        stateExited: {fileID: 0}
-      - stateName: focused
-        stateEntered: {fileID: 0}
-        stateExited: {fileID: 0}
-    m_Variable: {fileID: 11400000, guid: d17980715c698f249b8212e25d634234, type: 2}
-  m_AudioSource: {fileID: 346903543710642311}
---- !u!114 &2268285252457823307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7590860706353724423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ab2445e84349874bb97bcd4f354ad26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AutoFindInteractableAffordance
 --- !u!1 &7975907406239831045
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,68 +1039,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 942018842575257500, guid: 0a8a62db66a5a214989d1dc557d93dc3, type: 3}
   m_PrefabInstance: {fileID: 1841603429977546605}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &3135321921075819699
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1771967188165027312}
-    m_Modifications:
-    - target: {fileID: 5086798860578693546, guid: 9e3e11d363ca68a40b9797ca71ceddb0, type: 3}
-      propertyPath: m_Name
-      value: 'Audio Affordance '
-      objectReference: {fileID: 0}
-    - target: {fileID: 5587684406959294097, guid: 9e3e11d363ca68a40b9797ca71ceddb0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.19649048
-      objectReference: {fileID: 0}
-    - target: {fileID: 5587684406959294097, guid: 9e3e11d363ca68a40b9797ca71ceddb0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.25115967
-      objectReference: {fileID: 0}
-    - target: {fileID: 5587684406959294097, guid: 9e3e11d363ca68a40b9797ca71ceddb0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.3031426
-      objectReference: {fileID: 0}
-    - target: {fileID: 5587684406959294097, guid: 9e3e11d363ca68a40b9797ca71ceddb0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9915584
-      objectReference: {fileID: 0}
-    - target: {fileID: 5587684406959294097, guid: 9e3e11d363ca68a40b9797ca71ceddb0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5587684406959294097, guid: 9e3e11d363ca68a40b9797ca71ceddb0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.12966086
-      objectReference: {fileID: 0}
-    - target: {fileID: 5587684406959294097, guid: 9e3e11d363ca68a40b9797ca71ceddb0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5587684406959294097, guid: 9e3e11d363ca68a40b9797ca71ceddb0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5587684406959294097, guid: 9e3e11d363ca68a40b9797ca71ceddb0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5587684406959294097, guid: 9e3e11d363ca68a40b9797ca71ceddb0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9e3e11d363ca68a40b9797ca71ceddb0, type: 3}
---- !u!4 &7352574932094841378 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5587684406959294097, guid: 9e3e11d363ca68a40b9797ca71ceddb0, type: 3}
-  m_PrefabInstance: {fileID: 3135321921075819699}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3921484476562379967
 PrefabInstance:
@@ -1740,14 +1443,16 @@ MonoBehaviour:
   showPlayerOnPC: 0
   showStartAndExitOnPC: 1
   keyboardInput: 1
-  mazePool: []
-  startMaze: 1
-  newMazeOnFail: 1
   gridArea: {fileID: 5557739627544662098}
   symbolArea: {fileID: 7505791029903444923}
-  symbolColumns: 0
   symbolSpacing: 30
   statusText: {fileID: 4472403331503179703}
+  upButton: {fileID: 0}
+  downButton: {fileID: 0}
+  leftButton: {fileID: 0}
+  rightButton: {fileID: 0}
+  enterButton: {fileID: 0}
+  showGridLines: 1
   boardColor: {r: 0.02, g: 0.13, b: 0.04, a: 1}
   traceColor: {r: 0.3, g: 0.95, b: 0.35, a: 1}
   tileColor: {r: 0.3, g: 0.95, b: 0.35, a: 0.5}
@@ -1764,13 +1469,6 @@ MonoBehaviour:
   onWallHit:
     m_PersistentCalls:
       m_Calls: []
-  onMazeChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  audioSource: {fileID: 0}
-  movementAudioClip: {fileID: 0}
-  minimumPitchShift: 0.95
-  maximumPitchShift: 1.05
 --- !u!224 &4187279058421339102 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6836175744169475530, guid: de3ca9c3f63e15e46b5e716409b61ee1, type: 3}
