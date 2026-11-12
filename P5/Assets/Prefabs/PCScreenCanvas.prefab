@@ -8164,15 +8164,15 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 8d2d25baf7580a3439b9f740d0726e66, type: 3}
     correctIndex: 1
   - images:
-    - {fileID: 21300000, guid: 5b2184b81f39cc54784db9e491b3d4d7, type: 3}
-    - {fileID: 21300000, guid: 7d06b8e84e012d24c828d113942df277, type: 3}
-    - {fileID: 21300000, guid: e4da902d75c027a479cd1a5207a09008, type: 3}
-    correctIndex: 2
-  - images:
     - {fileID: 21300000, guid: a31f2af8c949a7a46ba271158e9ca057, type: 3}
     - {fileID: 21300000, guid: d6cf7edba4b5d92489f381c1689d0ad3, type: 3}
     - {fileID: 21300000, guid: 246dbf3cf4047b344a7bd7276ab5a339, type: 3}
     correctIndex: 1
+  - images:
+    - {fileID: 21300000, guid: 5b2184b81f39cc54784db9e491b3d4d7, type: 3}
+    - {fileID: 21300000, guid: 7d06b8e84e012d24c828d113942df277, type: 3}
+    - {fileID: 21300000, guid: e4da902d75c027a479cd1a5207a09008, type: 3}
+    correctIndex: 2
   imageSlots:
   - {fileID: 5666873837782298884}
   - {fileID: 4361428171677734510}
