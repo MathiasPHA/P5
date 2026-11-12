@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using Unity.VisualScripting;
+using System;
 public class SafeLock : MonoBehaviour
 {
     [Header("Code")]
@@ -12,13 +14,6 @@ public class SafeLock : MonoBehaviour
     [Header("Colors")]
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color correctColor = Color.green;
-
-    [Header("Audio")]
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip clickSound;
-    [SerializeField] private AudioClip correctSafeCodeSound;
-    [SerializeField] private float minimumPitchShift = 0.95f;
-    [SerializeField] private float maximumPitchShift = 1.05f;
 
     [Header("Events")]
     public UnityEvent onUnlocked;
@@ -32,31 +27,15 @@ public class SafeLock : MonoBehaviour
         UpdateAllDisplays();
     }
 
-    void PlayAudioCue()
-        {
-            if (audioSource == null || clickSound == null) return;
-            audioSource.PlayOneShot(clickSound);
-        }
-    void CorrectCodeAudio()
-        {
-            if (audioSource == null || clickSound == null) return;
-            audioSource.PlayOneShot(correctSafeCodeSound);
-        }
     public void Increase(int index)
     {
         if (unlocked) return;
         
-        if (currentCode[index] >= 9)
-        {
+        if (currentCode[index] >= 9) 
             currentCode[index] = 0; //Wraps from 9 to 0
-        }
-        else
-        {
-            currentCode[index]++;
-        }      
+        else        
+        currentCode[index]++;
         
-        audioSource.pitch = Random.Range(minimumPitchShift, maximumPitchShift);
-        PlayAudioCue();
         UpdateDisplay(index);
         CheckCode();
     }
@@ -65,17 +44,11 @@ public class SafeLock : MonoBehaviour
     {
         if (unlocked) return;
 
-        if (currentCode[index] <= 0)
-        {
+        if (currentCode[index] <= 0) 
             currentCode[index] = 9; //wraps from 0 to 9
-        }
         else
-        {
-            currentCode[index]--;
-        }
+        currentCode[index]--;
 
-        audioSource.pitch = Random.Range(minimumPitchShift, maximumPitchShift);
-        PlayAudioCue();
         UpdateDisplay(index);
         CheckCode();
     }
@@ -88,7 +61,6 @@ public class SafeLock : MonoBehaviour
         }
 
         unlocked = true;
-        CorrectCodeAudio();
         SetTextColor(correctColor);
         onUnlocked?.Invoke();
     }

@@ -593,7 +593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1403853379409369176, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1936531082400410172, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_Name
@@ -623,9 +623,13 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 416.6
       objectReference: {fileID: 0}
+    - target: {fileID: 2547826587661784276, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3217947401919658148, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4192808629579476764, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -663,6 +667,10 @@ PrefabInstance:
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 2800000, guid: e3a85341ea0eb4c41bb6590a4b571b2f, type: 3}
+    - target: {fileID: 7479140817050596770, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8016089972188966362, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_Colors.m_NormalColor.b
       value: 1
