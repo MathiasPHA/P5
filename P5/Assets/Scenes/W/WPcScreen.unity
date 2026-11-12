@@ -130,6 +130,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &420380890 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 728557972306064008, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+  m_PrefabInstance: {fileID: 4441246324339481684}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &420380897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420380890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434a23b9139ca4f9693af60b13a53b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RainAmbience
+  masterVolume: 1
+  fadeInTime: 2
+  playOnStart: 1
+  loops:
+  - name: Rain
+    clip: {fileID: 8300000, guid: 6bf7543f5f8af46b1b6da286c31db12d, type: 3}
+    volume: 0.6
+    crossfadeTime: 0
+    indoorVolume: 0.35
+    muffleIndoors: 1
+  randomSounds: []
+  indoorCutoff: 1200
+  transitionTime: 0.8
 --- !u!1 &695066023
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +566,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 728557972306064008, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 420380897}
   m_SourcePrefab: {fileID: 100100000, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

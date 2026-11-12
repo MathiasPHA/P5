@@ -46,7 +46,8 @@ public class RainAmbience : MonoBehaviour
 
     [SerializeField, Range(0f, 1f)] private float masterVolume = 1f;
     [SerializeField] private float fadeInTime = 2f;
-    [SerializeField] private bool playOnStart = true;
+    [SerializeField, Tooltip("Play automatically every time this object is enabled.")]
+    private bool playOnStart = true;
 
     [Header("Sounds")]
     [SerializeField] private List<LoopLayer> loops = new List<LoopLayer> { new LoopLayer() };
@@ -89,9 +90,27 @@ public class RainAmbience : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         if (playOnStart) Play();
+    }
+
+    private void OnDisable()
+    {
+        // Unity kills coroutines and audio on disable; reset so Play() works next time
+        StopAllCoroutines();
+        fadeRoutine = null;
+        fade = 0f;
+        playing = false;
+
+        foreach (var layer in loops)
+        {
+            layer.routine = null;
+            if (layer.sources == null) continue;
+            foreach (var s in layer.sources) s.Stop();
+        }
+        foreach (var sound in randomSounds)
+            if (sound.source != null) sound.source.Stop();
     }
 
     private void Update()
