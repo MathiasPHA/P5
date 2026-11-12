@@ -3352,6 +3352,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 127876691}
+    - target: {fileID: 4672781659112457609, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+      propertyPath: m_Name
+      value: Ambiance
+      objectReference: {fileID: 0}
     - target: {fileID: 4702850353068308276, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.902134
