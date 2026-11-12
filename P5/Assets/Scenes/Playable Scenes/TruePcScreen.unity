@@ -256,17 +256,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &960802317 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1799530131330900499, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-  m_PrefabInstance: {fileID: 4441246324339481684}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1133848276
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +335,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1256883878 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 809972508751065389, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+  m_PrefabInstance: {fileID: 4441246324339481684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1362296369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2535640234604570398, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+  m_PrefabInstance: {fileID: 4441246324339481684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &1434162889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -397,15 +408,15 @@ PrefabInstance:
     - target: {fileID: 6964184947155437707, guid: 73f5599408835467bb796844a15056b8, type: 3}
       propertyPath: nextButton
       value: 
-      objectReference: {fileID: 1436886142}
+      objectReference: {fileID: 1256883878}
     - target: {fileID: 6964184947155437707, guid: 73f5599408835467bb796844a15056b8, type: 3}
       propertyPath: desktopLabel
       value: 
-      objectReference: {fileID: 2131489197}
+      objectReference: {fileID: 2072232734}
     - target: {fileID: 6964184947155437707, guid: 73f5599408835467bb796844a15056b8, type: 3}
       propertyPath: previousButton
       value: 
-      objectReference: {fileID: 960802317}
+      objectReference: {fileID: 1362296369}
     - target: {fileID: 9215569546261977012, guid: 73f5599408835467bb796844a15056b8, type: 3}
       propertyPath: m_Name
       value: Monitor Room
@@ -415,20 +426,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73f5599408835467bb796844a15056b8, type: 3}
---- !u!114 &1436886142 stripped
+--- !u!114 &2072232734 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4140538066507017362, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-  m_PrefabInstance: {fileID: 4441246324339481684}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &2131489197 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7251614801972633523, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5122268881618778383, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
   m_PrefabInstance: {fileID: 4441246324339481684}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
