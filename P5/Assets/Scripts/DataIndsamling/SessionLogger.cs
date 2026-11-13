@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 // PC (host) only: records the test data for one play session.
@@ -15,7 +16,8 @@ using UnityEngine.InputSystem;
 //   sessions.csv          one row per session, appended when the session ends
 //
 // The facilitator enters pair ID + condition and presses "Ready".
-// The clock starts when the VR player connects (at once, if already connected).
+// The clock starts when the main menu's Start button is pressed (see SessionStartButton),
+// which is only possible once the VR player is connected.
 // The session ends when the final puzzle (the maze) is solved, on F10, or when the game quits.
 public class SessionLogger : MonoBehaviour
 {
@@ -45,8 +47,23 @@ public class SessionLogger : MonoBehaviour
     double Now => Time.realtimeSinceStartupAsDouble - t0;
     string Condition => Conditions[conditionIndex];
 
+    public static SessionLogger Instance { get; private set; }
+
+    void Awake() => Instance = this;
+
+    // Called by SessionStartButton when the main menu's Start button is clicked
+    public void StartSession()
+    {
+        if (phase != Phase.Armed || !subscribed || !VrConnected)
+        {
+            Debug.LogWarning($"[SessionLogger] StartSession ignored (phase {phase}, VR connected: {VrConnected})");
+            return;
+        }
+        Begin();
+    }
+
     // ConnectedClientsIds includes the host itself
-    static bool VrConnected
+    public static bool VrConnected
     {
         get
         {
@@ -55,10 +72,31 @@ public class SessionLogger : MonoBehaviour
         }
     }
 
+    // EventSystems switched off while the setup panel is showing
+    readonly List<EventSystem> blockedEventSystems = new List<EventSystem>();
+
+    // The setup panel is drawn with OnGUI, which does not stop clicks from reaching
+    // the game's own UI underneath. So while it is open, the scene's EventSystem is
+    // switched off: no button, slider or keyboard navigation in the game UI responds.
+    // Called every frame during setup, so a newly loaded scene's EventSystem is caught too.
+    void BlockSceneUI()
+    {
+        var es = EventSystem.current; // null once it has been switched off
+        if (es == null) return;
+        es.enabled = false;
+        blockedEventSystems.Add(es);
+    }
+
+    void UnblockSceneUI()
+    {
+        foreach (var es in blockedEventSystems)
+            if (es != null) es.enabled = true; // null = its scene was unloaded meanwhile
+        blockedEventSystems.Clear();
+    }
+
     void Update()
     {
-        // Ready was pressed: start the clock the moment the VR player is connected
-        if (phase == Phase.Armed && subscribed && VrConnected) Begin();
+        if (phase == Phase.Setup) BlockSceneUI();
 
         // SharedState may not exist yet on the first frames
         if (!subscribed && SharedState.Instance != null)
@@ -74,6 +112,8 @@ public class SessionLogger : MonoBehaviour
 
     void OnDestroy()
     {
+        if (Instance == this) Instance = null;
+        UnblockSceneUI();
         if (subscribed && SharedState.Instance != null)
             SharedState.Instance.OnPuzzleEvent -= OnPuzzleEvent;
     }
@@ -228,18 +268,22 @@ public class SessionLogger : MonoBehaviour
             conditionIndex = GUILayout.SelectionGrid(conditionIndex, Conditions, Conditions.Length);
             GUILayout.Space(8);
 
-            GUILayout.Label(VrConnected
-                ? "VR player already connected: the clock starts when you press Ready"
-                : "The clock starts when the VR player connects");
+            GUILayout.Label("The clock starts when Start is pressed in the main menu");
 
             GUI.enabled = pairId.Trim().Length > 0;
-            if (GUILayout.Button("Ready", GUILayout.Height(40))) phase = Phase.Armed;
+            if (GUILayout.Button("Ready", GUILayout.Height(40)))
+            {
+                phase = Phase.Armed;
+                UnblockSceneUI(); // the game's UI works again from here
+            }
             GUI.enabled = true;
             GUILayout.EndArea();
         }
         else if (phase == Phase.Armed)
         {
-            GUI.Box(new Rect(16, h - 56, 420, 40), "Ready. Clock starts when the VR player connects.");
+            GUI.Box(new Rect(16, h - 56, 460, 40), VrConnected
+                ? "Ready. Clock starts when Start is pressed."
+                : "Ready. Waiting for VR player before Start can be pressed.");
         }
         else if (phase == Phase.Done)
         {

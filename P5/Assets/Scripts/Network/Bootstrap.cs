@@ -10,7 +10,7 @@ using System.Linq;
 using Unity.Multiplayer.PlayMode;
 #endif
 
-// Lives in the Boot scene (build index 0).
+// Lives in the Boot scene (reached from the start screens: Launcher → MainMenu_PC/VR → Boot).
 // PC build hosts, answers LAN discovery and loads the PC scene.
 // Quest build shows a connect screen: finds the host automatically,
 // falls back to manual IP entry, then loads the VR scene once connected.
@@ -64,7 +64,7 @@ public class Bootstrap : MonoBehaviour
 
 #if UNITY_EDITOR
         // MPPM virtual player tagged "VR" = fake Quest on the same machine
-        if (CurrentPlayer.ReadOnlyTags().Contains("VR"))
+        if (CurrentPlayer.Tags.Contains("VR"))
         {
             isVR = true;
             mppmVR = true;
