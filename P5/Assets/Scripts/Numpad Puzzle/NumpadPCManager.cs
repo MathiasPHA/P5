@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class NumpadPCManager : MonoBehaviour
 {
@@ -8,9 +9,13 @@ public class NumpadPCManager : MonoBehaviour
     [SerializeField] private int correctNum3;
     [SerializeField] private int correctNum4;
 
+    [SerializeField] private TMP_Text holdText;
+
     // 0 = correct, 1 = right number wrong place, 2 = not in code
     [SerializeField] private Sprite[] symbolSprites = new Sprite[3];
     [SerializeField] private SymbolList symbolList;
+
+    private bool isTextOff = false;
 
     IEnumerator Start()
     {
@@ -26,6 +31,11 @@ public class NumpadPCManager : MonoBehaviour
 
     void OnNumpadNumbersSet(int n1, int n2, int n3, int n4)
     {
+        if (isTextOff) {
+            holdText.gameObject.SetActive(false);
+            isTextOff = true;
+        }
+        
         symbolList.AddRow(
             GetSymbol(n1, correctNum1),
             GetSymbol(n2, correctNum2),
