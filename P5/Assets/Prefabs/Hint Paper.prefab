@@ -169,8 +169,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "The code to the safe\n took generations to make"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
-  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2de3ea36f9470304e912afea5f08c165, type: 2}
+  m_sharedMaterial: {fileID: -3366081302763614089, guid: 2de3ea36f9470304e912afea5f08c165, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
