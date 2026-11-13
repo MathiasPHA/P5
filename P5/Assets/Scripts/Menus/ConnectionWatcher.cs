@@ -11,7 +11,8 @@ using TMPro;
 //   VR (client): the host is gone, so it counts down and returns to the start screen.
 public class ConnectionWatcher : MonoBehaviour
 {
-    [SerializeField] private string menuScene = "MainMenu";
+    [Tooltip("Scene to return to. Launcher routes each player to their own start screen")]
+    [SerializeField] private string menuScene = "Launcher";
     [Tooltip("VR: seconds before returning to the start screen when the PC player leaves")]
     [SerializeField] private float vrReturnDelay = 8f;
     [SerializeField] private Color warningColor = new Color(1f, 0.35f, 0.3f);
@@ -223,7 +224,6 @@ public class ConnectionWatcher : MonoBehaviour
         rt.anchorMin = anchorMin;
         rt.anchorMax = anchorMax;
         rt.anchoredPosition = pos;
-        rt.sizeDelta = new Vector2(-40f, height);
-        if (height == 0f) rt.sizeDelta = Vector2.zero;
+        rt.sizeDelta = height == 0f ? Vector2.zero : new Vector2(-40f, height);
     }
 }
