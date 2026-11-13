@@ -1417,7 +1417,7 @@ PrefabInstance:
       addedObject: {fileID: 7505791029903444923}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5263728126865136240, guid: de3ca9c3f63e15e46b5e716409b61ee1, type: 3}
-      insertIndex: -1
+      insertIndex: 4
       addedObject: {fileID: 6161704200312752765}
   m_SourcePrefab: {fileID: 100100000, guid: de3ca9c3f63e15e46b5e716409b61ee1, type: 3}
 --- !u!1 &3300656215959893092 stripped
@@ -1443,16 +1443,14 @@ MonoBehaviour:
   showPlayerOnPC: 0
   showStartAndExitOnPC: 1
   keyboardInput: 1
+  mazePool: []
+  startMaze: 1
+  newMazeOnFail: 1
   gridArea: {fileID: 5557739627544662098}
   symbolArea: {fileID: 7505791029903444923}
+  symbolColumns: 0
   symbolSpacing: 30
   statusText: {fileID: 4472403331503179703}
-  upButton: {fileID: 0}
-  downButton: {fileID: 0}
-  leftButton: {fileID: 0}
-  rightButton: {fileID: 0}
-  enterButton: {fileID: 0}
-  showGridLines: 1
   boardColor: {r: 0.02, g: 0.13, b: 0.04, a: 1}
   traceColor: {r: 0.3, g: 0.95, b: 0.35, a: 1}
   tileColor: {r: 0.3, g: 0.95, b: 0.35, a: 0.5}
@@ -1467,6 +1465,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onWallHit:
+    m_PersistentCalls:
+      m_Calls: []
+  onMazeChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!224 &4187279058421339102 stripped

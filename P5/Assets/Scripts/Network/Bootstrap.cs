@@ -139,6 +139,7 @@ public class Bootstrap : MonoBehaviour
         Application.targetFrameRate = 60;
 
         HostInfo = $"{LanDiscovery.LocalIPv4s()} (port {port})";
+        nm.gameObject.AddComponent<SessionLogger>();
         Debug.Log($"[Bootstrap] PC: hosting on {HostInfo}");
 
         utp.SetConnectionData("0.0.0.0", port);
