@@ -125,6 +125,8 @@ public class NumpadVRManager : MonoBehaviour
         bool correct = n1 == correctNumbers[0] && n2 == correctNumbers[1] &&
                        n3 == correctNumbers[2] && n4 == correctNumbers[3];
 
+        SharedState.Instance.ReportPuzzleEventRpc(PuzzleId.Numpad, correct ? PuzzleEvent.Solved : PuzzleEvent.Fail);
+
         if (feedbackRoutine != null) StopCoroutine(feedbackRoutine);
         feedbackRoutine = StartCoroutine(correct ? ShowSuccess() : ShowFail());
     }
