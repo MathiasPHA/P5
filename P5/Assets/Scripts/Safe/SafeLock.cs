@@ -15,6 +15,14 @@ public class SafeLock : MonoBehaviour
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color correctColor = Color.green;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip clickSound;
+    [SerializeField] private AudioClip correctCodeSound;
+    [SerializeField] private float minPitchShift = 0.9f;
+    [SerializeField] private float maxPitchShift = 1.1f;
+    [SerializeField] private float truePitch = 1f;
+
     [Header("Events")]
     public UnityEvent onUnlocked;
     // public UnityEvent onWrongCode; //Bruges aldrig
@@ -27,6 +35,17 @@ public class SafeLock : MonoBehaviour
         UpdateAllDisplays();
     }
 
+    void PlayClick()
+    {
+        audioSource.pitch = UnityEngine.Random.Range(minPitchShift, maxPitchShift);
+        audioSource.PlayOneShot(clickSound);
+    }
+
+    void PlayCorrectSound()
+    {
+        audioSource.pitch = truePitch; //Resetter audiosource pitch så at correct sound ikke er påvirket af random pitch
+        audioSource.PlayOneShot(correctCodeSound);
+    }
     public void Increase(int index)
     {
         if (unlocked) return;
@@ -35,7 +54,8 @@ public class SafeLock : MonoBehaviour
             currentCode[index] = 0; //Wraps from 9 to 0
         else        
         currentCode[index]++;
-        
+
+        PlayClick();
         UpdateDisplay(index);
         CheckCode();
     }
@@ -49,6 +69,7 @@ public class SafeLock : MonoBehaviour
         else
         currentCode[index]--;
 
+        PlayClick();
         UpdateDisplay(index);
         CheckCode();
     }
@@ -61,6 +82,7 @@ public class SafeLock : MonoBehaviour
         }
 
         unlocked = true;
+        PlayCorrectSound();
         SetTextColor(correctColor);
         onUnlocked?.Invoke();
     }
