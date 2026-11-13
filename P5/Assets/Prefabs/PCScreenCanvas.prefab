@@ -3536,7 +3536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5332772019959653306
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7722,7 +7722,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 181, y: 118}
+  m_AnchoredPosition: {x: 361, y: 118}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9050641286078973817
@@ -7753,7 +7753,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter IP Adress To Grant Access
+  m_text: Enter IP Adress From The Physical Router
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2de3ea36f9470304e912afea5f08c165, type: 2}
   m_sharedMaterial: {fileID: -3366081302763614089, guid: 2de3ea36f9470304e912afea5f08c165, type: 2}
@@ -7819,7 +7819,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -512.14105, y: -43.535156, z: -153.04626, w: 0}
+  m_margin: {x: -512.14105, y: -43.535156, z: 197.51892, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -12365,7 +12365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4627706575763478061, guid: e4aeee4c2042f41b3a89bdbe49868baf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4690905575332314734, guid: e4aeee4c2042f41b3a89bdbe49868baf, type: 3}
       propertyPath: m_fontColor.b
