@@ -43,14 +43,22 @@ public class Captcha : MonoBehaviour
 
         if (index == sets[currentSet].correctIndex)
         {
+            // correct branch
             if (SharedState.Instance != null)
+            {
                 SharedState.Instance.SetCaptchaSolvedRpc(true);
+                SharedState.Instance.ReportPuzzleEventRpc(PuzzleId.Captcha, PuzzleEvent.Solved);
+            }
 
             nextPC.SetActive(true);
             currentPC.SetActive(false);
         }
         else
         {
+            // wrong branch, first line inside the else
+            if (SharedState.Instance != null)
+                SharedState.Instance.ReportPuzzleEventRpc(PuzzleId.Captcha, PuzzleEvent.Fail);
+
             // Next set, wraps from the last back to the first
             currentSet = (currentSet + 1) % sets.Length;
             ShowSet(); // redraw now, don't rely on OnEnable
