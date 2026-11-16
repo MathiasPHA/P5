@@ -1544,13 +1544,13 @@ MonoBehaviour:
   mazePool: []
   startMaze: 1
   newMazeOnFail: 1
-  audioSource: {fileID: 0}
-  moveSound: {fileID: 0}
+  audioSource: {fileID: 8918835744746633499}
+  moveSound: {fileID: 8300000, guid: 79b6d3245e853492f969fc3098a721b8, type: 3}
   bumpSound: {fileID: 0}
-  wallHitSound: {fileID: 0}
+  wallHitSound: {fileID: 8300000, guid: ce73dfbacc96946d68830b77a875033e, type: 3}
   solvedSound: {fileID: 0}
   newMazeSound: {fileID: 0}
-  soundVolume: 1
+  soundVolume: 0.4
   gridArea: {fileID: 5557739627544662098}
   symbolArea: {fileID: 7505791029903444923}
   symbolColumns: 0
