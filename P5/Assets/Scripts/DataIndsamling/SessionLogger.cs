@@ -18,13 +18,13 @@ using UnityEngine.InputSystem;
 // The facilitator enters pair ID + condition and presses "Ready".
 // The clock starts when the main menu's Start button is pressed (see SessionStartButton),
 // which is only possible once the VR player is connected.
-// The session ends when the final puzzle (the maze) is solved, on F10, or when the game quits.
+// The session ends when the game is won (the milk bottle in the safe is grabbed,
+// see MilkBottleWin / SharedState.OnGameWon), on F10, or when the game quits.
 public class SessionLogger : MonoBehaviour
 {
     static readonly CultureInfo Inv = CultureInfo.InvariantCulture; // "12.5", never the Danish "12,5"
     static readonly PuzzleId[] Puzzles = (PuzzleId[])Enum.GetValues(typeof(PuzzleId));
     static readonly string[] Conditions = { "colocated", "remote" };
-    const PuzzleId FinalPuzzle = PuzzleId.Maze; // solving this one stops the clock
 
     class PuzzleStats
     {
@@ -102,6 +102,7 @@ public class SessionLogger : MonoBehaviour
         if (!subscribed && SharedState.Instance != null)
         {
             SharedState.Instance.OnPuzzleEvent += OnPuzzleEvent;
+            SharedState.Instance.OnGameWon += OnGameWon;
             subscribed = true;
         }
 
@@ -115,7 +116,10 @@ public class SessionLogger : MonoBehaviour
         if (Instance == this) Instance = null;
         UnblockSceneUI();
         if (subscribed && SharedState.Instance != null)
+        {
             SharedState.Instance.OnPuzzleEvent -= OnPuzzleEvent;
+            SharedState.Instance.OnGameWon -= OnGameWon;
+        }
     }
 
     // Keep the data from a session that was closed before it was finished
@@ -171,11 +175,12 @@ public class SessionLogger : MonoBehaviour
 
         WriteEvent(t, puzzle.ToString(), evt.ToString(), s.fails);
 
-        if (evt != PuzzleEvent.Solved) return;
-        lastSolveAt = t;
-
-        if (puzzle == FinalPuzzle) Finish(true);
+        if (evt == PuzzleEvent.Solved) lastSolveAt = t;
     }
+
+    // The milk bottle was grabbed: this stops the clock, at the moment of the grab
+    // (not after the victory sound and fade)
+    void OnGameWon() => Finish(true);
 
     void Finish(bool completed)
     {
