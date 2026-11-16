@@ -140290,6 +140290,17 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &1170599407 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6010888551234486204, guid: 83080f8d64f56f14081805f02d35aa29, type: 3}
+  m_PrefabInstance: {fileID: 1559691636}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082332909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd082dffdf3ca94e82f3575a99b6c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SafeLock
 --- !u!1001 &1171059765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -195633,6 +195644,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9172171643275150111, guid: cd088765b1b670040b8250e7ab961ee6, type: 3}
+      propertyPath: safeLock
+      value: 
+      objectReference: {fileID: 1170599407}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
