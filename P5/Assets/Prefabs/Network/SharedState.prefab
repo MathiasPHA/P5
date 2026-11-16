@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4068655737105508048}
   - component: {fileID: 8724450486658251392}
   - component: {fileID: 6584707501956585679}
+  - component: {fileID: 4709264020913495533}
   m_Layer: 0
   m_Name: SharedState
   m_TagString: Untagged
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3107684180
+  GlobalObjectIdHash: 2175767326
   InScenePlacedSourceGlobalObjectIdHash: 0
   m_InScenePlacedDisabledByDefault: 0
   DeferredDespawnTick: 0
@@ -78,3 +79,37 @@ MonoBehaviour:
       MinSecondsBetweenUpdates: 0
       MaxSecondsBetweenUpdates: 0
     m_InternalValue: 0
+  CaptchaSet:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+  CaptchaSolved:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+  GameWon:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+--- !u!114 &4709264020913495533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5955741389024447632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e654fb3b7876904db07731f4f75d191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WinSequence
+  victorySound: {fileID: 0}
+  volume: 1
+  delayBeforeFade: 5
+  fadeOutDuration: 1.5
+  fadeInDuration: 1
+  pcOutroScene: Outro
+  vrOutroScene: Outro

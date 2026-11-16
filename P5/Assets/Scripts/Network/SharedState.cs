@@ -19,10 +19,14 @@ public class SharedState : NetworkBehaviour
     public NetworkVariable<int> Step = new(0);
     public NetworkVariable<int> CaptchaSet = new(0);
     public NetworkVariable<bool> CaptchaSolved = new(false);
+    public NetworkVariable<bool> GameWon = new(false);
 
 
     // Fires on BOTH host and client every time a numpad guess is submitted
     public event Action<int, int, int, int> OnNumpadNumbersSet;
+
+    // Fires once on BOTH host and client when the game is won (the milk bottle is grabbed)
+    public event Action OnGameWon;
 
 
 
@@ -30,10 +34,12 @@ public class SharedState : NetworkBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        GameWon.OnValueChanged += HandleGameWonChanged;
     }
 
     public override void OnNetworkDespawn()
     {
+        GameWon.OnValueChanged -= HandleGameWonChanged;
         if (Instance == this) Instance = null;
     }
 
@@ -63,6 +69,18 @@ public class SharedState : NetworkBehaviour
 
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
     public void SetCaptchaSolvedRpc(bool value) => CaptchaSolved.Value = value;
+
+    // ---------- Win ----------
+
+    // Called by MilkBottleWin on the VR side. Setting the value again later does nothing,
+    // so the win can only happen once.
+    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+    public void WinGameRpc() => GameWon.Value = true;
+
+    void HandleGameWonChanged(bool previous, bool current)
+    {
+        if (current && !previous) OnGameWon?.Invoke();
+    }
 
     // ---------- Test logging ----------
     public event Action<PuzzleId, PuzzleEvent> OnPuzzleEvent; // raised on the host only
