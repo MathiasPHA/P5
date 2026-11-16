@@ -357,6 +357,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6001879615077756892, guid: e70b41a951de38d43b19a0949d685ced, type: 3}
+      propertyPath: pcScene
+      value: MainMenu_PC
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001879615077756892, guid: e70b41a951de38d43b19a0949d685ced, type: 3}
+      propertyPath: vrScene
+      value: MainMenu_VR
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001879615077756892, guid: e70b41a951de38d43b19a0949d685ced, type: 3}
       propertyPath: ipKeypad
       value: 
       objectReference: {fileID: 1363434123}
@@ -432,8 +440,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8086058333723329832, guid: 0a26340d0cc3a3446af51962d6320e74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1348727428}
   m_SourcePrefab: {fileID: 100100000, guid: 0a26340d0cc3a3446af51962d6320e74, type: 3}
+--- !u!1 &1348727427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8086058333723329832, guid: 0a26340d0cc3a3446af51962d6320e74, type: 3}
+  m_PrefabInstance: {fileID: 1348727426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1348727428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348727427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a40b82169fc53478b9945f2fade709ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConnectionWatcher
+  menuScene: Launcher
+  vrReturnDelay: 8
+  warningColor: {r: 1, g: 0.35, b: 0.3, a: 1}
+  font: {fileID: 0}
 --- !u!1001 &1363434121
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,6 +5,10 @@ using UnityEngine;
 // Holds every value both sides need to agree on.
 // Spawned once by the host from Bootstrap. Lives in DontDestroyOnLoad,
 // so it survives the PC scene switch. Must be a root GameObject.
+
+public enum PuzzleId : byte { Captcha, Numpad, Maze, SafeLock }
+public enum PuzzleEvent : byte { Start, Fail, Solved }
+
 public class SharedState : NetworkBehaviour
 {
     public static SharedState Instance { get; private set; }
@@ -16,8 +20,11 @@ public class SharedState : NetworkBehaviour
     public NetworkVariable<int> CaptchaSet = new(0);
     public NetworkVariable<bool> CaptchaSolved = new(false);
 
+
     // Fires on BOTH host and client every time a numpad guess is submitted
     public event Action<int, int, int, int> OnNumpadNumbersSet;
+
+
 
     public override void OnNetworkSpawn()
     {
@@ -56,4 +63,10 @@ public class SharedState : NetworkBehaviour
 
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
     public void SetCaptchaSolvedRpc(bool value) => CaptchaSolved.Value = value;
+
+    // ---------- Test logging ----------
+    public event Action<PuzzleId, PuzzleEvent> OnPuzzleEvent; // raised on the host only
+
+    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+    public void ReportPuzzleEventRpc(PuzzleId puzzle, PuzzleEvent evt) => OnPuzzleEvent?.Invoke(puzzle, evt);
 }

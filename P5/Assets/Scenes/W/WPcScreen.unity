@@ -278,17 +278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &1064644702 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5124263957981849289, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-  m_PrefabInstance: {fileID: 4441246324339481684}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c0413acecc40c2478d026eead210758, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DesktopWindow
 --- !u!1 &1133848276
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,14 +376,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 766359936190247217, guid: 73f5599408835467bb796844a15056b8, type: 3}
-      propertyPath: m_Range
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 766359936190247217, guid: 73f5599408835467bb796844a15056b8, type: 3}
-      propertyPath: m_Intensity
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5468934536394766794, guid: 73f5599408835467bb796844a15056b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2723.47
@@ -447,25 +428,17 @@ PrefabInstance:
       propertyPath: previousButton
       value: 
       objectReference: {fileID: 863049790}
-    - target: {fileID: 7046396223283597464, guid: 73f5599408835467bb796844a15056b8, type: 3}
-      propertyPath: mazeLayout
-      value: 
-      objectReference: {fileID: 11400000, guid: 027f1c2f4413f4b0f818103c550ae5ba, type: 2}
+    - target: {fileID: 8751121062567092671, guid: 73f5599408835467bb796844a15056b8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -302.358
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751121062567092671, guid: 73f5599408835467bb796844a15056b8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -26.555
+      objectReference: {fileID: 0}
     - target: {fileID: 9215569546261977012, guid: 73f5599408835467bb796844a15056b8, type: 3}
       propertyPath: m_Name
       value: Monitor Room
-      objectReference: {fileID: 0}
-    - target: {fileID: 9215569546261977012, guid: 73f5599408835467bb796844a15056b8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216214924069994097, guid: 73f5599408835467bb796844a15056b8, type: 3}
-      propertyPath: jitter
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216214924069994097, guid: 73f5599408835467bb796844a15056b8, type: 3}
-      propertyPath: sliceCount
-      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -480,74 +453,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 337328984288826346, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 501544134902670966, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 501544134902670966, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 501544134902670966, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1064644702}
-    - target: {fileID: 501544134902670966, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 501544134902670966, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Open
-      objectReference: {fileID: 0}
-    - target: {fileID: 501544134902670966, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DesktopWindow, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 501544134902670966, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 728557972306064008, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1403853379409369176, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1936531082400410172, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_Name
       value: PCScreenCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 2362535406531131280, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+    - target: {fileID: 1936531082400410172, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3334900996252612809, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3334900996252612809, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3334900996252612809, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6626347623766130182, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 695066025}
-    - target: {fileID: 6968078530213611233, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8117361854021974757, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -628,16 +545,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8184025070130892977, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8184025070130892977, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3796254715189524146, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
