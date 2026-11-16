@@ -357,8 +357,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6001879615077756892, guid: e70b41a951de38d43b19a0949d685ced, type: 3}
+      propertyPath: pcScene
+      value: MainMenu_PC
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001879615077756892, guid: e70b41a951de38d43b19a0949d685ced, type: 3}
       propertyPath: vrScene
-      value: City
+      value: MainMenu_VR
       objectReference: {fileID: 0}
     - target: {fileID: 6001879615077756892, guid: e70b41a951de38d43b19a0949d685ced, type: 3}
       propertyPath: ipKeypad
