@@ -43,7 +43,7 @@ public class SafeLock : MonoBehaviour
 
     void PlayCorrectSound()
     {
-        audioSource.pitch = truePitch; //Resetter audiosource pitch så at correct sound ikke er påvirket af random pitch
+        audioSource.pitch = truePitch; //Resetter audiosource pitch sÃ¥ at correct sound ikke er pÃ¥virket af random pitch
         audioSource.PlayOneShot(correctCodeSound);
     }
     public void Increase(int index)
