@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e654fb3b7876904db07731f4f75d191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WinSequence
-  victorySound: {fileID: 0}
+  victorySound: {fileID: 8300000, guid: ad6660e32a97ddc41814137ef521e298, type: 3}
   volume: 1
   delayBeforeFade: 5
   fadeOutDuration: 1.5
