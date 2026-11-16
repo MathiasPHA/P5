@@ -37,6 +37,19 @@ public class PhoneMaze : MonoBehaviour
     [Tooltip("Load the next maze in the pool when a wall is hit")]
     [SerializeField] private bool newMazeOnFail = true;
 
+    [Header("Sounds (VR phone only, all optional)")]
+    [Tooltip("Leave empty to use an AudioSource on this object")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip moveSound;
+    [Tooltip("Pressing towards the outer edge")]
+    [SerializeField] private AudioClip bumpSound;
+    [Tooltip("Walking into a hidden wall")]
+    [SerializeField] private AudioClip wallHitSound;
+    [SerializeField] private AudioClip solvedSound;
+    [Tooltip("When the next maze loads after a fail")]
+    [SerializeField] private AudioClip newMazeSound;
+    [SerializeField, Range(0f, 1f)] private float soundVolume = 1f;
+
     [Header("References")]
     [SerializeField] private RectTransform gridArea;
     [Tooltip("Area for the symbols from the Maze Layout")]
@@ -99,6 +112,7 @@ public class PhoneMaze : MonoBehaviour
 
     void Awake()
     {
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
         if (statusText != null) statusText.color = traceColor;
 
         if (IsPhone && HasPool)
@@ -154,6 +168,7 @@ public class PhoneMaze : MonoBehaviour
 
         poolIndex = (poolIndex + 1) % mazePool.Length;
         SetLayout(mazePool[poolIndex]);
+        PlaySound(newMazeSound);
         onMazeChanged.Invoke(mazeLayout);
     }
 
@@ -223,6 +238,7 @@ public class PhoneMaze : MonoBehaviour
         if (!mazeLayout.InBounds(player + dir))
         {
             bump = screenDir * cell * 0.18f;
+            PlaySound(bumpSound);
             return;
         }
 
@@ -232,6 +248,7 @@ public class PhoneMaze : MonoBehaviour
             bump = screenDir * cell * 0.35f;
             hitTimer = hitDuration;
             SetStatus(newMazeOnFail && HasPool ? "CONNECTION LOST – REROUTING" : resetOnWallHit ? "CONNECTION LOST" : "BLOCKED");
+            PlaySound(wallHitSound);
             onWallHit.Invoke();
             return;
         }
@@ -239,14 +256,24 @@ public class PhoneMaze : MonoBehaviour
         player += dir;
 
         if (player == mazeLayout.exit) Solve();
-        else SetStatus("FIND THE EXIT");
+        else
+        {
+            SetStatus("FIND THE EXIT");
+            PlaySound(moveSound);
+        }
     }
 
     private void Solve()
     {
         solved = true;
         SetStatus("ACCESS GRANTED");
+        PlaySound(solvedSound);
         onSolved.Invoke();
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (clip != null && audioSource != null) audioSource.PlayOneShot(clip, soundVolume);
     }
 
     // ───────────────────────── Animation ─────────────────────────
@@ -308,7 +335,6 @@ public class PhoneMaze : MonoBehaviour
     private void RebuildKeepState()
     {
         Rebuild();
-        SetAlert(false);
 
         if (!HasPlayer) return;
         visualPos = CellPos(player);
