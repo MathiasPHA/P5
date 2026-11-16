@@ -5,6 +5,9 @@ using UnityEngine;
 // Holds every value both sides need to agree on.
 // Spawned once by the host from Bootstrap. Lives in DontDestroyOnLoad,
 // so it survives the PC scene switch. Must be a root GameObject.
+//
+// Between test sessions the host calls ResetForNewSession(): every value goes back
+// to its default, so the next game starts clean without restarting the app.
 
 public enum PuzzleId : byte { Captcha, Numpad, Maze, SafeLock }
 public enum PuzzleEvent : byte { Start, Fail, Solved }
@@ -16,6 +19,7 @@ public class SharedState : NetworkBehaviour
     // Default permissions: everyone reads, only the server (host) writes.
     // Clients change values through the Rpc methods below.
     // Every NetworkVariable MUST be initialized here, or spawning fails.
+    // If you add one, also reset it in ResetForNewSession().
     public NetworkVariable<int> Step = new(0);
     public NetworkVariable<int> CaptchaSet = new(0);
     public NetworkVariable<bool> CaptchaSolved = new(false);
@@ -26,10 +30,10 @@ public class SharedState : NetworkBehaviour
     // Fires on BOTH host and client every time a numpad guess is submitted
     public event Action<int, int, int, int> OnNumpadNumbersSet;
 
-    // Fires once on BOTH host and client when the game is won (the milk bottle is grabbed)
+    // Fires once per session on BOTH host and client when the game is won (the milk bottle is grabbed)
     public event Action OnGameWon;
-    
-    // Fires once on BOTH host and client when the game is started
+
+    // Fires once per session on BOTH host and client when the game is started
     public event Action OnGameStarted;
 
 
@@ -44,8 +48,8 @@ public class SharedState : NetworkBehaviour
     public override void OnNetworkDespawn()
     {
         GameWon.OnValueChanged -= HandleGameWonChanged;
-        if (Instance == this) Instance = null;
         GameStarted.OnValueChanged -= HandleGameStartedChanged;
+        if (Instance == this) Instance = null;
     }
 
     // ---------- Step ----------
@@ -75,9 +79,8 @@ public class SharedState : NetworkBehaviour
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
     public void SetCaptchaSolvedRpc(bool value) => CaptchaSolved.Value = value;
 
-
-
     // ---------- Game Started ----------
+
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
     public void SetGameStartedRpc(bool value) => GameStarted.Value = value;
 
@@ -89,7 +92,7 @@ public class SharedState : NetworkBehaviour
     // ---------- Win ----------
 
     // Called by MilkBottleWin on the VR side. Setting the value again later does nothing,
-    // so the win can only happen once.
+    // so the win can only happen once per session (ResetForNewSession clears it).
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
     public void WinGameRpc() => GameWon.Value = true;
 
@@ -99,8 +102,26 @@ public class SharedState : NetworkBehaviour
     }
 
     // ---------- Test logging ----------
+
     public event Action<PuzzleId, PuzzleEvent> OnPuzzleEvent; // raised on the host only
 
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
     public void ReportPuzzleEventRpc(PuzzleId puzzle, PuzzleEvent evt) => OnPuzzleEvent?.Invoke(puzzle, evt);
+
+    // ---------- New session ----------
+
+    // Server only. Called by SessionLogger's "New session" button in the PC main menu.
+    // Both sides are already back in their main menus (the game loads them after the
+    // end cutscene), so no scene is reloaded here: the values just go back to their
+    // defaults before the next game starts.
+    public void ResetForNewSession()
+    {
+        if (!IsServer) return;
+
+        Step.Value = 0;
+        CaptchaSet.Value = 0;
+        CaptchaSolved.Value = false;
+        GameWon.Value = false;      // the change handlers only fire on false -> true,
+        GameStarted.Value = false;  // so resetting doesn't trigger OnGameWon / OnGameStarted
+    }
 }
