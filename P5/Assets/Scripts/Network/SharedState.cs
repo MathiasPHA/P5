@@ -20,6 +20,7 @@ public class SharedState : NetworkBehaviour
     public NetworkVariable<int> CaptchaSet = new(0);
     public NetworkVariable<bool> CaptchaSolved = new(false);
     public NetworkVariable<bool> GameWon = new(false);
+    public NetworkVariable<bool> GameStarted = new(false);
 
 
     // Fires on BOTH host and client every time a numpad guess is submitted
@@ -27,7 +28,9 @@ public class SharedState : NetworkBehaviour
 
     // Fires once on BOTH host and client when the game is won (the milk bottle is grabbed)
     public event Action OnGameWon;
-
+    
+    // Fires once on BOTH host and client when the game is started
+    public event Action OnGameStarted;
 
 
     public override void OnNetworkSpawn()
@@ -35,12 +38,14 @@ public class SharedState : NetworkBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         GameWon.OnValueChanged += HandleGameWonChanged;
+        GameStarted.OnValueChanged += HandleGameStartedChanged;
     }
 
     public override void OnNetworkDespawn()
     {
         GameWon.OnValueChanged -= HandleGameWonChanged;
         if (Instance == this) Instance = null;
+        GameStarted.OnValueChanged -= HandleGameStartedChanged;
     }
 
     // ---------- Step ----------
@@ -69,6 +74,17 @@ public class SharedState : NetworkBehaviour
 
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
     public void SetCaptchaSolvedRpc(bool value) => CaptchaSolved.Value = value;
+
+
+
+    // ---------- Game Started ----------
+    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+    public void SetGameStartedRpc(bool value) => GameStarted.Value = value;
+
+    void HandleGameStartedChanged(bool previous, bool current)
+    {
+        if (current && !previous) OnGameStarted?.Invoke();
+    }
 
     // ---------- Win ----------
 
