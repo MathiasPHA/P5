@@ -834,6 +834,7 @@ GameObject:
   - component: {fileID: 978974540862058296}
   - component: {fileID: 1879626882770284759}
   - component: {fileID: 1879626882770284760}
+  - component: {fileID: 1879626882770284761}
   m_Layer: 0
   m_Name: Cutscene
   m_TagString: Untagged
@@ -1235,8 +1236,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af1fbcdc40234304bc4b3c3a06a1f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
-  bootScene: City
+  nextScene: City
   startDelay: 0
+--- !u!114 &1879626882770284761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393375486531484847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67774a889811894a928326ff340a34b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!114 &1958434309414906936
 MonoBehaviour:
   m_ObjectHideFlags: 0

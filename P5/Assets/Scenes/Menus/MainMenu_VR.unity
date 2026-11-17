@@ -504,7 +504,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: TheFinalDropOfMilk
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9172171643275150111, guid: cd088765b1b670040b8250e7ab961ee6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

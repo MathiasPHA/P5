@@ -8998,7 +8998,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 11.116667
-    functionName: LoadBoot
+    functionName: StartGame
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

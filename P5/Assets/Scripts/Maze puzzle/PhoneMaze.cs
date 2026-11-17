@@ -61,7 +61,6 @@ public class PhoneMaze : MonoBehaviour
     [SerializeField] private TMP_Text statusText;
 
     [Header("Audio")]
-    [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip clickSound;
     [SerializeField] private float minPitchShift = 0.9f;
     [SerializeField] private float maxPitchShift = 1.1f;

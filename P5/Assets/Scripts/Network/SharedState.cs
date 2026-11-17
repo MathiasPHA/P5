@@ -33,7 +33,7 @@ public class SharedState : NetworkBehaviour
     // Fires once per session on BOTH host and client when the game is won (the milk bottle is grabbed)
     public event Action OnGameWon;
 
-    // Fires once per session on BOTH host and client when the game is started
+    // Fires on BOTH host and client every time MainMenu.StartGame is called
     public event Action OnGameStarted;
 
 
@@ -42,13 +42,11 @@ public class SharedState : NetworkBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         GameWon.OnValueChanged += HandleGameWonChanged;
-        GameStarted.OnValueChanged += HandleGameStartedChanged;
     }
 
     public override void OnNetworkDespawn()
     {
         GameWon.OnValueChanged -= HandleGameWonChanged;
-        GameStarted.OnValueChanged -= HandleGameStartedChanged;
         if (Instance == this) Instance = null;
     }
 
@@ -81,12 +79,23 @@ public class SharedState : NetworkBehaviour
 
     // ---------- Game Started ----------
 
+    // Called by MainMenu.StartGame (in the menus, and anywhere else MainMenu is used to move
+    // both players on together). Every call with true fires OnGameStarted on BOTH sides
+    // through an RPC. RPCs are always delivered, unlike a NetworkVariable that flips
+    // true -> false within one network tick (the headset then only sees "false").
+    // GameStarted itself is just a status flag now; nothing waits for it to change.
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
-    public void SetGameStartedRpc(bool value) => GameStarted.Value = value;
-
-    void HandleGameStartedChanged(bool previous, bool current)
+    public void SetGameStartedRpc(bool value)
     {
-        if (current && !previous) OnGameStarted?.Invoke();
+        GameStarted.Value = value;
+        if (value) GameStartedEventRpc();
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    void GameStartedEventRpc()
+    {
+        Debug.Log($"[SharedState] Game start received (server: {IsServer})");
+        OnGameStarted?.Invoke();
     }
 
     // ---------- Win ----------
@@ -94,7 +103,11 @@ public class SharedState : NetworkBehaviour
     // Called by MilkBottleWin on the VR side. Setting the value again later does nothing,
     // so the win can only happen once per session (ResetForNewSession clears it).
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
-    public void WinGameRpc() => GameWon.Value = true;
+    public void WinGameRpc()
+    {
+        GameWon.Value = true;
+        GameStarted.Value = false;
+    }
 
     void HandleGameWonChanged(bool previous, bool current)
     {
@@ -121,7 +134,7 @@ public class SharedState : NetworkBehaviour
         Step.Value = 0;
         CaptchaSet.Value = 0;
         CaptchaSolved.Value = false;
-        GameWon.Value = false;      // the change handlers only fire on false -> true,
-        GameStarted.Value = false;  // so resetting doesn't trigger OnGameWon / OnGameStarted
+        GameWon.Value = false;      // the change handler only fires on false -> true,
+        GameStarted.Value = false;  // so resetting doesn't trigger OnGameWon
     }
 }
