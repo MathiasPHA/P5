@@ -60,6 +60,11 @@ public class PhoneMaze : MonoBehaviour
     [Tooltip("Optional status messages")]
     [SerializeField] private TMP_Text statusText;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip clickSound;
+    [SerializeField] private float minPitchShift = 0.9f;
+    [SerializeField] private float maxPitchShift = 1.1f;
+
     [Header("Colours")]
     [SerializeField] private Color boardColor = new Color(0.02f, 0.13f, 0.04f);
     [SerializeField] private Color traceColor = new Color(0.3f, 0.95f, 0.35f);
@@ -213,9 +218,17 @@ public class PhoneMaze : MonoBehaviour
 #endif
     }
 
+    private void PlayClickSound() //Metode til at spille lyd
+    {
+        audioSource.pitch = UnityEngine.Random.Range(minPitchShift, maxPitchShift);
+        audioSource.PlayOneShot(clickSound);
+    }
+
     private void Move(Vector2Int dir)
     {
         if (!CanMove) return;
+
+        PlayClickSound(); //Spiller et click med random pitch når en knap bliver trykket på
 
         Vector2 screenDir = new Vector2(dir.x, -dir.y);
         shipRt.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(-screenDir.x, screenDir.y) * Mathf.Rad2Deg);

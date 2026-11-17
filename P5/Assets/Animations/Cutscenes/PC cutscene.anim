@@ -8686,7 +8686,7 @@ AnimationClip:
     intParameter: 3
     messageOptions: 0
   - time: 13.366667
-    functionName: LoadBoot
+    functionName: StartGame
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -894,7 +894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af1fbcdc40234304bc4b3c3a06a1f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
-  bootScene: TruePcScreen
+  bootScene: MainMenu_PC
   startDelay: 0
 --- !u!222 &1119855646348088805
 CanvasRenderer:

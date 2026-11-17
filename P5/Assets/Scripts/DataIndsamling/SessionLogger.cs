@@ -7,19 +7,24 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
-// PC (host) only: records the test data for one play session.
+// PC (host) only: records the test data for one play session at a time.
 // Added at runtime to the NetworkManager GameObject by Bootstrap, so it survives scene loads.
 //
 // Writes two CSV files to Documents/EscapeRoomLogs:
 //   events_<session>.csv  one line per event, written immediately (survives a crash)
 //   sessions.csv          one row per session, appended when the session ends
 //
-// The facilitator enters pair ID + condition and presses "Ready".
-// The clock starts when the main menu's Start button is pressed (see SessionStartButton),
-// which is only possible once the VR player is connected.
-// The session ends when the game is won (the milk bottle in the safe is grabbed,
-// see MilkBottleWin / SharedState.OnGameWon), on F10, or when the game quits.
+// Flow:
+//   1. Setup panel: the facilitator enters pair ID + condition and presses "Ready".
+//   2. The clock starts when the main menu's Start button is pressed (see SessionStartButton),
+//      which is only possible once the VR player is connected.
+//   3. The clock stops and the data is saved the moment the milk bottle is grabbed
+//      (see MilkBottleWin / SharedState.OnGameWon). F10 ends a session early.
+//   4. The end cutscene plays and the game returns to the main menu by itself.
+//      There the summary is shown, with a "New session" button that resets the
+//      shared state and goes back to step 1. No app restart needed.
 public class SessionLogger : MonoBehaviour
 {
     static readonly CultureInfo Inv = CultureInfo.InvariantCulture; // "12.5", never the Danish "12,5"
@@ -39,7 +44,7 @@ public class SessionLogger : MonoBehaviour
     string pairId = "";
     int conditionIndex;
 
-    string sessionId, folder, eventsPath, doneMessage;
+    string sessionId, folder, eventsPath, summary;
     double t0, lastSolveAt;
     bool subscribed;
     readonly Dictionary<PuzzleId, PuzzleStats> stats = new Dictionary<PuzzleId, PuzzleStats>();
@@ -72,13 +77,21 @@ public class SessionLogger : MonoBehaviour
         }
     }
 
-    // EventSystems switched off while the setup panel is showing
+    // The PC is in its main menu (the scene Boot loaded)
+    static bool InMainMenu =>
+        !string.IsNullOrEmpty(Bootstrap.MenuScene) && SceneManager.GetActiveScene().name == Bootstrap.MenuScene;
+
+    // Setup panel, or the summary panel once back in the main menu
+    bool PanelOpen => phase == Phase.Setup || (phase == Phase.Done && InMainMenu);
+
+    // EventSystems switched off while a panel is showing
     readonly List<EventSystem> blockedEventSystems = new List<EventSystem>();
 
-    // The setup panel is drawn with OnGUI, which does not stop clicks from reaching
-    // the game's own UI underneath. So while it is open, the scene's EventSystem is
+    // The panels are drawn with OnGUI, which does not stop clicks from reaching
+    // the game's own UI underneath. So while one is open, the scene's EventSystem is
     // switched off: no button, slider or keyboard navigation in the game UI responds.
-    // Called every frame during setup, so a newly loaded scene's EventSystem is caught too.
+    // (This also stops the main menu's Start button from starting an unlogged game.)
+    // Called every frame while a panel is open, so a newly loaded scene's EventSystem is caught too.
     void BlockSceneUI()
     {
         var es = EventSystem.current; // null once it has been switched off
@@ -96,7 +109,7 @@ public class SessionLogger : MonoBehaviour
 
     void Update()
     {
-        if (phase == Phase.Setup) BlockSceneUI();
+        if (PanelOpen) BlockSceneUI();
 
         // SharedState may not exist yet on the first frames
         if (!subscribed && SharedState.Instance != null)
@@ -179,7 +192,7 @@ public class SessionLogger : MonoBehaviour
     }
 
     // The milk bottle was grabbed: this stops the clock, at the moment of the grab
-    // (not after the victory sound and fade)
+    // (not after the cutscene). The summary waits until the game is back in the main menu.
     void OnGameWon() => Finish(true);
 
     void Finish(bool completed)
@@ -199,6 +212,11 @@ public class SessionLogger : MonoBehaviour
            .Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm", Inv)).Append(',')
            .Append(completed ? 1 : 0).Append(',').Append(Sec(total));
 
+        // Human-readable version for the summary panel
+        var text = new StringBuilder();
+        text.Append($"Pair {pairId}, {Condition}: {(completed ? "completed" : "ended early")}\n");
+        text.Append($"Total time: {Sec(total)} s\n\n");
+
         foreach (var p in Puzzles)
         {
             var s = stats[p];
@@ -209,6 +227,9 @@ public class SessionLogger : MonoBehaviour
                .Append(',').Append(s.fails)
                .Append(',').Append(s.fails + (s.Solved ? 1 : 0))
                .Append(',').Append(s.Solved ? Sec(s.solvedAt) : "");
+
+            text.Append($"{p}: {(s.Solved ? Sec(s.solvedAt - s.startedAt) + " s" : "not solved")}, " +
+                        $"{s.fails} {(s.fails == 1 ? "fail" : "fails")}\n");
         }
 
         string path = Path.Combine(folder, "sessions.csv");
@@ -224,8 +245,24 @@ public class SessionLogger : MonoBehaviour
             File.WriteAllText(path, header + "\n" + row + "\n");
         }
 
-        doneMessage = $"Session {(completed ? "complete" : "ended early")}: {Sec(total)} s\nSaved to {path}";
-        Debug.Log($"[SessionLogger] {doneMessage.Replace('\n', ' ')}");
+        text.Append($"\nSaved to {path}");
+        summary = text.ToString();
+        Debug.Log($"[SessionLogger] Session {sessionId} {(completed ? "complete" : "ended early")}: {Sec(total)} s, saved to {path}");
+    }
+
+    // Back to the setup panel without restarting the app.
+    // Both sides are already in their main menus, so only the shared values are reset.
+    void NewSession()
+    {
+        if (phase != Phase.Done) return;
+
+        if (SharedState.Instance != null) SharedState.Instance.ResetForNewSession();
+        else Debug.LogWarning("[SessionLogger] SharedState missing: shared values were not reset");
+
+        phase = Phase.Setup; // the menu UI stays blocked until Ready is pressed
+        pairId = "";
+        summary = null;
+        Debug.Log("[SessionLogger] New session: waiting for setup");
     }
 
     void WriteEvent(double t, string puzzle, string evt, int fails)
@@ -290,9 +327,19 @@ public class SessionLogger : MonoBehaviour
                 ? "Ready. Clock starts when Start is pressed."
                 : "Ready. Waiting for VR player before Start can be pressed.");
         }
-        else if (phase == Phase.Done)
+        else if (phase == Phase.Done && InMainMenu)
         {
-            GUI.Box(new Rect(16, h - 76, 620, 60), doneMessage);
+            // Nothing is drawn during the cutscene; the summary appears once back in the menu
+            GUI.Box(new Rect(0, 0, w, h), GUIContent.none);
+
+            GUILayout.BeginArea(new Rect(w / 2f - 260f, h / 2f - 180f, 520f, 360f), GUI.skin.box);
+            GUILayout.Label("Last session");
+            GUILayout.Space(8);
+            GUILayout.Label(summary);
+            GUILayout.FlexibleSpace();
+            if (GUILayout.Button("New session", GUILayout.Height(40)))
+                NewSession();
+            GUILayout.EndArea();
         }
     }
 }
