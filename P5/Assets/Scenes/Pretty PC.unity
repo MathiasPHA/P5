@@ -529,63 +529,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 337328984288826346, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1403853379409369176, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1537002712197625396, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 1537002712197625396, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 1537002712197625396, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1936531082400410172, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_Name
       value: PCScreenCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 2147411557202449430, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 2147411557202449430, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 2147411557202449430, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2362535406531131280, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2546389551039300160, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2546389551039300160, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00066171604
+      objectReference: {fileID: 0}
     - target: {fileID: 3217947401919658148, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3334900996252612809, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3334900996252612809, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3334900996252612809, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4199858945271930182, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
       propertyPath: holdText
@@ -707,6 +675,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8184025070130892977, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885718374962880536, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+      propertyPath: m_Name
+      value: Stars
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -714,7 +690,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
 --- !u!114 &4441246324339481685 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 167690533545472653, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
+  m_CorrespondingSourceObject: {fileID: 560023619316494211, guid: e7c74aa99827e864097655f4d6d47d13, type: 3}
   m_PrefabInstance: {fileID: 4441246324339481684}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

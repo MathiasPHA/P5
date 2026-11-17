@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 801d3e1facfb62d4287e319c05960c18
+guid: 30b16f545f122584c910caad460280ac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 62814076649031918
-    second: n3t-hac3r_0
+      213: -7886882407298571932
+    second: hacker-man_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: n3t-hac3r_0
+      name: hacker-man_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ee84f85e1192fd000800000000000000
-      internalID: 62814076649031918
+      spriteID: 461e0bfac3a2c8290800000000000000
+      internalID: -7886882407298571932
       vertices: []
       indices: 
       edges: []
