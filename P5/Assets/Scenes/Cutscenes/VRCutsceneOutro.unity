@@ -119,6 +119,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &155131188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 155131190}
+  - component: {fileID: 155131189}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &155131189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155131188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0099d4f7ffc2b50458a475a943eb75fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlignPlayerOnLoad
+  xrOrigin: {fileID: 2092340173}
+  spawnPoint: {fileID: 155131190}
+--- !u!4 &155131190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155131188}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 922, y: 0.00002, z: -980}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &327358176
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +757,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40edecfb30b6fd046988f95dc68eb7bc, type: 3}
+--- !u!114 &2092340173 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1210278837235322866, guid: 40edecfb30b6fd046988f95dc68eb7bc, type: 3}
+  m_PrefabInstance: {fileID: 2092340172}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.CoreUtils::Unity.XR.CoreUtils.XROrigin
 --- !u!222 &392899830768263
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1236,7 +1293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af1fbcdc40234304bc4b3c3a06a1f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
-  bootScene: MainMenu_VR
+  nextScene: MainMenu_VR
   startDelay: 0
 --- !u!114 &1879626882770284761
 MonoBehaviour:
@@ -2981,3 +3038,4 @@ SceneRoots:
   - {fileID: 327358180}
   - {fileID: 978974540862058296}
   - {fileID: 2092340172}
+  - {fileID: 155131190}
