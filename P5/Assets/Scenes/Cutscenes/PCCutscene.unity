@@ -722,7 +722,7 @@ PrefabInstance:
     - target: {fileID: 4893679628154183670, guid: 361783ed55b426843a3132934579abbb, type: 3}
       propertyPath: 'sounds.Array.data[4].clips.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: c23b22ae37ccacf46ac4044bc4550827, type: 3}
+      objectReference: {fileID: 8300000, guid: badb26112e911df4a88f232fc055b35f, type: 3}
     - target: {fileID: 6047364087815719220, guid: 361783ed55b426843a3132934579abbb, type: 3}
       propertyPath: m_SortingOrder
       value: 2
