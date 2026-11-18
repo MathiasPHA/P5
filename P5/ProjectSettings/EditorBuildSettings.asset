@@ -8,28 +8,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Boot.unity
     guid: eabb382898c03e844b10497d646a2b96
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menus/MainMenu_PC.unity
     guid: 157ae8e7d2dd04132bc97e521b0fe9e6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Cutscenes/PCCutscene.unity
     guid: 516ddf4ec6823a34688918295c29a8a8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Menus/MainMenu_VR.unity
     guid: ae3814cd705bd4047b278b65be3dedbc
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Cutscenes/VRCutscene.unity
     guid: 0de2d30d2e3872e4ebf9273d80904e13
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/City.unity
     guid: 4d39e6d76f5579d4f8eaba77d059611a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Playable Scenes/TruePcScreen.unity
     guid: efebaa5a173c77244b0d07b1346813a1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Cutscenes/PCCutsceneOutro.unity
     guid: a2d874c0ad8b05f4f93d1b6b82519c81
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Cutscenes/VRCutsceneOutro.unity
     guid: 954f647bf8a0afe46bd135096fc1583b
   - enabled: 0

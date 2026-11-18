@@ -8678,6 +8678,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 2
     messageOptions: 0
+  - time: 7
+    functionName: PlaySoundIndex
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 4
+    messageOptions: 0
   - time: 11.2
     functionName: PlaySoundIndex
     data: 

@@ -504,6 +504,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TheFinalDropOfMilk
       objectReference: {fileID: 0}
+    - target: {fileID: 1170550526444268355, guid: cd088765b1b670040b8250e7ab961ee6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.030666364
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170550526444268355, guid: cd088765b1b670040b8250e7ab961ee6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170550526444268355, guid: cd088765b1b670040b8250e7ab961ee6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00257
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9172171643275150111, guid: cd088765b1b670040b8250e7ab961ee6, type: 3}
     m_RemovedGameObjects: []
@@ -822,7 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af1fbcdc40234304bc4b3c3a06a1f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
-  bootScene: VRCutscene
+  nextScene: VRCutscene
   startDelay: 0
 --- !u!4 &914972173
 Transform:
@@ -839,6 +851,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &918685432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 918685433}
+  - component: {fileID: 918685434}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &918685433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918685432}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &918685434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918685432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0099d4f7ffc2b50458a475a943eb75fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlignPlayerOnLoad
+  xrOrigin: {fileID: 1959288436}
+  spawnPoint: {fileID: 918685433}
 --- !u!1 &984120128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,6 +1407,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40edecfb30b6fd046988f95dc68eb7bc, type: 3}
+--- !u!114 &1959288436 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1210278837235322866, guid: 40edecfb30b6fd046988f95dc68eb7bc, type: 3}
+  m_PrefabInstance: {fileID: 1959288435}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.CoreUtils::Unity.XR.CoreUtils.XROrigin
 --- !u!1001 &1984979422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1439,3 +1508,4 @@ SceneRoots:
   - {fileID: 1673816409}
   - {fileID: 1690218555}
   - {fileID: 589056558}
+  - {fileID: 918685433}
