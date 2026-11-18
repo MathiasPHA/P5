@@ -597,9 +597,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2010515792707315940, guid: b17b6dcc372b6e54b9ea9e425274be5f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3329539112830770427, guid: b17b6dcc372b6e54b9ea9e425274be5f, type: 3}
       propertyPath: m_Name
       value: VRConnect
+      objectReference: {fileID: 0}
+    - target: {fileID: 3340674685753880387, guid: b17b6dcc372b6e54b9ea9e425274be5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308047719026833701, guid: b17b6dcc372b6e54b9ea9e425274be5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6415462036465218991, guid: b17b6dcc372b6e54b9ea9e425274be5f, type: 3}
       propertyPath: m_LocalPosition.x

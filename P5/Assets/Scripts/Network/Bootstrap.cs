@@ -31,6 +31,10 @@ public class Bootstrap : MonoBehaviour
     // PC: the address(es) the host is reachable on, for showing on screen if needed
     public static string HostInfo { get; private set; } = "";
 
+    // The scene Boot loads on this side (the main menu). SessionLogger shows the
+    // summary and the New session button when the PC is back in this scene.
+    public static string MenuScene { get; private set; } = "";
+
     const string LastIpKey = "LastHostIp";
 
     NetworkManager nm;
@@ -151,7 +155,10 @@ public class Bootstrap : MonoBehaviour
         if (!Application.CanStreamedLevelBeLoaded(pcScene))
             Debug.LogError($"[Bootstrap] Scene '{pcScene}' can't be loaded: not in the build or misspelled.");
         else
+        {
+            MenuScene = pcScene;
             SceneManager.LoadScene(pcScene);
+        }
     }
 
     // ---------- VR ----------
@@ -203,6 +210,7 @@ public class Bootstrap : MonoBehaviour
 
         SetStatus($"Connected! Loading {vrScene}...");
         Debug.Log($"[Bootstrap] Loading VR scene '{vrScene}'");
+        MenuScene = vrScene;
         SceneManager.LoadScene(vrScene);
     }
 

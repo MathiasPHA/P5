@@ -695,6 +695,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cutscene
       objectReference: {fileID: 0}
+    - target: {fileID: 4893679628154183670, guid: 361783ed55b426843a3132934579abbb, type: 3}
+      propertyPath: sounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893679628154183670, guid: 361783ed55b426843a3132934579abbb, type: 3}
+      propertyPath: sounds.Array.data[4].name
+      value: Crawling
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893679628154183670, guid: 361783ed55b426843a3132934579abbb, type: 3}
+      propertyPath: sounds.Array.data[4].volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893679628154183670, guid: 361783ed55b426843a3132934579abbb, type: 3}
+      propertyPath: sounds.Array.data[4].pitchRange.x
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893679628154183670, guid: 361783ed55b426843a3132934579abbb, type: 3}
+      propertyPath: sounds.Array.data[4].pitchRange.y
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893679628154183670, guid: 361783ed55b426843a3132934579abbb, type: 3}
+      propertyPath: sounds.Array.data[4].clips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893679628154183670, guid: 361783ed55b426843a3132934579abbb, type: 3}
+      propertyPath: 'sounds.Array.data[4].clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: badb26112e911df4a88f232fc055b35f, type: 3}
     - target: {fileID: 6047364087815719220, guid: 361783ed55b426843a3132934579abbb, type: 3}
       propertyPath: m_SortingOrder
       value: 2
@@ -702,30 +730,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4403271096474140257, guid: 361783ed55b426843a3132934579abbb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 829271119028764480}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 361783ed55b426843a3132934579abbb, type: 3}
---- !u!1 &829271119028764479 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4403271096474140257, guid: 361783ed55b426843a3132934579abbb, type: 3}
-  m_PrefabInstance: {fileID: 829271119028764478}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &829271119028764480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 829271119028764479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0af1fbcdc40234304bc4b3c3a06a1f27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MainMenu
-  bootScene: TruePcScreen
-  startDelay: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

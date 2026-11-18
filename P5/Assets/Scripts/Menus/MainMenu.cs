@@ -3,9 +3,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 // Start screen actions. Hook Start/Quit buttons (UI or VR) to these methods.
+// Each copy's "Next Scene" is set in the Inspector (e.g. the PC game scene on the PC,
+// VRCutscene on the VR side). Can also be used in later scenes to move both players on together.
+// StartGame() on either side moves BOTH: the button only tells the server, and every
+// MainMenu loads its scene when SharedState.OnGameStarted fires (sent as an RPC to both sides).
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private string bootScene = "Boot";
+    [Tooltip("The scene this side loads when the game starts")]
+    [UnityEngine.Serialization.FormerlySerializedAs("bootScene")] // keeps the value already set in the Inspector
+    [SerializeField] private string nextScene = "Boot";
     [Tooltip("Small pause before loading, e.g. so a VR button press animation can finish")]
     [SerializeField] private float startDelay = 0.3f;
 
@@ -22,6 +28,7 @@ public class MainMenu : MonoBehaviour
             Unsubscribe();
             state.OnGameStarted += StartGameRemote;
             subscribedTo = state;
+            Debug.Log($"[MainMenu] Listening for game start (next scene '{nextScene}')");
         }
     }
 
@@ -34,7 +41,7 @@ public class MainMenu : MonoBehaviour
     }
 
     // Button hook. Only tells the server; the actual load happens in
-    // StartGameRemote, which runs on BOTH players when GameStarted flips to true.
+    // StartGameRemote, which runs on BOTH players when OnGameStarted fires.
     public void StartGame()
     {
         if (starting) return;
@@ -43,6 +50,7 @@ public class MainMenu : MonoBehaviour
             Debug.LogWarning("[MainMenu] SharedState not spawned yet, can't start.");
             return;
         }
+        Debug.Log("[MainMenu] Start pressed, telling the server");
         SharedState.Instance.SetGameStartedRpc(true);
     }
 
@@ -51,7 +59,8 @@ public class MainMenu : MonoBehaviour
     {
         if (starting) return;   // ignore double triggers
         starting = true;
-        StartCoroutine(LoadBoot());
+        Debug.Log($"[MainMenu] Game started, loading '{nextScene}'");
+        StartCoroutine(LoadNext());
     }
 
     public void QuitGame()
@@ -63,19 +72,17 @@ public class MainMenu : MonoBehaviour
 #endif
     }
 
-    private IEnumerator LoadBoot()
+    private IEnumerator LoadNext()
     {
         if (startDelay > 0f) yield return new WaitForSecondsRealtime(startDelay);
 
-        if (!Application.CanStreamedLevelBeLoaded(bootScene))
+        if (!Application.CanStreamedLevelBeLoaded(nextScene))
         {
-            Debug.LogError($"[MainMenu] Scene '{bootScene}' can't be loaded: not in the build or misspelled.");
+            Debug.LogError($"[MainMenu] Scene '{nextScene}' can't be loaded: not in the build or misspelled.");
             starting = false;
             yield break;
         }
 
-        // Reset so a later return to the menu can start again (false->true must happen to fire the event)
-        SharedState.Instance?.SetGameStartedRpc(false);
-        SceneManager.LoadScene(bootScene);
+        SceneManager.LoadScene(nextScene);
     }
 }

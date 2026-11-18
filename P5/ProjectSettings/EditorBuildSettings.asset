@@ -27,6 +27,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Playable Scenes/TruePcScreen.unity
     guid: efebaa5a173c77244b0d07b1346813a1
   - enabled: 0
+    path: Assets/Scenes/Cutscenes/PCCutsceneOutro.unity
+    guid: a2d874c0ad8b05f4f93d1b6b82519c81
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/VRCutsceneOutro.unity
+    guid: 954f647bf8a0afe46bd135096fc1583b
+  - enabled: 0
     path: Assets/Scenes/Playable Scenes/TrueAppartment.unity
     guid: c4817b287c278894fbdfff8936bc08bf
   - enabled: 0
