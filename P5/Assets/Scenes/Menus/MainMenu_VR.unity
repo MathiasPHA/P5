@@ -504,6 +504,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TheFinalDropOfMilk
       objectReference: {fileID: 0}
+    - target: {fileID: 1170550526444268355, guid: cd088765b1b670040b8250e7ab961ee6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.030666364
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170550526444268355, guid: cd088765b1b670040b8250e7ab961ee6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170550526444268355, guid: cd088765b1b670040b8250e7ab961ee6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00257
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9172171643275150111, guid: cd088765b1b670040b8250e7ab961ee6, type: 3}
     m_RemovedGameObjects: []
