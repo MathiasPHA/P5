@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wrong
+      name: mastermind_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 0
-        width: 1000
-        height: 1000
+        x: 17
+        y: 28
+        width: 149
+        height: 149
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,13 +135,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: almost
+      name: mastermind_1
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 0
-        width: 1000
-        height: 1000
+        x: 286
+        y: 22
+        width: 157
+        height: 157
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2363823fbe0d229489d4f9c49dfc1286
-      internalID: 775773224
+      spriteID: 2b3a4d1f1ae123f40b6b4b21a676e3d2
+      internalID: 323577337
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: correct
+      name: mastermind_2
       rect:
         serializedVersion: 2
-        x: 2000
-        y: 0
-        width: 1000
-        height: 1000
+        x: 538
+        y: 24
+        width: 158
+        height: 158
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,8 +172,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b385fa46f1f0d342832a1ac7d9cbc10
-      internalID: -1006446732
+      spriteID: 8fd39110acec4244588adb679f0dab7d
+      internalID: -1013401190
       vertices: []
       indices: 
       edges: []
@@ -182,7 +182,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3c7c696acb1fd7f43a44593f5cc48772
+    spriteID: e8a33eefc1fe31b48889f915e2fe0a67
     internalID: 0
     vertices: []
     indices: 
@@ -192,11 +192,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":1000.0,"y":1000.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      almost: 775773224
-      correct: -1006446732
-      wrong: 3914626342779536248
+      mastermind_0: 3914626342779536248
+      mastermind_1: 323577337
+      mastermind_2: -1013401190
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
