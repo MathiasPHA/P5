@@ -88,6 +88,7 @@ public class SharedState : NetworkBehaviour
     public void SetGameStartedRpc(bool value)
     {
         GameStarted.Value = value;
+        GameWon.Value = false;  // reset the win for the next game
         if (value) GameStartedEventRpc();
     }
 

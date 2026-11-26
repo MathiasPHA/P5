@@ -11,6 +11,9 @@ using UnityEngine.UI;
 //   victory sound -> wait -> fade to black -> load the outro scene -> fade back in.
 //   PC (host):   black overlay on top of the screen.
 //   VR (client): black panel that stays right in front of the headset camera.
+//
+// This object persists between games, so `playing` is reset when the sequence finishes
+// and when a new game starts (SharedState.OnGameStarted). Otherwise the second win is ignored.
 [RequireComponent(typeof(SharedState))]
 public class WinSequence : MonoBehaviour
 {
@@ -30,7 +33,9 @@ public class WinSequence : MonoBehaviour
     [SerializeField] string vrOutroScene = "Outro";
 
     SharedState state;
+    AudioSource source;
     bool playing;
+    Coroutine running;
 
     GameObject fadeRoot;
     Image fadeImage;
@@ -38,8 +43,17 @@ public class WinSequence : MonoBehaviour
 
     void Awake() => state = GetComponent<SharedState>();
 
-    void OnEnable() => state.OnGameWon += Play;
-    void OnDisable() => state.OnGameWon -= Play;
+    void OnEnable()
+    {
+        state.OnGameWon += Play;
+        state.OnGameStarted += ResetForNextGame;
+    }
+
+    void OnDisable()
+    {
+        state.OnGameWon -= Play;
+        state.OnGameStarted -= ResetForNextGame;
+    }
 
     void OnDestroy()
     {
@@ -50,7 +64,16 @@ public class WinSequence : MonoBehaviour
     {
         if (playing) return;
         playing = true;
-        StartCoroutine(Run());
+        running = StartCoroutine(Run());
+    }
+
+    // New game started: make sure the next win can play, even if the last sequence was cut off
+    void ResetForNextGame()
+    {
+        if (running != null) StopCoroutine(running);
+        running = null;
+        CleanUpFade();
+        playing = false;
     }
 
     IEnumerator Run()
@@ -62,8 +85,9 @@ public class WinSequence : MonoBehaviour
 
         if (victorySound != null)
         {
-            // 2D, and on this object, so it keeps playing through the scene change
-            var source = gameObject.AddComponent<AudioSource>();
+            // 2D, and on this object, so it keeps playing through the scene change.
+            // Reused between games instead of adding a new AudioSource every win.
+            if (source == null) source = gameObject.AddComponent<AudioSource>();
             source.spatialBlend = 0f;
             source.PlayOneShot(victorySound, volume);
         }
@@ -86,9 +110,9 @@ public class WinSequence : MonoBehaviour
         yield return null; // one frame for the new scene's camera to start
         yield return Fade(1f, 0f, fadeInDuration);
 
-        Destroy(fadeRoot);
-        fadeRoot = null;
-        followCamera = false;
+        CleanUpFade();
+        running = null;
+        playing = false; // allow the next win
     }
 
     // ───────────────────────── Fade ─────────────────────────
@@ -103,10 +127,23 @@ public class WinSequence : MonoBehaviour
         SetAlpha(to);
     }
 
-    void SetAlpha(float a) => fadeImage.color = new Color(0f, 0f, 0f, a);
+    void SetAlpha(float a)
+    {
+        if (fadeImage != null) fadeImage.color = new Color(0f, 0f, 0f, a);
+    }
+
+    void CleanUpFade()
+    {
+        if (fadeRoot != null) Destroy(fadeRoot);
+        fadeRoot = null;
+        fadeImage = null;
+        followCamera = false;
+    }
 
     void BuildFade(bool isPC)
     {
+        CleanUpFade(); // never stack two fade canvases
+
         fadeRoot = new GameObject("WinFade", typeof(Canvas));
         DontDestroyOnLoad(fadeRoot); // stays black while the scenes swap
 

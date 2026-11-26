@@ -14231,38 +14231,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.06693648, y: 3.1588547, z: 1.4106827}
   m_Center: {x: 0.00000035576522, y: 1.5794274, z: 0.70534134}
---- !u!1 &7437812013130673021
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1736332980343846035}
-  m_Layer: 0
-  m_Name: Tape
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1736332980343846035
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7437812013130673021}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.70675564, y: 0.022283012, z: 0.022283008, w: 0.7067556}
-  m_LocalPosition: {x: 0, y: 0.002, z: 0.0054}
-  m_LocalScale: {x: 0.11, y: 0.09, z: 0.09}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2084152093117180771}
-  m_Father: {fileID: 5317860930165885980}
-  m_LocalEulerAnglesHint: {x: 86.388, y: 90, z: 90}
 --- !u!1 &7448676763402484181
 GameObject:
   m_ObjectHideFlags: 0
@@ -15174,17 +15142,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7533750704416657513}
-  m_LocalRotation: {x: 0, y: 0.9994433, z: 0, w: 0.033364724}
-  m_LocalPosition: {x: 0, y: 0, z: -0.028}
-  m_LocalScale: {x: 6.31842, y: 7.715773, z: 7.7084274}
+  m_LocalRotation: {x: 0.0013100802, y: 0.7071056, z: 0.7071056, w: 0.00131011}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0053}
+  m_LocalScale: {x: 0.6944642, y: 0.6944195, z: 0.69444424}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1719395268774152636}
-  m_Father: {fileID: 1736332980343846035}
+  m_Father: {fileID: 5317860930165885980}
   m_LocalEulerAnglesHint: {x: 0, y: 176.176, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.001, y: -0.001}
+  m_AnchoredPosition: {x: 0, y: 0.0026}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5962753486219231058
@@ -19484,6 +19452,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4702850353068308276}
     m_Modifications:
+    - target: {fileID: 638511407886710132, guid: eae0bee4ec8bdbc4487808c1dd7ed0e3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -772071104987965657, guid: 61991f2d7a44f0548b3b6197e181c5c7, type: 2}
     - target: {fileID: 6137721739580907564, guid: eae0bee4ec8bdbc4487808c1dd7ed0e3, type: 3}
       propertyPath: m_text
       value: The Biggest Milk
@@ -19701,6 +19673,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3789131557937840619}
     m_Modifications:
+    - target: {fileID: 638511407886710132, guid: eae0bee4ec8bdbc4487808c1dd7ed0e3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -772071104987965657, guid: 61991f2d7a44f0548b3b6197e181c5c7, type: 2}
     - target: {fileID: 6199773318810139332, guid: eae0bee4ec8bdbc4487808c1dd7ed0e3, type: 3}
       propertyPath: m_Name
       value: 1. Gen Plaque
@@ -20667,6 +20643,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5025546610476565893}
     m_Modifications:
+    - target: {fileID: 638511407886710132, guid: eae0bee4ec8bdbc4487808c1dd7ed0e3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -772071104987965657, guid: 61991f2d7a44f0548b3b6197e181c5c7, type: 2}
     - target: {fileID: 6137721739580907564, guid: eae0bee4ec8bdbc4487808c1dd7ed0e3, type: 3}
       propertyPath: m_text
       value: '2. Generation of Milk
@@ -20980,6 +20960,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2800297319618407488}
     m_Modifications:
+    - target: {fileID: 638511407886710132, guid: eae0bee4ec8bdbc4487808c1dd7ed0e3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -772071104987965657, guid: 61991f2d7a44f0548b3b6197e181c5c7, type: 2}
     - target: {fileID: 6137721739580907564, guid: eae0bee4ec8bdbc4487808c1dd7ed0e3, type: 3}
       propertyPath: m_text
       value: '3. Generation of Milk
@@ -21315,7 +21299,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: cd238edda7f90a445a194b9ba21e9443, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1736332980343846035}
+      addedObject: {fileID: 2084152093117180771}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: cd238edda7f90a445a194b9ba21e9443, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6665099585801488122}
@@ -22618,6 +22602,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8431588549431652078}
     m_Modifications:
+    - target: {fileID: 638511407886710132, guid: eae0bee4ec8bdbc4487808c1dd7ed0e3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -772071104987965657, guid: 61991f2d7a44f0548b3b6197e181c5c7, type: 2}
     - target: {fileID: 6137721739580907564, guid: eae0bee4ec8bdbc4487808c1dd7ed0e3, type: 3}
       propertyPath: m_text
       value: '4. Generation of Milk
@@ -22982,6 +22970,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4702850353068308276}
     m_Modifications:
+    - target: {fileID: 638511407886710132, guid: eae0bee4ec8bdbc4487808c1dd7ed0e3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -772071104987965657, guid: 61991f2d7a44f0548b3b6197e181c5c7, type: 2}
     - target: {fileID: 6137721739580907564, guid: eae0bee4ec8bdbc4487808c1dd7ed0e3, type: 3}
       propertyPath: m_text
       value: 'B. Milk

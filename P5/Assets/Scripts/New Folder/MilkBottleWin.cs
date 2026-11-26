@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 // Put on the milk bottle in the safe (TheFinalDropOfMilk, VR scene).
 // The first time the bottle is grabbed, the game is won for both players:
 // SharedState tells the PC and the VR side, and WinSequence plays the ending on each.
+// `won` resets on its own when the scene reloads (the bottle is a new instance then).
 [RequireComponent(typeof(XRGrabInteractable))]
 public class MilkBottleWin : MonoBehaviour
 {
